@@ -413,6 +413,38 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .sokong-share-btn{margin:14px 14px 16px;padding:13px;background:linear-gradient(135deg,var(--gold3),var(--gold));border:none;border-radius:13px;color:#000;font-size:13px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.3px}
 .sokong-share-btn:active{opacity:.85;transform:scale(.98)}
 
+/* ── RATING & ULASAN ── */
+.rate-section{margin:14px 14px 0;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px}
+.rate-header{text-align:center;margin-bottom:14px}
+.rate-header-ico{font-size:26px;margin-bottom:4px}
+.rate-header-title{font-size:14px;font-weight:800;color:var(--cream);letter-spacing:.3px}
+.rate-header-sub{font-size:10px;color:var(--muted);margin-top:3px}
+.rate-stars{display:flex;justify-content:center;gap:6px;margin-bottom:12px}
+.rate-star{font-size:30px;cursor:pointer;color:rgba(201,168,76,0.25);transition:transform .12s,color .12s;line-height:1}
+.rate-star:active{transform:scale(1.15)}
+.rate-star.on{color:var(--gold2)}
+.rate-name-input,.rate-comment-input{width:100%;background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:10px;padding:11px 13px;color:var(--cream);font-size:12px;font-family:'Inter',sans-serif;margin-bottom:8px;box-sizing:border-box}
+.rate-name-input::placeholder,.rate-comment-input::placeholder{color:var(--muted)}
+.rate-comment-input{resize:vertical;min-height:56px;line-height:1.5}
+.rate-submit-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--gold3),var(--gold));border:none;border-radius:11px;color:#000;font-size:12px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.3px}
+.rate-submit-btn:active{opacity:.85;transform:scale(.98)}
+.rate-submit-btn:disabled{opacity:.5}
+.rate-summary{display:flex;align-items:center;gap:10px;justify-content:center;margin:16px 0 14px;padding:12px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:12px}
+.rate-summary-avg{font-size:22px;font-weight:800;color:var(--gold2)}
+.rate-summary-stars{font-size:13px;color:var(--gold2)}
+.rate-summary-count{font-size:10px;color:var(--muted)}
+.rate-list{display:flex;flex-direction:column;gap:9px}
+.rate-item{background:rgba(0,0,0,0.15);border:1px solid var(--border);border-radius:12px;padding:11px 13px}
+.rate-item-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.rate-item-name{font-size:11px;font-weight:700;color:var(--cream)}
+.rate-item-stars{font-size:10px;color:var(--gold2)}
+.rate-item-text{font-size:11px;color:var(--cream2);line-height:1.6}
+.rate-item-mine{display:flex;gap:7px;margin-top:7px}
+.rate-item-action{font-size:9px;padding:3px 9px;border-radius:6px;background:rgba(0,139,174,0.12);border:1px solid rgba(0,139,174,0.25);color:#5BC8E0;font-weight:700;cursor:pointer}
+.rate-item-action.del{background:rgba(200,60,60,0.12);border-color:rgba(200,60,60,0.25);color:#E08080}
+.rate-empty{text-align:center;padding:16px 10px;font-size:11px;color:var(--muted)}
+.rate-loading{text-align:center;padding:16px 10px;font-size:11px;color:var(--muted)}
+
 
 /* ── PWA INSTALL BANNER (Putih — kontras dgn bg hijau) ── */
 .pwa-banner{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(110%);width:100%;max-width:430px;z-index:400;background:#FFFFFF;border-top:3px solid var(--gold);padding:16px 18px 32px;display:flex;gap:12px;align-items:center;transition:transform .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 -10px 36px rgba(0,0,0,.35)}
@@ -959,6 +991,35 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
     </div>
   </div>
 
+  <!-- Rating & Ulasan -->
+  <div class="rate-section" id="rateSection">
+    <div class="rate-header">
+      <div class="rate-header-ico">⭐</div>
+      <div class="rate-header-title">Rating &amp; Ulasan</div>
+      <div class="rate-header-sub">Apa pendapat anda tentang apps ini?</div>
+    </div>
+    <div class="rate-stars" id="rateStars">
+      <span class="rate-star" data-val="1">★</span>
+      <span class="rate-star" data-val="2">★</span>
+      <span class="rate-star" data-val="3">★</span>
+      <span class="rate-star" data-val="4">★</span>
+      <span class="rate-star" data-val="5">★</span>
+    </div>
+    <input type="text" class="rate-name-input" id="rateNameInput" placeholder="Nama anda" maxlength="40">
+    <textarea class="rate-comment-input" id="rateCommentInput" placeholder="Tulis ulasan anda (pilihan)" maxlength="300"></textarea>
+    <button class="rate-submit-btn" id="rateSubmitBtn">Hantar Rating</button>
+    <div class="rate-summary" id="rateSummary" style="display:none">
+      <div>
+        <div class="rate-summary-avg" id="rateSummaryAvg">-</div>
+        <div class="rate-summary-stars" id="rateSummaryStars"></div>
+      </div>
+      <div class="rate-summary-count" id="rateSummaryCount"></div>
+    </div>
+    <div class="rate-list" id="rateList" style="margin-top:14px">
+      <div class="rate-loading">Memuatkan ulasan...</div>
+    </div>
+  </div>
+
   <!-- Share Button -->
   <button class="sokong-share-btn" id="sokongShareBtn">
     📤 Kongsi Apps Ini kepada Rakan
@@ -1037,6 +1098,24 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
     <button class="sh-btn" id="saveNotifBtn">Simpan Tetapan</button>
   </div>
 </div>
+
+<!-- ══ FIREBASE — Rating & Ulasan ══ -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDbBn-mCpKFKDsMkH7pDpRdtHF0OROR7mM",
+  authDomain: "sunnah-daily-reviews.firebaseapp.com",
+  projectId: "sunnah-daily-reviews",
+  storageBucket: "sunnah-daily-reviews.firebasestorage.app",
+  messagingSenderId: "36365356415",
+  appId: "1:36365356415:web:bdb455635512a91e065e4a"
+};
+firebase.initializeApp(firebaseConfig);
+const fbAuth = firebase.auth();
+const fbDb = firebase.firestore();
+</script>
 
 <script>
 // ══════════════════════════════════════════
@@ -2606,6 +2685,144 @@ function popupSokong(){
   el.classList.add('on','show-sokong');
   _pt=setTimeout(()=>el.classList.remove('on','show-sokong'),6000);
 }
+
+// ══════════════════════════════════════════
+// RATING & ULASAN (Firebase)
+// ══════════════════════════════════════════
+let rateSelectedStars=0;
+let rateMyDocId=localStorage.getItem('sd5_my_rate_id')||null;
+let rateUnsub=null;
+
+// Sambung secara senyap (anonymous) — tiada UI login diperlukan
+fbAuth.signInAnonymously().catch(()=>{
+  // Jika gagal (offline dll), widget tetap papar senarai tapi submit akan gagal dengan mesej sendiri
+});
+
+function renderRateStars(){
+  document.querySelectorAll('#rateStars .rate-star').forEach(s=>{
+    s.classList.toggle('on', +s.dataset.val<=rateSelectedStars);
+  });
+}
+
+document.getElementById('rateStars').addEventListener('click',e=>{
+  const star=e.target.closest('.rate-star');
+  if(!star)return;
+  rateSelectedStars=+star.dataset.val;
+  renderRateStars();
+});
+
+function starsToText(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
+
+async function submitRating(){
+  const nameInput=document.getElementById('rateNameInput');
+  const commentInput=document.getElementById('rateCommentInput');
+  const name=nameInput.value.trim();
+  const comment=commentInput.value.trim();
+  const btn=document.getElementById('rateSubmitBtn');
+
+  if(!name){popup('✏️','Nama Diperlukan','Sila isi nama anda sebelum hantar rating.');nameInput.focus();return}
+  if(rateSelectedStars<1){popup('⭐','Pilih Rating','Sila tap bintang untuk beri rating.');return}
+  if(!fbAuth.currentUser){popup('📡','Tiada Sambungan','Sila semak internet anda dan cuba lagi.');return}
+
+  btn.disabled=true;btn.textContent='Menghantar...';
+  try{
+    const data={
+      name,
+      stars:rateSelectedStars,
+      comment,
+      uid:fbAuth.currentUser.uid,
+      timestamp:firebase.firestore.FieldValue.serverTimestamp()
+    };
+    if(rateMyDocId){
+      // Sudah pernah submit dari peranti ini — kemaskini rating sedia ada
+      await fbDb.collection('reviews').doc(rateMyDocId).update(data);
+      popup('✅','Rating Dikemaskini!','Terima kasih atas ulasan anda.');
+    }else{
+      const ref=await fbDb.collection('reviews').add(data);
+      rateMyDocId=ref.id;
+      localStorage.setItem('sd5_my_rate_id',rateMyDocId);
+      popup('✅','Terima Kasih!','Rating anda telah dihantar.');
+    }
+  }catch(e){
+    popup('⚠️','Gagal Hantar','Sila cuba lagi sebentar.');
+  }
+  btn.disabled=false;btn.textContent='Hantar Rating';
+}
+document.getElementById('rateSubmitBtn').addEventListener('click',submitRating);
+
+function deleteMyRating(){
+  if(!rateMyDocId)return;
+  fbDb.collection('reviews').doc(rateMyDocId).delete().then(()=>{
+    localStorage.removeItem('sd5_my_rate_id');
+    rateMyDocId=null;
+    document.getElementById('rateNameInput').value='';
+    document.getElementById('rateCommentInput').value='';
+    rateSelectedStars=0;renderRateStars();
+    popup('🗑️','Rating Dipadam','Rating anda telah dialih keluar.');
+  }).catch(()=>popup('⚠️','Gagal Padam','Sila cuba lagi sebentar.'));
+}
+
+function editMyRating(stars,name,comment){
+  rateSelectedStars=stars;renderRateStars();
+  document.getElementById('rateNameInput').value=name;
+  document.getElementById('rateCommentInput').value=comment||'';
+  document.getElementById('rateNameInput').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function startRatingListener(){
+  if(rateUnsub)return; // Elak daftar listener berganda
+  rateUnsub=fbDb.collection('reviews').orderBy('timestamp','desc').onSnapshot(snap=>{
+    const items=[];
+    snap.forEach(doc=>items.push({id:doc.id,...doc.data()}));
+    renderRatingList(items);
+  },()=>{
+    document.getElementById('rateList').innerHTML='<div class="rate-empty">Tidak dapat memuatkan ulasan. Semak sambungan internet.</div>';
+  });
+}
+
+function renderRatingList(items){
+  const listEl=document.getElementById('rateList');
+  const summaryEl=document.getElementById('rateSummary');
+
+  if(items.length===0){
+    summaryEl.style.display='none';
+    listEl.innerHTML='<div class="rate-empty">Belum ada ulasan. Jadilah yang pertama!</div>';
+    return;
+  }
+
+  const avg=items.reduce((sum,it)=>sum+it.stars,0)/items.length;
+  document.getElementById('rateSummaryAvg').textContent=avg.toFixed(1);
+  document.getElementById('rateSummaryStars').textContent=starsToText(Math.round(avg));
+  document.getElementById('rateSummaryCount').textContent=`${items.length} ulasan`;
+  summaryEl.style.display='flex';
+
+  listEl.innerHTML=items.map(it=>{
+    const isMine=it.id===rateMyDocId;
+    const safeName=(it.name||'Pengguna').replace(/</g,'&lt;');
+    const safeComment=(it.comment||'').replace(/</g,'&lt;');
+    return `<div class="rate-item">
+      <div class="rate-item-top">
+        <div class="rate-item-name">${safeName}${isMine?' (Anda)':''}</div>
+        <div class="rate-item-stars">${starsToText(it.stars)}</div>
+      </div>
+      ${safeComment?`<div class="rate-item-text">${safeComment}</div>`:''}
+      ${isMine?`<div class="rate-item-mine">
+        <div class="rate-item-action" data-edit-id="${it.id}" data-stars="${it.stars}" data-name="${safeName}" data-comment="${safeComment}">✏️ Edit</div>
+        <div class="rate-item-action del" data-del-id="${it.id}">🗑️ Padam</div>
+      </div>`:''}
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('rateList').addEventListener('click',e=>{
+  const editBtn=e.target.closest('[data-edit-id]');
+  if(editBtn){editMyRating(+editBtn.dataset.stars,editBtn.dataset.name,editBtn.dataset.comment);return}
+  const delBtn=e.target.closest('[data-del-id]');
+  if(delBtn){deleteMyRating();return}
+});
+
+// Mula dengarkan senarai ulasan sebaik sahaja halaman dimuatkan
+startRatingListener();
 
 // ══════════════════════════════════════════
 // NOTIFICATIONS
