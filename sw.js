@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════
 // SUNNAH DAILY — Service Worker v1.0
 // ══════════════════════════════════════════
-const CACHE_NAME = 'sunnah-daily-v2';
+const CACHE_NAME = 'sunnah-daily-v4';
 const ASSETS = [
   './',
   './index.html',

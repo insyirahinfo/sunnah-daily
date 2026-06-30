@@ -221,9 +221,11 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .sel-tap:active{transform:scale(.9);box-shadow:0 0 40px rgba(201,168,76,0.3)}
 
 /* Quick counts row */
+.sel-quick-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;text-align:center}
 .sel-quick{display:flex;gap:8px;margin-bottom:16px;width:100%}
 .sel-q-btn{flex:1;padding:9px 0;border-radius:10px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);color:var(--gold2);font-size:12px;font-weight:700;cursor:pointer;text-align:center;transition:.15s;font-family:'Inter',sans-serif}
 .sel-q-btn:active{background:rgba(201,168,76,0.2);transform:scale(.96)}
+.sel-q-btn.on{background:linear-gradient(135deg,var(--gold),var(--gold3));border-color:var(--gold2);color:#1A1505;box-shadow:0 0 14px rgba(201,168,76,0.35)}
 
 /* Actions */
 .sel-acts{display:flex;gap:8px;width:100%}
@@ -357,8 +359,11 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .npop{position:fixed;top:10px;left:50%;transform:translateX(-50%) translateY(-140%);z-index:300;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:9px 13px;max-width:calc(100% - 28px);width:370px;display:flex;gap:9px;align-items:flex-start;box-shadow:0 8px 24px rgba(0,0,0,.5);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
 .npop.on{transform:translateX(-50%) translateY(0)}
 .npop-ico{font-size:19px;flex-shrink:0}
+.npop-txt{flex:1;min-width:0}
 .npop-t{font-size:12px;font-weight:700;color:var(--g4)}
 .npop-b{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+.npop-btn{display:none;margin-top:7px;padding:6px 12px;background:linear-gradient(135deg,var(--g2),var(--g3));border:none;border-radius:8px;color:#fff;font-size:10.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
+.npop.show-sokong .npop-btn{display:inline-block}
 
 /* ── BOTTOM NAV ── */
 .bnav{position:sticky;bottom:0;background:rgba(7,21,16,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;padding:8px 0 16px;margin-top:auto}
@@ -501,7 +506,11 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 <!-- TOAST -->
 <div class="npop" id="npop">
   <div class="npop-ico" id="npopIco">🕌</div>
-  <div><div class="npop-t" id="npopT"></div><div class="npop-b" id="npopB"></div></div>
+  <div class="npop-txt">
+    <div class="npop-t" id="npopT"></div>
+    <div class="npop-b" id="npopB"></div>
+    <button class="npop-btn" id="npopSokongBtn">💝 Sokong Apps Ini</button>
+  </div>
 </div>
 
 <div id="app">
@@ -642,11 +651,12 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
       <div class="sel-tap-inner">☪</div>
     </div>
 
-    <!-- Quick add -->
+    <!-- Target selector -->
+    <div class="sel-quick-lbl">🎯 Sasaran Berselawat</div>
     <div class="sel-quick">
-      <button class="sel-q-btn" data-add="10">+10</button>
-      <button class="sel-q-btn" data-add="100">+100</button>
-      <button class="sel-q-btn" data-add="1000">+1000</button>
+      <button class="sel-q-btn" data-target="10">10</button>
+      <button class="sel-q-btn on" data-target="100">100</button>
+      <button class="sel-q-btn" data-target="1000">1000</button>
     </div>
 
     <!-- Actions -->
@@ -847,7 +857,7 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
       <div class="notif-status-dot"></div>
       <span id="notifStatusTxt">Semak status notifikasi...</span>
     </div>
-    <div class="nr"><div><div class="nr-l">Sebelum Subuh</div><div class="nr-s">Qiyamullail & tahajjud</div></div><div class="tog on"></div></div>
+    <div class="nr"><div><div class="nr-l">Waktu Tahajjud</div><div class="nr-s">Solat malam, dalil & kisah sahabat</div></div><div class="tog on"></div></div>
     <div class="nr"><div><div class="nr-l">Waktu Subuh</div><div class="nr-s">Zikir pagi & solat sunat fajar</div></div><div class="tog on"></div></div>
     <div class="nr"><div><div class="nr-l">Waktu Zohor</div><div class="nr-s">Solat sunat qabliyah & ba'diyah</div></div><div class="tog on"></div></div>
     <div class="nr"><div><div class="nr-l">Waktu Asar</div><div class="nr-s">Zikir petang</div></div><div class="tog"></div></div>
@@ -870,10 +880,13 @@ let doneSet = new Set();
 let ownedFood = new Set();
 let ownedWear = new Set();
 let selawatCount = 0;
-const SEL_TARGET = 100;
+let selTarget = 100;
 let kesOpenId = null;
 let kesTabState = {};
 let kesCat = 'semua';
+let riadahOpenId = null;
+let riadahTabState = {};
+let riadahCat = 'semua';
 let foodOpenId = null;
 let wearOpenId = null;
 
@@ -891,7 +904,7 @@ function save(){
     localStorage.setItem('sd5_done', JSON.stringify([...doneSet]));
     localStorage.setItem('sd5_food', JSON.stringify([...ownedFood]));
     localStorage.setItem('sd5_wear', JSON.stringify([...ownedWear]));
-    localStorage.setItem('sd5_sel', JSON.stringify({c:selawatCount, d:today}));
+    localStorage.setItem('sd5_sel', JSON.stringify({c:selawatCount, d:today, t:selTarget}));
     localStorage.setItem('sd5_lang', lang);
   }catch(e){}
 }
@@ -902,6 +915,7 @@ function load(){
     ownedWear = new Set(JSON.parse(localStorage.getItem('sd5_wear')||'[]'));
     const s = JSON.parse(localStorage.getItem('sd5_sel')||'{}');
     selawatCount = (s.d === new Date().toDateString()) ? (s.c||0) : 0;
+    selTarget = s.t || 100;
     lang = localStorage.getItem('sd5_lang') || 'MY';
   }catch(e){}
 }
@@ -921,6 +935,7 @@ const HADITH_LIST = [
 ];
 
 const PRAYERS = [
+  {name:'Tahajjud',ico:'🌌', time:'02:00', s:120},
   {name:'Subuh',  ico:'🌙', time:'06:00', s:330},
   {name:'Syuruq', ico:'🌅', time:'07:15', s:435},
   {name:'Zohor',  ico:'☀️', time:'13:00', s:780},
@@ -930,6 +945,13 @@ const PRAYERS = [
 ];
 
 const AMALAN = {
+  Tahajjud:[
+    {id:'t1',ico:'🌌',tMY:'Solat Tahajjud — Perintah Langsung Al-Quran',tEN:'Tahajjud Prayer — A Direct Quranic Command',tmMY:'Bangun selepas tidur, sepertiga malam terakhir',tmEN:'Rise after sleeping, last third of the night',bdg:[{l:'Dalil Al-Quran',t:'g'},{l:'Khusus Buat Nabi ﷺ & Umat',t:'v'}],ar:'وَمِنَ اللَّيْلِ فَتَهَجَّدْ بِهِ نَافِلَةً لَّكَ عَسَىٰ أَن يَبْعَثَكَ رَبُّكَ مَقَامًا مَّحْمُودًا',my:'Dan pada sebahagian malam, bangunlah untuk solat Tahajud sebagai ibadah tambahan bagimu; moga-moga Tuhanmu mengangkatmu ke darjat (kedudukan) yang terpuji.',en:'And from [part of] the night, pray Tahajjud, as additional [worship] for you; it is expected that your Lord will raise you to a praised station.',src:'Surah Al-Isra: 79',fMY:"Inilah satu-satunya ayat dalam Al-Quran yang menyebut perkataan 'Tahajjud' secara terus — diturunkan khusus memerintahkan Nabi ﷺ, dan menjadi galakan besar buat umatnya. Tahajjud bermaksud bangun dari tidur untuk solat malam, berbeza dengan qiyamullail secara umum yang tidak semestinya selepas tidur.",fEN:"This is the only verse in the Quran that explicitly names 'Tahajjud' — revealed specifically commanding the Prophet ﷺ, and became a great encouragement for his nation. Tahajjud specifically means rising from sleep to pray, distinct from general qiyam al-layl which need not follow sleep."},
+    {id:'t2',ico:'🌗',tMY:'Mulakan Dengan 2 Rakaat Ringan',tEN:'Begin With Two Light Rak\'ahs',tmMY:'Permulaan solat malam',tmEN:'Start of the night prayer',bdg:[{l:'Cara Solat',t:'g'},{l:'Sunnah Nabi ﷺ',t:'v'}],ar:'إِذَا قَامَ أَحَدُكُمْ مِنَ اللَّيْلِ فَلْيَفْتَتِحْ صَلَاتَهُ بِرَكْعَتَيْنِ خَفِيفَتَيْنِ',my:'Apabila seseorang dari kamu bangun untuk solat malam, hendaklah dia membuka solatnya dengan dua rakaat yang ringan.',en:'When any of you rises to pray at night, let him begin his prayer with two short, light rak\'ahs.',src:'Sahih Muslim',fMY:"Nabi ﷺ mengajar kita memulakan Tahajjud dengan ringan dahulu untuk melonggarkan badan sebelum solat yang lebih panjang. Tidak perlu terus solat lama — mula ringan, tambah secara beransur-ansur mengikut kemampuan.",fEN:"The Prophet ﷺ taught us to ease into Tahajjud with something light before longer prayer. There's no need to start with a lengthy prayer right away — begin light, then build up gradually within your ability."},
+    {id:'t3',ico:'🌓',tMY:'Struktur Solat Malam Nabi ﷺ — Tidak Lebih 11 Rakaat',tEN:"Structure of the Prophet's ﷺ Night Prayer — Never More Than 11",tmMY:'Sepanjang sepertiga malam terakhir',tmEN:'Throughout the last third of the night',bdg:[{l:'Riwayat Aisyah RA',t:'g'},{l:'Kualiti, Bukan Kuantiti',t:'b'}],ar:'مَا كَانَ رَسُولُ اللَّهِ ﷺ يَزِيدُ فِي رَمَضَانَ وَلَا فِي غَيْرِهِ عَلَى إِحْدَى عَشْرَةَ رَكْعَةً',my:'Rasulullah ﷺ tidak pernah menambah lebih daripada 11 rakaat sama ada pada bulan Ramadan ataupun bulan-bulan yang lain.',en:'The Messenger of Allah ﷺ never exceeded eleven rak\'ahs, whether in Ramadan or outside it.',src:"Disepakati Sahih al-Bukhari & Sahih Muslim — Riwayat Aisyah RA",fMY:"Aisyah RA, isteri yang paling rapat dengan Nabi ﷺ pada waktu malam, menyaksikan sendiri rutin ini — solat dua rakaat demi dua rakaat, lalu ditutup dengan witir. Solat malam tidak diukur dengan banyaknya rakaat, tetapi kekhusyukan dan keikhlasan. Walaupun sedikit, asalkan istiqamah.",fEN:"Aisha RA, the person closest to him at night, witnessed this routine herself — praying in pairs of two, sealed with Witr. Night prayer isn't measured by the number of rak'ahs but by sincerity and devotion. Even a little, done consistently, is what matters most."},
+    {id:'t4',ico:'🤲',tMY:"Kisah Ibn Mas'ud RA — Solat Sehingga Hampir Tak Tertahan",tEN:"Ibn Mas'ud's RA Account — A Prayer So Long He Could Barely Stand",tmMY:'Kisah sahabat menyaksikan solat malam Nabi ﷺ',tmEN:"A companion's account of witnessing the Prophet's ﷺ night prayer",bdg:[{l:'Kisah Sahabat',t:'g'},{l:"Riwayat Ibn Mas'ud RA",t:'v'}],ar:'صَلَّيْتُ مَعَ النَّبِيِّ ﷺ ذَاتَ لَيْلَةٍ فَطَوَّلَ حَتَّى هَمَمْتُ بِأَمْرِ سُوءٍ. قِيلَ: وَمَا هَمَمْتَ؟ قَالَ: هَمَمْتُ أَنْ أَقْعُدَ وَأَذَرَهُ',my:"Aku solat bersama Nabi ﷺ pada suatu malam, lalu baginda memanjangkan solat sehingga aku terlintas untuk melakukan sesuatu yang tidak baik. (Ditanya: Apa yang terlintas?) Beliau menjawab: Aku terlintas untuk duduk dan meninggalkan baginda (kerana terlalu lama berdiri).",en:"I prayed with the Prophet ﷺ one night, and he prolonged the prayer so much that I thought of doing something improper. (He was asked: What did you think of?) He said: I thought of sitting down and leaving him.",src:"Disepakati Sahih al-Bukhari & Sahih Muslim — Riwayat Abdullah ibn Mas'ud RA",fMY:"Ibn Mas'ud RA kemudiannya menyesali fikiran itu dan tetap bersabar mengikuti solat Nabi ﷺ sehingga selesai. Kisah ini menggambarkan betapa panjang dan khusyuknya solat malam Nabi ﷺ — namun ini bukan bermakna kita wajib meniru tempoh tersebut; mulakan dengan apa yang termampu.",fEN:"Ibn Mas'ud RA later regretted that thought and patiently completed the prayer alongside him. This account shows just how long and devoted the Prophet's ﷺ night prayers were — though this doesn't mean we must match that duration; start with what you are able."},
+    {id:'t5',ico:'🌃',tMY:'Bila Hendak Solat Witir?',tEN:'When Should You Pray Witr?',tmMY:'Sebelum tidur, atau di akhir Tahajjud',tmEN:'Before sleeping, or at the end of Tahajjud',bdg:[{l:'Fleksibel',t:'g'},{l:'Riwayat Jabir RA',t:'v'}],ar:'مَنْ خَافَ أَنْ لَا يَقُومَ مِنْ آخِرِ اللَّيْلِ فَلْيُوتِرْ أَوَّلَهُ، وَمَنْ طَمِعَ أَنْ يَقُومَ آخِرَهُ فَلْيُوتِرْ آخِرَ اللَّيْلِ',my:'Sesiapa yang bimbang tidak dapat bangun pada akhir malam, hendaklah dia berwitir di awal malam. Dan sesiapa yang yakin dapat bangun pada akhirnya, hendaklah dia berwitir di akhir malam.',en:'Whoever fears he will not wake up at the end of the night, let him pray Witr at its beginning. And whoever is confident he will wake up at the end, let him pray Witr at the end of the night.',src:'Sahih Muslim — Riwayat Jabir bin Abdillah RA',fMY:"Hadis ini memberi kelonggaran — kalau tak pasti dapat bangun, witir dahulu sebelum tidur (seperti diajar di waktu Isyak). Tapi kalau yakin akan bangun untuk Tahajjud, tangguhkan witir ke penghujung solat malam kerana ia lebih afdal.",fEN:"This hadith offers flexibility — if unsure you'll wake up, pray Witr before sleeping. But if confident you'll rise for Tahajjud, delay Witr to the end of the night prayer, as that is more virtuous."},
+  ],
   Subuh:[
     {id:'s1',ico:'🌙',tMY:"Solat Sunat Qabliyah Subuh (2 Rakaat)",tEN:"2 Rak'ah Fajr Sunnah Prayer",tmMY:'Sebelum solat Subuh fardu',tmEN:'Before obligatory Fajr',bdg:[{l:"Mu'akkadah",t:'g'},{l:'Sangat Digalakkan',t:'v'}],ar:'رَكْعَتَا الْفَجْرِ خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا',my:"Dua rakaat fajar lebih baik daripada dunia dan seisinya.",en:"The two rak'ahs of Fajr are better than the world and all it contains.",src:'HR. Muslim (725)',fMY:"Nabi ﷺ tidak pernah meninggalkan solat sunat ini walaupun dalam perjalanan.",fEN:"The Prophet ﷺ never abandoned this prayer even while traveling."},
     {id:'s2',ico:'📿',tMY:'Zikir Pagi (Azkar al-Sabah)',tEN:'Morning Remembrance',tmMY:'Selepas Subuh hingga terbit matahari',tmEN:'After Fajr until sunrise',bdg:[{l:'Harian',t:'g'},{l:'Perlindungan',t:'v'}],ar:'اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ',my:'Ya Allah, dengan-Mu kami memasuki pagi, petang, hidup, mati, dan kepada-Mu kami dibangkitkan.',en:'O Allah, by You we enter the morning, evening, live, die, and to You is the resurrection.',src:'HR. Tirmizi (3391)',fMY:'Zikir pagi adalah perisai Muslim sepanjang hari dari syaitan dan bala bencana.',fEN:"Morning remembrance is the Muslim's daily shield from Shaytan and trials."},
@@ -963,7 +985,6 @@ const AMALAN = {
     {id:'i2',ico:'🤲',tMY:'Doa & Zikir Sebelum Tidur',tEN:"Du'a & Dhikr Before Sleep",tmMY:'Sebelum tidur malam',tmEN:'Before sleeping',bdg:[{l:'Perlindungan',t:'g'},{l:'Harian',t:'v'}],ar:"اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا",my:"Ya Allah, dengan nama-Mu aku mati (tidur) dan aku hidup (bangun).",en:"O Allah, in Your Name I die (sleep) and I live (wake).",src:'HR. Bukhari (6324)',fMY:"Ayatul Kursi (perlindungan malaikat sepanjang malam), al-Falaq & an-Nas 3x, tiup ke tapak tangan sapu ke badan.",fEN:"Ayatul Kursi (angelic protection all night), Al-Falaq & An-Nas 3x, blow into palms and wipe over body."},
     {id:'i3',ico:'📿',tMY:'Tasbih Fatimah Sebelum Tidur',tEN:"Fatimah's Tasbih Before Sleep",tmMY:'Sebelum tidur malam',tmEN:'Before sleeping',bdg:[{l:'SubhanAllah 33x',t:'g'},{l:'AllahuAkbar 34x',t:'v'}],ar:"سُبْحَانَ اللَّهِ ثَلَاثًا وَثَلَاثِينَ وَالْحَمْدُ لِلَّهِ ثَلَاثًا وَثَلَاثِينَ وَاللَّهُ أَكْبَرُ أَرْبَعًا وَثَلَاثِينَ",my:"SubhanAllah 33x, Alhamdulillah 33x, AllahuAkbar 34x — lebih baik daripada seorang pembantu.",en:"SubhanAllah 33x, Alhamdulillah 33x, AllahuAkbar 34x — better than a servant.",src:'HR. Bukhari (3705)',fMY:"Fatimah RA meminta pembantu. Nabi ﷺ ajarkan zikir ini sebagai ganti yang lebih baik — memberi kekuatan untuk esok hari.",fEN:"Fatimah RA asked for a servant. The Prophet ﷺ taught this dhikr as something better — giving strength for the next day."},
     {id:'i4',ico:'🪥',tMY:'Bersiwak Sebelum Tidur',tEN:'Use Siwak Before Sleep',tmMY:'Sebelum tidur',tmEN:'Before sleep',bdg:[{l:'Oral Health',t:'b'},{l:'Sunnah Muakkad',t:'g'}],ar:"السِّوَاكُ مَطْهَرَةٌ لِلْفَمِ مَرْضَاةٌ لِلرَّبِّ",my:"Siwak itu pembersih bagi mulut dan mendapat keredhaan Tuhan.",en:"The siwak is a purifier for the mouth and pleasing to the Lord.",src:"HR. al-Nasa'i (5)",fMY:"Nabi ﷺ bersiwak sebelum tidur, ketika bangun malam, dan sebelum Subuh. Sepanjang malam mulut terjaga dari bakteria.",fEN:"The Prophet ﷺ used siwak before sleep, when rising at night, and before Fajr. The mouth is protected from bacteria all night."},
-    {id:'i5',ico:'🌙',tMY:'Solat Tahajjud (2–8 Rakaat)',tEN:'Tahajjud Prayer (2-8 Rak\'ahs)',tmMY:'Sepertiga malam terakhir (2–4 pagi)',tmEN:'Last third of night (2-4am)',bdg:[{l:'Mustajab',t:'g'},{l:'Paling Afdal',t:'v'}],ar:"تَنَزَّلُ رَبُّنَا تَبَارَكَ وَتَعَالَى كُلَّ لَيْلَةٍ إِلَى السَّمَاءِ الدُّنْيَا حِينَ يَبْقَى ثُلُثُ اللَّيْلِ",my:"Tuhan kita turun setiap malam ke langit dunia ketika sepertiga malam terakhir, berfirman: Siapa yang berdoa kepada-Ku nescaya Aku kabulkan?",en:"Our Lord descends every night to the lowest heaven when one-third remains, saying: Who calls upon Me that I may answer?",src:'HR. Bukhari (1145)',fMY:"Waktu sepertiga malam terakhir adalah paling mustajab untuk berdoa. Allah secara khusus mendengar doa hamba-Nya.",fEN:"The last third of the night is the most responsive time for du'a. Allah specifically listens to His servants' prayers."},
   ],
 };
 
@@ -1319,6 +1340,45 @@ function renderWear(){
 // SLOT DETAIL DATA — Rich Amalan per Waktu
 // ══════════════════════════════════════════
 const SLOT_DETAIL = {
+  Tahajjud:{
+    slot:'Sepertiga Malam Terakhir (Selepas Tidur, Sebelum Subuh)',icon:'🌌',
+    sub:'Solat Paling Afdal Selepas Solat Wajib — Munajat Peribadi Bersama Allah',
+    items:[
+      {num:1,type:'amalan',title:'Bangun & Solat Tahajjud',
+       body:'Tahajjud bermaksud bangun daripada tidur untuk solat malam — inilah yang membezakannya dengan qiyamullail secara umum. Mulakan dengan dua rakaat ringan, kemudian teruskan secara genap (dua rakaat demi dua rakaat) mengikut kemampuan, dan tutup dengan solat Witir.',
+       bilangan:'Bermula 2 rakaat, diteruskan secara genap, ditutup dengan Witir',
+       ar:'وَمِنَ اللَّيْلِ فَتَهَجَّدْ بِهِ نَافِلَةً لَّكَ عَسَىٰ أَن يَبْعَثَكَ رَبُّكَ مَقَامًا مَّحْمُودًا',
+       tr:'Dan pada sebahagian malam, bangunlah untuk solat Tahajud sebagai ibadah tambahan bagimu; moga-moga Tuhanmu mengangkatmu ke darjat (kedudukan) yang terpuji.',
+       src:'Surah Al-Isra: 79',
+       note:'Tahajjud tiada bilangan rakaat yang wajib. Yang lebih penting adalah bangun dari tidur dan solat dengan khusyuk, walaupun hanya mampu 2 rakaat.'},
+      {num:2,type:'kisah',title:"Kisah Ibn Mas'ud RA — Solat Sehingga Hampir Tak Tertahan",
+       body:"Abdullah ibn Mas'ud RA menceritakan pengalamannya solat malam bersama Nabi ﷺ. Begitu panjang dan khusyuk solat baginda, sehingga seorang sahabat yang soleh sekalipun terasa amat penat berdiri lama. Namun beliau tetap bersabar menyelesaikan solat bersama Nabi ﷺ.",
+       ar:'صَلَّيْتُ مَعَ النَّبِيِّ ﷺ ذَاتَ لَيْلَةٍ فَطَوَّلَ حَتَّى هَمَمْتُ بِأَمْرِ سُوءٍ. قِيلَ: وَمَا هَمَمْتَ؟ قَالَ: هَمَمْتُ أَنْ أَقْعُدَ وَأَذَرَهُ',
+       tr:'Aku solat bersama Nabi ﷺ pada suatu malam, lalu baginda memanjangkan solat sehingga aku terlintas untuk melakukan sesuatu yang tidak baik. (Ditanya: Apa yang terlintas?) Beliau menjawab: Aku terlintas untuk duduk dan meninggalkan baginda.',
+       src:"Disepakati Sahih al-Bukhari & Sahih Muslim — Riwayat Ibn Mas'ud RA",
+       note:"Tak perlu meniru tempoh solat Nabi ﷺ yang luar biasa panjang itu. Mulakan dengan apa yang termampu — yang dinilai Allah adalah keikhlasan dan istiqamah, bukan tempoh berdiri."},
+      {num:3,type:'kisah',title:'Fadhilat: Ganjaran yang Allah Sendiri Rahsiakan',
+       body:'Al-Quran menggambarkan golongan yang bangun malam sebagai mereka yang lambungnya jauh daripada tempat tidur, berdoa kepada Tuhan dengan rasa takut dan penuh harap. Ganjaran untuk mereka begitu istimewa sehingga tidak diberitahu secara terperinci kepada sesiapa pun.',
+       ar:'تَتَجَافَىٰ جُنُوبُهُمْ عَنِ الْمَضَاجِعِ يَدْعُونَ رَبَّهُمْ خَوْفًا وَطَمَعًا ۖ فَلَا تَعْلَمُ نَفْسٌ مَّا أُخْفِيَ لَهُم مِّن قُرَّةِ أَعْيُنٍ جَزَاءً بِمَا كَانُوا يَعْمَلُونَ',
+       tr:'Lambung mereka jauh dari tempat tidur (kerana bangun malam), mereka berdoa kepada Tuhan mereka dengan rasa takut dan penuh harap. Maka tiada seorang pun yang mengetahui apa yang disembunyikan untuk mereka berupa penyejuk mata, sebagai balasan bagi apa yang telah mereka kerjakan.',
+       src:'Surah As-Sajdah: 16–17',
+       note:'Ganjaran qiyamullail begitu besar sehingga Allah "merahsiakannya" daripada pengetahuan makhluk — tanda betapa tingginya nilai ibadah ini di sisi-Nya.'},
+      {num:4,type:'pantang',title:'Pantang: Jangan Memaksa Diri Melampau',
+       hukum:'Sunnah Beramal Mengikut Kemampuan — Elak Melampau',
+       body:'Islam mengajar kesederhanaan dalam ibadah. Pernah seorang sahabiyah mengikat tali di masjid untuk menahan badannya solat tanpa henti walaupun keletihan. Apabila Nabi ﷺ melihatnya, baginda menyuruh tali itu ditanggalkan.',
+       ar:'خُذُوا مِنَ الْعَمَلِ مَا تُطِيقُونَ فَإِنَّ اللَّهَ لَا يَمَلُّ حَتَّى تَمَلُّوا',
+       tr:'Lakukanlah amalan yang kamu mampu, kerana sesungguhnya Allah tidak akan jemu (memberi ganjaran) sehingga kamu sendiri yang berasa jemu dan berhenti.',
+       src:'Disepakati Sahih al-Bukhari & Sahih Muslim — Riwayat Aisyah RA',
+       note:'Jangan paksa diri sehingga menjejaskan kesihatan atau tugas harian esoknya. Konsisten dengan jumlah sedikit lebih baik daripada banyak tetapi terputus-putus.'},
+      {num:5,type:'amalan',title:'Waktu Terbaik & Doa Paling Mustajab',
+       body:'Sepertiga malam terakhir adalah waktu paling istimewa untuk berdoa. Allah Yang Maha Berkat dan Maha Tinggi turun ke langit dunia (dengan cara yang hanya Dia ketahui, tanpa menyerupai makhluk) pada waktu ini, menawarkan untuk memperkenankan doa hamba-Nya.',
+       bilangan:'Anggaran 2 pagi sehingga sebelum masuk waktu Subuh',
+       ar:'يَنْزِلُ رَبُّنَا تَبَارَكَ وَتَعَالَى كُلَّ لَيْلَةٍ إِلَى السَّمَاءِ الدُّنْيَا حِينَ يَبْقَى ثُلُثُ اللَّيْلِ الْآخِرُ فَيَقُولُ: مَنْ يَدْعُونِي فَأَسْتَجِيبَ لَهُ، مَنْ يَسْأَلُنِي فَأُعْطِيَهُ، مَنْ يَسْتَغْفِرُنِي فَأَغْفِرَ لَهُ',
+       tr:'Tuhan kita Yang Maha Berkat dan Maha Tinggi turun pada setiap malam ke langit dunia ketika tinggal sepertiga malam yang akhir, lalu berfirman: Siapa yang berdoa kepada-Ku nescaya Aku perkenankan baginya, siapa yang meminta kepada-Ku nescaya Aku berikan kepadanya, siapa yang memohon ampun kepada-Ku nescaya Aku ampunkan dia.',
+       src:'HR. Bukhari (1145), juga dalam Sahih Muslim',
+       note:'Manfaatkan waktu ini untuk memohon apa sahaja hajat — dunia dan akhirat. Inilah antara sebab terbesar mengapa Tahajjud digalakkan sebelum Subuh.'}
+    ]
+  },
   Subuh:{
     slot:'Sebelum Subuh Hingga Syuruq',icon:'🌙',
     sub:'Waktu Paling Berkat — Malaikat Fajar Berkumpul',
@@ -1560,16 +1620,18 @@ function updateSelUI(){
   document.getElementById('selNum').textContent=c;
   document.getElementById('selHdrNum').textContent=c;
   const pn=document.getElementById('selPromptNum');if(pn)pn.textContent=c;
-  // Ring — target 100, then wrap
-  const pct=Math.min(c%SEL_TARGET===0&&c>0?1:(c%SEL_TARGET)/SEL_TARGET,1);
+  // Ring — target selectable (10/100/1000), then wrap
+  const pct=Math.min(c%selTarget===0&&c>0?1:(c%selTarget)/selTarget,1);
   const offset=SEL_CIRC-(SEL_CIRC*pct);
   document.getElementById('selRing').style.strokeDashoffset=offset;
   // Target label
-  const remaining=SEL_TARGET-c%SEL_TARGET;
+  const remaining=selTarget-c%selTarget;
   document.getElementById('selTargetLbl').textContent=
-    c===0?`Sasaran: ${SEL_TARGET} selawat hari ini`
-    :c%SEL_TARGET===0?`🎉 ${c} selawat! Teruskan...`
-    :`Lagi ${remaining} untuk capai ${Math.ceil(c/SEL_TARGET)*SEL_TARGET}`;
+    c===0?`Sasaran: ${selTarget} selawat hari ini`
+    :c%selTarget===0?`🎉 ${c} selawat! Teruskan...`
+    :`Lagi ${remaining} untuk capai ${Math.ceil(c/selTarget)*selTarget}`;
+  // Sync active state of target-selector buttons
+  document.querySelectorAll('.sel-q-btn').forEach(b=>b.classList.toggle('on',+b.dataset.target===selTarget));
   // Milestone
   const ms=document.getElementById('selMilestone');
   if(c===100||c===300||c===500||c===1000){
@@ -1578,6 +1640,11 @@ function updateSelUI(){
     setTimeout(()=>ms.classList.remove('show'),4000);
   }
   save();
+}
+function setSelTarget(n){
+  selTarget=n;
+  updateSelUI();
+  popup('🎯','Sasaran Ditetapkan!',`Sasaran berselawat hari ini: ${n}x`);
 }
 function playSelSound(){
   try{
@@ -1660,8 +1727,18 @@ function popup(ico,t,b){
   document.getElementById('npopT').textContent=t;
   document.getElementById('npopB').textContent=b;
   const el=document.getElementById('npop');
+  el.classList.remove('show-sokong');
   el.classList.add('on');
   _pt=setTimeout(()=>el.classList.remove('on'),3000);
+}
+function popupSokong(){
+  if(_pt)clearTimeout(_pt);
+  document.getElementById('npopIco').textContent='💝';
+  document.getElementById('npopT').textContent='Apps Ini 100% Percuma!';
+  document.getElementById('npopB').textContent='Jika apps ni bermanfaat buat anda, boleh sokong dakwah ini.';
+  const el=document.getElementById('npop');
+  el.classList.add('on','show-sokong');
+  _pt=setTimeout(()=>el.classList.remove('on','show-sokong'),6000);
 }
 
 // ══════════════════════════════════════════
@@ -1697,12 +1774,14 @@ document.addEventListener('click',function(e){
   if(t.closest('#saveNotifBtn')){saveNotif();return}
   // Notif overlay close
   if(t===document.getElementById('notifOverlay')){document.getElementById('notifOverlay').classList.remove('on');return}
+  // Toast support button
+  if(t.closest('#npopSokongBtn')){if(_pt)clearTimeout(_pt);document.getElementById('npop').classList.remove('on','show-sokong');switchPage('sokong');return}
   // Slot detail
   if(t.closest('#slotNotif')){showSlotDetail(curPrayer);return}
   if(t.closest('#slotCloseBtn')||t===document.getElementById('slotOverlay')){document.getElementById('slotOverlay').classList.remove('on');return}
   // Selawat page
   if(t.closest('#selTapBtn')){addSelawat(1);return}
-  const qb=t.closest('[data-add]'); if(qb){addSelawat(+qb.dataset.add);return}
+  const qb=t.closest('[data-target]'); if(qb){setSelTarget(+qb.dataset.target);return}
   if(t.closest('#selResetBtn')){selawatCount=0;updateSelUI();popup('🔄','Reset!','Kiraan selawat hari ini direset.');return}
   if(t.closest('#selShareBtn')){const msg=`☪ Alhamdulillah! Aku dah berselawat ${selawatCount}x hari ini!\n\nصَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ\n\n#SunnahDaily #Selawat`;if(navigator.share)navigator.share({text:msg});else{popup('📤','Salin & Kongsi','Teks selawat telah disalin!');navigator.clipboard?.writeText(msg)};return}
   if(t.closest('#selBack')){switchPage('amalan');return}
@@ -1732,6 +1811,7 @@ function init(){
   renderRiadah();
   setInterval(()=>{renderWheel();renderSlotNotif()},60000);
   setTimeout(()=>popup('☪','Salam! Selamat Datang ﷺ','Jejak langkah Nabi dalam kehidupan harian anda.'),800);
+  setTimeout(()=>popupSokong(),4200);
 }
 document.addEventListener('DOMContentLoaded',init);
 
@@ -1802,6 +1882,7 @@ window.addEventListener('appinstalled', () => {
 // NOTIFICATIONS — Full Scheduling System
 // ══════════════════════════════════════════
 const PRAYER_NOTIF_DATA = {
+  Tahajjud:{ icon:'🌌', tip:'Bangun, ambil wuduk, mula dengan 2 rakaat ringan!' },
   Subuh:   { icon:'🌙', tip:'Jangan sambung tidur selepas Subuh!' },
   Syuruq:  { icon:'🌅', tip:'Duduk berzikir — raih pahala Haji & Umrah!' },
   Zohor:   { icon:'☀️', tip:'Pintu langit terbuka — waktu mustajab doa!' },
@@ -1912,7 +1993,7 @@ function updateNotifStatus() {
   }
   if (Notification.permission === 'granted') {
     bar.className = 'notif-status';
-    txt.textContent = '✅ Notifikasi aktif — 6 waktu solat dijadual';
+    txt.textContent = `✅ Notifikasi aktif — ${PRAYERS.length} waktu solat dijadual`;
   } else if (Notification.permission === 'denied') {
     bar.className = 'notif-status off';
     txt.textContent = '🔕 Notifikasi disekat — buka tetapan browser';
