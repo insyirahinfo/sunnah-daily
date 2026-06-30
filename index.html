@@ -70,7 +70,13 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .day-tab.on{background:var(--g2);color:#fff;border-color:var(--g2);font-weight:700}
 
 /* ── HERO ── */
-.hero{margin:12px 14px 0;background:linear-gradient(135deg,var(--bg3),var(--bg4));border:1px solid var(--border);border-radius:18px;padding:15px;position:relative;overflow:hidden}
+.hero{margin:12px 14px 0;background:linear-gradient(135deg,var(--bg3),var(--bg4));border:1px solid var(--border);border-radius:18px;padding:15px;position:relative;overflow:hidden;cursor:pointer;transition:.15s}
+.hero:active{transform:scale(.985);background:linear-gradient(135deg,var(--bg4),var(--bg3))}
+.hadith-num-badge{display:inline-block;font-size:8.5px;font-weight:800;letter-spacing:.5px;color:var(--gold2);background:rgba(201,168,76,0.14);border:1px solid rgba(201,168,76,0.3);border-radius:5px;padding:2px 7px;margin-left:6px;vertical-align:middle}
+.hadith-next-btn{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(201,168,76,0.16);border:1px solid rgba(201,168,76,0.3);color:var(--gold2);font-size:11px;margin-left:5px;vertical-align:middle;cursor:pointer;transition:transform .3s ease}
+.hadith-next-btn:active{transform:rotate(180deg) scale(.9)}
+.hadith-tap-hint{display:flex;align-items:center;justify-content:flex-end;gap:4px;margin-top:8px;font-size:9px;color:var(--muted);font-weight:600}
+.hadith-tap-hint .arr{color:var(--gold2);font-size:11px}
 .hero::after{content:'☪';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:60px;opacity:.04;color:var(--g4)}
 .hero-dates{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
 .hijri{font-family:'Scheherazade New','Amiri',serif;font-size:18px;color:var(--gold);line-height:1.2}
@@ -93,14 +99,21 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .wheel-lbl{font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);text-align:center;margin-bottom:12px}
 .wheel-container{position:relative;height:130px;perspective:500px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none}
 .wheel-container:active{cursor:grabbing}
-.wpill{position:absolute;left:50%;top:50%;display:flex;flex-direction:column;align-items:center;padding:9px 13px;border-radius:13px;border:1px solid var(--border);background:var(--card);min-width:72px;cursor:pointer;backface-visibility:hidden;transition:opacity .15s,box-shadow .15s}
-.wpill.center{border-color:var(--g3);background:linear-gradient(135deg,rgba(46,125,79,0.35),rgba(61,160,102,0.15));box-shadow:0 0 20px rgba(86,196,126,0.3),0 4px 14px rgba(0,0,0,.5)}
+.wpill{position:absolute;left:50%;top:50%;display:flex;flex-direction:column;align-items:center;padding:9px 13px;border-radius:13px;border:1px solid var(--border);background:var(--card);min-width:72px;cursor:pointer;backface-visibility:hidden;transition:opacity .15s,box-shadow .2s,transform .12s ease-out,filter .15s}
+.wpill.center{border-color:var(--g3);background:linear-gradient(135deg,rgba(46,125,79,0.35),rgba(61,160,102,0.15))}
 .wpill-ico{font-size:18px;margin-bottom:4px}
 .wpill-name{font-size:9px;font-weight:700;color:var(--cream);text-transform:uppercase;letter-spacing:.4px}
 .wpill.center .wpill-name{color:var(--g4)}
 .wpill-time{font-size:9px;color:var(--muted);margin-top:2px}
 .now-dot{width:5px;height:5px;background:var(--g4);border-radius:50%;margin-top:3px;box-shadow:0 0 6px var(--g4)}
 .wheel-hint{text-align:center;font-size:10px;color:var(--muted);margin-top:5px;padding:0 14px}
+
+/* ── UNIVERSAL ELEVATED SHADOW — semua box dalam app nampak timbul ── */
+.acard,.hero,.kcard,.mcard,.kes-hero,.mod-hero,.bio-hero,.bio-info-item,
+.sokong-qr-section,.slot-notif,.stat,.notif-status,.sokong-note,
+.sokong-header,.sel-milestone{
+  box-shadow:0 6px 18px rgba(0,0,0,.28),0 2px 6px rgba(0,0,0,.16);
+}
 
 /* ── SECTION / AMALAN ── */
 .sec{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);padding:13px 14px 8px;display:flex;align-items:center;gap:7px}
@@ -435,30 +448,30 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .sel-ban-orn{color:var(--gold3);font-size:12px;opacity:0.55;position:relative;z-index:1;letter-spacing:1px}
 @keyframes khat-glow{0%,100%{text-shadow:0 0 18px rgba(201,168,76,0.45),0 0 36px rgba(201,168,76,0.15)}50%{text-shadow:0 0 28px rgba(201,168,76,0.75),0 0 56px rgba(201,168,76,0.3),0 0 80px rgba(201,168,76,0.1)}}
 
-/* ── SEL PROMPT CARD (Sudahkah anda berselawat?) ── */
-.sel-prompt{margin:10px 14px 0;background:linear-gradient(135deg,rgba(201,168,76,0.085),rgba(46,125,79,0.055) 100%);border:1px solid rgba(201,168,76,0.22);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:.15s;position:relative;overflow:hidden}
-.sel-prompt::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.04),transparent 60%);pointer-events:none}
-.sel-prompt::after{content:'';position:absolute;top:-45px;right:-35px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.13),transparent 68%);pointer-events:none}
-.sel-prompt:active{transform:scale(.98);background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(46,125,79,0.10) 100%)}
-.sel-prompt-ico{font-family:'Scheherazade New','Amiri',serif;font-size:32px;color:var(--gold);text-shadow:0 0 16px rgba(201,168,76,0.5);line-height:1;position:relative;z-index:1;flex-shrink:0}
+/* ── SEL PROMPT CARD (Sudahkah anda berselawat?) — Hijau Pucuk Pisang ── */
+.sel-prompt{margin:10px 14px 0;background:linear-gradient(135deg,#8BC34A,#9CCC65);border:1px solid #7CB342;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:.15s;position:relative;overflow:hidden;box-shadow:0 6px 20px rgba(124,179,66,.35),0 2px 6px rgba(0,0,0,.12)}
+.sel-prompt::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent 60%);pointer-events:none}
+.sel-prompt::after{content:'';position:absolute;top:-45px;right:-35px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.15),transparent 68%);pointer-events:none}
+.sel-prompt:active{transform:scale(.98);background:linear-gradient(135deg,#7CB342,#8BC34A)}
+.sel-prompt-ico{font-family:'Scheherazade New','Amiri',serif;font-size:32px;color:#FFFFFF;text-shadow:0 0 14px rgba(0,0,0,.18);line-height:1;position:relative;z-index:1;flex-shrink:0}
 .sel-prompt-body{flex:1;min-width:0;position:relative;z-index:1}
-.sel-prompt-q{font-size:10.5px;color:var(--cream2);font-weight:500;margin-bottom:4px;line-height:1.35}
+.sel-prompt-q{font-size:10.5px;color:rgba(255,255,255,0.92);font-weight:600;margin-bottom:4px;line-height:1.35}
 .sel-prompt-cnt{display:flex;align-items:baseline;gap:4px;line-height:1}
-.sel-prompt-num{font-size:28px;font-weight:800;color:var(--gold2)}
-.sel-prompt-unit{font-size:11px;font-weight:400;color:var(--muted)}
-.sel-prompt-chevron{font-size:24px;color:var(--gold2);opacity:0.45;flex-shrink:0;position:relative;z-index:1}
+.sel-prompt-num{font-size:28px;font-weight:800;color:#FFFFFF;text-shadow:0 1px 4px rgba(0,0,0,.15)}
+.sel-prompt-unit{font-size:11px;font-weight:400;color:rgba(255,255,255,0.85)}
+.sel-prompt-chevron{font-size:24px;color:#FFFFFF;opacity:0.75;flex-shrink:0;position:relative;z-index:1}
 
-/* ── BIODATA RASULULLAH BOX (Khas) ── */
-.biodata-box{margin:12px 14px 0;background:linear-gradient(135deg,rgba(201,168,76,0.13),rgba(46,125,79,0.08) 100%);border:1.5px solid rgba(201,168,76,0.38);border-radius:16px;padding:14px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:.15s;position:relative;overflow:hidden}
-.biodata-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.06),transparent 65%);pointer-events:none}
-.biodata-box::after{content:'';position:absolute;top:-50px;right:-30px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.16),transparent 70%);pointer-events:none}
-.biodata-box:active{transform:scale(.98);background:linear-gradient(135deg,rgba(201,168,76,0.19),rgba(46,125,79,0.12) 100%)}
-.biodata-box-ico{width:50px;height:50px;border-radius:13px;background:linear-gradient(135deg,var(--gold3),var(--gold));display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;box-shadow:0 0 18px rgba(201,168,76,0.35);position:relative;z-index:1}
+/* ── BIODATA RASULULLAH BOX (Khas — Putih, kontras dgn bg hijau) ── */
+.biodata-box{margin:12px 14px 0;background:#FFFFFF;border:1px solid #EDE4C8;border-radius:16px;padding:14px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:.15s;position:relative;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.18),0 2px 6px rgba(0,0,0,.1)}
+.biodata-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.05),transparent 65%);pointer-events:none}
+.biodata-box::after{content:'';position:absolute;top:-50px;right:-30px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.08),transparent 70%);pointer-events:none}
+.biodata-box:active{transform:scale(.98);background:#FBF8EF}
+.biodata-box-ico{width:50px;height:50px;border-radius:13px;background:linear-gradient(135deg,var(--gold3),var(--gold));display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;box-shadow:0 3px 10px rgba(201,168,76,0.4);position:relative;z-index:1}
 .biodata-box-body{flex:1;min-width:0;position:relative;z-index:1}
-.biodata-box-tag{display:inline-block;font-size:8.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--gold2);background:rgba(201,168,76,0.14);border:1px solid rgba(201,168,76,0.3);border-radius:5px;padding:2px 7px;margin-bottom:5px}
-.biodata-box-title{font-size:14px;font-weight:800;color:var(--cream);line-height:1.3}
-.biodata-box-sub{font-size:10.5px;color:var(--cream2);margin-top:3px;line-height:1.4}
-.biodata-box-chevron{font-size:22px;color:var(--gold2);opacity:0.55;flex-shrink:0;position:relative;z-index:1}
+.biodata-box-tag{display:inline-block;font-size:8.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8A6E2E;background:rgba(201,168,76,0.14);border:1px solid rgba(201,168,76,0.3);border-radius:5px;padding:2px 7px;margin-bottom:5px}
+.biodata-box-title{font-size:14px;font-weight:800;color:#1A1A1A;line-height:1.3}
+.biodata-box-sub{font-size:10.5px;color:#6A6A6A;margin-top:3px;line-height:1.4}
+.biodata-box-chevron{font-size:22px;color:#8A6E2E;opacity:0.7;flex-shrink:0;position:relative;z-index:1}
 
 /* ── BIODATA PAGE ── */
 .bio-hero{margin:0 14px;background:linear-gradient(135deg,rgba(201,168,76,0.13),rgba(46,125,79,0.08));border:1px solid rgba(201,168,76,0.25);border-radius:18px;padding:20px 18px;text-align:center;position:relative;overflow:hidden}
@@ -482,6 +495,24 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .bio-hadith-my{font-size:11px;color:var(--cream2);font-style:italic;line-height:1.7}
 .bio-mazhab-note{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.16);border-radius:9px;padding:9px 11px;margin-top:14px;font-size:10px;color:var(--cream2);line-height:1.7;text-align:center}
 .bio-mazhab-note b{color:var(--gold2)}
+
+/* ── HADIS 40 DETAIL PAGE ── */
+.h40-hero{margin:0 14px;background:linear-gradient(135deg,rgba(46,125,79,0.13),rgba(201,168,76,0.08));border:1px solid rgba(86,196,126,0.25);border-radius:18px;padding:20px 18px;text-align:center;position:relative;overflow:hidden}
+.h40-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(86,196,126,0.14),transparent 62%);pointer-events:none}
+.h40-hero-num{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--g4);background:rgba(46,125,79,0.16);border:1px solid rgba(86,196,126,0.3);border-radius:6px;padding:3px 10px;margin-bottom:9px;position:relative;z-index:1}
+.h40-hero-title{font-size:17px;font-weight:800;color:var(--cream);line-height:1.4;position:relative;z-index:1}
+.h40-nav-row{display:flex;gap:8px;margin:12px 14px 0}
+.h40-nav-btn{flex:1;padding:10px;background:var(--card);border:1px solid var(--border);border-radius:11px;color:var(--cream2);font-size:11px;font-weight:700;text-align:center;cursor:pointer;transition:.15s}
+.h40-nav-btn:active{transform:scale(.97);background:rgba(46,125,79,0.12)}
+.h40-section{margin:14px 14px 0;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 15px}
+.h40-section-lbl{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.h40-ar-full{font-family:'Amiri',serif;font-size:18px;color:var(--cream);line-height:2.3;text-align:right;direction:rtl;background:rgba(46,125,79,.07);padding:13px 15px;border-radius:10px;border-right:3px solid var(--g2)}
+.h40-perawi{font-size:11.5px;color:var(--gold2);font-weight:600;line-height:1.6;margin-bottom:4px}
+.h40-terjemahan{font-size:12px;color:var(--cream2);line-height:1.85}
+.h40-ulasan{font-size:12px;color:var(--cream2);line-height:1.85}
+.h40-src-tag{display:inline-block;margin-top:10px;font-size:9.5px;padding:3px 9px;border-radius:5px;background:rgba(46,125,79,0.12);border:1px solid rgba(46,125,79,0.3);color:var(--g4);font-weight:700}
+.h40-mazhab-note{margin:14px 14px 0;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.16);border-radius:9px;padding:10px 12px;font-size:10px;color:var(--cream2);line-height:1.7;text-align:center}
+.h40-mazhab-note b{color:var(--gold2)}
 
 /* ── SLOT NOTIF CARD ── */
 .slot-notif{margin:10px 14px 0;background:linear-gradient(135deg,rgba(46,125,79,0.1),rgba(46,125,79,0.04));border:1px solid rgba(86,196,126,0.18);border-radius:13px;padding:10px 13px;display:flex;align-items:center;gap:11px;cursor:pointer;transition:.15s;position:relative;overflow:hidden}
@@ -583,7 +614,7 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
       <div class="sel-hdr-btn" id="selHdrBtn">
         <div class="sel-hdr-ico">☪</div>
         <div class="sel-hdr-txt">
-          <div class="sel-hdr-q">Sudah berselawat?</div>
+          <div class="sel-hdr-q" id="selHdrQ">Sudah berselawat?</div>
           <div class="sel-hdr-num" id="selHdrNum">0</div>
         </div>
       </div>
@@ -607,9 +638,10 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
     <div><div class="hijri" id="hijriDate">13 Muharram 1448H</div><div class="masihi" id="masihiDate"></div></div>
     <div class="day-badge" id="dayBadge">—</div>
   </div>
-  <div class="hadith-lbl">Hadis Hari Ini</div>
+  <div class="hadith-lbl"><span id="hadithLbl">Hadis Hari Ini</span> <span class="hadith-num-badge" id="hadithNumBadge">Hadis 1/42</span> <span class="hadith-next-btn" id="hadithNextBtn" title="Hadis seterusnya">⟳</span></div>
   <div class="hadith-ar" id="hadithAr"></div>
   <div class="hadith-tr" id="hadithTr"></div>
+  <div class="hadith-tap-hint" id="hadithTapHint">Ketik untuk hadis penuh <span class="arr">›</span></div>
 </div>
 
 <!-- PROGRESS -->
@@ -625,9 +657,9 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
   <div class="biodata-box" id="biodataBox">
     <div class="biodata-box-ico">🕌</div>
     <div class="biodata-box-body">
-      <span class="biodata-box-tag">Sirah Nabawiyah</span>
-      <div class="biodata-box-title">Biodata Rasulullah ﷺ</div>
-      <div class="biodata-box-sub">Kelahiran, kehidupan, kenabian & wafat baginda</div>
+      <span class="biodata-box-tag" id="biodataBoxTag">Sirah Nabawiyah</span>
+      <div class="biodata-box-title" id="biodataBoxTitle">Biodata Rasulullah ﷺ</div>
+      <div class="biodata-box-sub" id="biodataBoxSub">Kelahiran, kehidupan, kenabian & wafat baginda</div>
     </div>
     <div class="biodata-box-chevron">›</div>
   </div>
@@ -646,11 +678,11 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
   </div>
 
   <div class="wheel-section">
-    <div class="wheel-lbl">⟵ Waktu Solat — Geser ⟶</div>
+    <div class="wheel-lbl" id="wheelLbl">⟵ Waktu Solat — Geser ⟶</div>
     <div class="wheel-container" id="wheelContainer">
       <div class="wheel-track" id="wheelTrack"></div>
     </div>
-    <div class="wheel-hint" id="wheelHint">Waktu kini: <span style="color:var(--g4);font-weight:700" id="curPrayerSpan">—</span></div>
+    <div class="wheel-hint" id="wheelHint"><span id="waktuKiniLbl">Waktu kini:</span> <span style="color:var(--g4);font-weight:700" id="curPrayerSpan">—</span></div>
   </div>
 
   <!-- SLOT NOTIFICATION CARD -->
@@ -816,24 +848,66 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
   <div class="bio-hero" style="margin-top:10px">
     <div class="bio-hero-ico">🕌</div>
     <div class="bio-hero-name">مُحَمَّدٌ رَسُولُ اللَّهِ ﷺ</div>
-    <div class="bio-hero-title">Muhammad bin Abdullah ﷺ</div>
-    <div class="bio-hero-sub">Penutup sekalian Nabi & Rasul</div>
+    <div class="bio-hero-title" id="bioHeroTitle">Muhammad bin Abdullah ﷺ</div>
+    <div class="bio-hero-sub" id="bioHeroSub">Penutup sekalian Nabi & Rasul</div>
   </div>
 
   <div class="bio-info">
-    <div class="bio-info-item"><div class="bio-info-lbl">Tarikh Lahir</div><div class="bio-info-val">12 Rabiulawal, Tahun Gajah</div></div>
-    <div class="bio-info-item"><div class="bio-info-lbl">Tempat Lahir</div><div class="bio-info-val">Makkah Al-Mukarramah</div></div>
-    <div class="bio-info-item"><div class="bio-info-lbl">Ibu Bapa</div><div class="bio-info-val">Abdullah & Aminah</div></div>
-    <div class="bio-info-item"><div class="bio-info-lbl">Diangkat Nabi</div><div class="bio-info-val">Usia 40 tahun, Gua Hira'</div></div>
-    <div class="bio-info-item"><div class="bio-info-lbl">Tempoh Dakwah</div><div class="bio-info-val">23 tahun (Makkah & Madinah)</div></div>
-    <div class="bio-info-item"><div class="bio-info-lbl">Wafat</div><div class="bio-info-val">12 Rabiulawal, 11H · usia 63</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl" id="bioLblLahir">Tarikh Lahir</div><div class="bio-info-val" id="bioValLahir">12 Rabiulawal, Tahun Gajah</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl" id="bioLblTempat">Tempat Lahir</div><div class="bio-info-val" id="bioValTempat">Makkah Al-Mukarramah</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl" id="bioLblIbubapa">Ibu Bapa</div><div class="bio-info-val" id="bioValIbubapa">Abdullah & Aminah</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl" id="bioLblNabi">Diangkat Nabi</div><div class="bio-info-val" id="bioValNabi">Usia 40 tahun, Gua Hira'</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl" id="bioLblDakwah">Tempoh Dakwah</div><div class="bio-info-val" id="bioValDakwah">23 tahun (Makkah & Madinah)</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl" id="bioLblWafat">Wafat</div><div class="bio-info-val" id="bioValWafat">12 Rabiulawal, 11H · usia 63</div></div>
   </div>
 
-  <div class="bio-sec-title">📖 Sirah Kehidupan Baginda</div>
+  <div class="bio-sec-title" id="bioSecTitle">📖 Sirah Kehidupan Baginda</div>
   <div class="biolist" id="biolist"></div>
 
-  <div class="bio-mazhab-note" style="margin:14px 14px 0">
+  <div class="bio-mazhab-note" id="bioMazhabNote" style="margin:14px 14px 0">
     🤲 Kandungan ini disusun berdasarkan <b>hadis-hadis sahih</b> (riwayat Imam Bukhari & Imam Muslim) serta huraian para ulama yang diiktiraf dalam mazhab Syafi'i, antaranya Imam An-Nawawi, Ibn Hajar Al-'Asqalani dan Al-Qastallani dalam kitab Al-Mawahib Al-Laduniyyah.
+  </div>
+
+  <div class="spacer"></div>
+</div>
+
+<!-- ══ PAGE: HADIS 40 DETAIL ══ -->
+<div class="page" id="pg-hadis40">
+  <div class="sel-back" id="hadith40Back">← Kembali</div>
+
+  <div class="h40-hero" style="margin-top:10px">
+    <div class="h40-hero-num" id="h40HeroNum">Hadis 1 daripada 42</div>
+    <div class="h40-hero-title" id="h40HeroTitle">Tajuk Hadis</div>
+  </div>
+
+  <div class="h40-nav-row">
+    <div class="h40-nav-btn" id="h40PrevBtn">‹ Sebelum</div>
+    <div class="h40-nav-btn" id="h40NextBtn">Seterusnya ›</div>
+  </div>
+
+  <div class="h40-section">
+    <div class="h40-section-lbl">📖 Teks Hadis</div>
+    <div class="h40-ar-full" id="h40ArFull"></div>
+  </div>
+
+  <div class="h40-section">
+    <div class="h40-section-lbl">👤 Perawi</div>
+    <div class="h40-perawi" id="h40Perawi"></div>
+  </div>
+
+  <div class="h40-section">
+    <div class="h40-section-lbl">🗣️ Terjemahan Penuh</div>
+    <div class="h40-terjemahan" id="h40Terjemahan"></div>
+    <span class="h40-src-tag" id="h40SrcTag"></span>
+  </div>
+
+  <div class="h40-section">
+    <div class="h40-section-lbl">🕯️ Ulasan & Pengajaran</div>
+    <div class="h40-ulasan" id="h40Ulasan"></div>
+  </div>
+
+  <div class="h40-mazhab-note">
+    🤲 Disusun Imam An-Nawawi (ulama mazhab Syafi'i). Ulasan berdasarkan huraian para ulama Ahli Sunnah wal Jamaah yang diiktiraf, termasuk Ibn Daqiq Al-'Id, Al-Hafiz Ibn Hajar Al-'Asqalani dan Ibn Rajab Al-Hanbali.
   </div>
 
   <div class="spacer"></div>
@@ -909,8 +983,8 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 <div class="pwa-banner" id="pwaBanner">
   <div class="pwa-banner-ico"><img src="icon-192.png" alt="Sunnah Daily"></div>
   <div class="pwa-banner-body">
-    <div class="pwa-banner-title">📲 Install Sunnah Daily</div>
-    <div class="pwa-banner-sub">Pasang kat home screen — dapat notifikasi waktu solat automatik!</div>
+    <div class="pwa-banner-title" id="pwaBannerTitle">📲 Install Sunnah Daily</div>
+    <div class="pwa-banner-sub" id="pwaBannerSub">Pasang kat home screen — dapat notifikasi waktu solat automatik!</div>
     <div class="pwa-banner-btns">
       <button class="pwa-install-btn" id="pwaInstallBtn">Install App</button>
       <button class="pwa-dismiss-btn" id="pwaDismissBtn">Nanti</button>
@@ -922,7 +996,7 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 <div class="notif-ask" id="notifAsk">
   <div class="notif-ask-ico">🔔</div>
   <div class="notif-ask-body">
-    <div class="notif-ask-t">Benarkan Notifikasi Waktu Solat?</div>
+    <div class="notif-ask-t" id="notifAskT">Benarkan Notifikasi Waktu Solat?</div>
     <div class="notif-ask-s">Dapat reminder 10 minit sebelum setiap waktu solat</div>
   </div>
   <button class="notif-ask-btn" id="notifAskBtn">Benarkan</button>
@@ -969,6 +1043,50 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 // STATE — declared ONCE only
 // ══════════════════════════════════════════
 let lang = 'MY';
+
+// ══════════════════════════════════════════
+// I18N — Centralised static UI text (BM/EN)
+// Usage: I18N.key[lang]
+// ══════════════════════════════════════════
+const I18N = {
+  sudahBerselawat:{MY:'Sudah berselawat?',EN:'Sent salawat today?'},
+  hadisHariIni:{MY:'Hadis Hari Ini',EN:"Today's Hadith"},
+  hadithTapHint:{MY:'Ketik untuk hadis penuh',EN:'Tap for full hadith'},
+  waktuSolatGeser:{MY:'⟵ Waktu Solat — Geser ⟶',EN:'⟵ Prayer Times — Swipe ⟶'},
+  waktuKini:{MY:'Waktu kini:',EN:'Current time:'},
+  amalanSunnah:{MY:'Amalan Sunnah',EN:'Sunnah Practices'},
+  kembali:{MY:'← Kembali',EN:'← Back'},
+  sokongAppsIni:{MY:'💝 Sokong Apps Ini',EN:'💝 Support This App'},
+  appsIni100:{MY:'Apps Ini 100% Percuma!',EN:'This App is 100% Free!'},
+  jikaAppsBermanfaat:{MY:'Jika apps ni bermanfaat buat anda, boleh sokong dakwah ini.',EN:'If this app benefits you, you can support this dakwah effort.'},
+  installSunnahDaily:{MY:'Install Sunnah Daily',EN:'Install Sunnah Daily'},
+  pasangKatHomeScreen:{MY:'Pasang kat home screen — dapat notifikasi waktu solat automatik!',EN:'Add to home screen — get automatic prayer time notifications!'},
+  installApp:{MY:'Install App',EN:'Install App'},
+  nanti:{MY:'Nanti',EN:'Later'},
+  benarkanNotif:{MY:'Benarkan Notifikasi Waktu Solat?',EN:'Allow Prayer Time Notifications?'},
+  kongsiAppsRakan:{MY:'📤 Kongsi Apps Ini kepada Rakan',EN:'📤 Share This App with Friends'},
+  sirahNabawiyah:{MY:'Sirah Nabawiyah',EN:'Prophetic Biography'},
+  biodataRasulullahTitle:{MY:'Biodata Rasulullah ﷺ',EN:'Biography of the Prophet ﷺ'},
+  biodataRasulullahSub:{MY:'Kelahiran, kehidupan, kenabian & wafat baginda',EN:"His birth, life, prophethood & passing"},
+  sirahKehidupanBaginda:{MY:'📖 Sirah Kehidupan Baginda',EN:'📖 The Story of His Life'},
+  biodataMazhabNote:{MY:"🤲 Kandungan ini disusun berdasarkan <b>hadis-hadis sahih</b> (riwayat Imam Bukhari & Imam Muslim) serta huraian para ulama yang diiktiraf dalam mazhab Syafi'i, antaranya Imam An-Nawawi, Ibn Hajar Al-'Asqalani dan Al-Qastallani dalam kitab Al-Mawahib Al-Laduniyyah.",
+    EN:"🤲 This content is compiled based on <b>authentic hadiths</b> (narrated by Imam Bukhari & Imam Muslim) and the explanations of recognised scholars within the Shafi'i school, including Imam An-Nawawi, Ibn Hajar Al-'Asqalani and Al-Qastallani in his work Al-Mawahib Al-Laduniyyah."},
+  bioInfoTarikhLahir:{MY:'Tarikh Lahir',EN:'Date of Birth'},
+  bioInfoTempatLahir:{MY:'Tempat Lahir',EN:'Place of Birth'},
+  bioInfoIbuBapa:{MY:'Ibu Bapa',EN:'Parents'},
+  bioInfoDiangkatNabi:{MY:'Diangkat Nabi',EN:'Became a Prophet'},
+  bioInfoTempohDakwah:{MY:'Tempoh Dakwah',EN:'Duration of Dakwah'},
+  bioInfoWafat:{MY:'Wafat',EN:'Passing'},
+  bioInfoTarikhLahirVal:{MY:'12 Rabiulawal, Tahun Gajah',EN:'12 Rabi al-Awwal, Year of the Elephant'},
+  bioInfoTempatLahirVal:{MY:'Makkah Al-Mukarramah',EN:'Makkah Al-Mukarramah'},
+  bioInfoIbuBapaVal:{MY:'Abdullah & Aminah',EN:'Abdullah & Aminah'},
+  bioInfoDiangkatNabiVal:{MY:"Usia 40 tahun, Gua Hira'",EN:"Age 40, Cave of Hira"},
+  bioInfoTempohDakwahVal:{MY:'23 tahun (Makkah & Madinah)',EN:'23 years (Makkah & Madinah)'},
+  bioInfoWafatVal:{MY:'12 Rabiulawal, 11H · usia 63',EN:'12 Rabi al-Awwal, 11H · age 63'},
+  bioHeroTitle:{MY:'Muhammad bin Abdullah ﷺ',EN:'Muhammad ibn Abdullah ﷺ'},
+  bioHeroSub:{MY:'Penutup sekalian Nabi & Rasul',EN:'The Final Prophet & Messenger'},
+};
+function t(key){return I18N[key][lang];}
 let curDay = 0;
 let curPrayer = 'Subuh';
 let curPrayerIdx = 0;
@@ -987,6 +1105,8 @@ let riadahCat = 'semua';
 let foodOpenId = null;
 let wearOpenId = null;
 let biodataOpenId = 'b1';
+let hadithIdx = 0;
+let _hadithRotateTimer = null;
 
 // Wheel state
 let wheelAngle = 0;
@@ -1024,12 +1144,475 @@ function load(){
 const DAYS_MY = ['Isnin','Selasa','Rabu','Khamis','Jumaat'];
 const DAYS_EN = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
 
-const HADITH_LIST = [
-  {ar:'خَيْرُ النَّاسِ أَنْفَعُهُمْ لِلنَّاسِ',my:'Sebaik-baik manusia ialah yang paling bermanfaat bagi manusia lain.',en:'The best of people are those who bring most benefit to others.',src:'HR. Ahmad'},
-  {ar:'إِنَّ اللَّهَ يُحِبُّ إِذَا عَمِلَ أَحَدُكُمْ عَمَلًا أَنْ يُتْقِنَهُ',my:'Allah menyukai apabila seseorang melakukan amalan, dia melakukannya dengan sempurna.',en:'Allah loves that when one does a deed, he does it with excellence.',src:'HR. al-Bayhaqi'},
-  {ar:'الطُّهُورُ شَطْرُ الإِيمَانِ',my:'Bersuci itu sebahagian daripada iman.',en:'Purity is half of faith.',src:'HR. Muslim (223)'},
-  {ar:'مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيُكْرِمْ ضَيْفَهُ',my:'Sesiapa beriman kepada Allah dan Hari Akhirat, hendaklah memuliakan tetamunya.',en:'Whoever believes in Allah and the Last Day, let him honor his guest.',src:'HR. Bukhari (6018)'},
-  {ar:'اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا',my:'Bertaqwalah kepada Allah di mana sahaja kamu berada, dan ikutilah kejahatan dengan kebaikan nescaya ia menghapusnya.',en:'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it.',src:'HR. Tirmizi (1987)'},
+// ══════════════════════════════════════════
+// HADIS 40 (ARBA'IN AN-NAWAWIYAH) — 42 hadis
+// Disusun Imam An-Nawawi (ulama mazhab Syafi'i).
+// Sumber: Modul Penghayatan Hadis 40 Imam Nawawi,
+// Bahagian Pendidikan Islam, KPM (Edisi Kedua, 2024)
+// ══════════════════════════════════════════
+const HADITH40_DB = [
+  {num:1, title_my:'Keutamaan Niat', title_en:'The Virtue of Intention',
+    ar:'إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى',
+    ringkas_my:'Sesungguhnya segala amalan bergantung kepada niat, dan setiap orang akan memperoleh apa yang dia niatkan.',
+    ringkas_en:'Actions are judged by intentions, and every person will get what they intended.',
+    perawi_my:"Daripada Amirul Mukminin Abu Hafs Saiyidina Umar bin al-Khattab RA.",
+    perawi_en:"From the Commander of the Faithful, Abu Hafs Saiyidina Umar ibn al-Khattab RA.",
+    terjemahan_my:"Aku telah mendengar Rasulullah ﷺ bersabda: \"Sesungguhnya, segala amalan bergantung kepada niat. Sesungguhnya, setiap orang akan memperoleh apa yang dia niatkan. Maka, sesiapa yang berhijrah semata-mata kerana Allah dan rasul-Nya, hijrahnya adalah kepada Allah dan rasul-Nya. Sesiapa yang berhijrah kerana habuan dunia yang hendak diperoleh atau kerana wanita yang hendak dikahwininya, maka hijrahnya dikira mengikut apa yang dia niatkan.\"",
+    terjemahan_en:"I heard the Messenger of Allah ﷺ say: \"Actions are judged by intentions, and every person will get what they intended. Whoever migrates for the sake of Allah and His Messenger, his migration is for Allah and His Messenger. Whoever migrates for worldly gain or to marry a woman, his migration is for what he migrated for.\"",
+    ulasan_my:"Hadis ini mengingatkan kita agar sentiasa mengikhlaskan niat hanya kerana Allah SWT dalam melakukan kebaikan. Niat membezakan antara ibadah dengan adat — perkara biasa seperti makan dan menuntut ilmu boleh menjadi ibadah berpahala sekiranya diniatkan kerana mencari keredaan-Nya. Para ulama meletakkan hadis ini sebagai pembuka kitab kerana ia menjadi neraca bagi setiap amalan zahir.",
+    ulasan_en:"This hadith reminds us to always make our intentions sincere for the sake of Allah SWT alone in doing good. Intention is what distinguishes worship from mere habit — ordinary acts like eating or seeking knowledge can become rewarded worship if intended to seek His pleasure. Scholars place this hadith at the opening of their books because it serves as the criterion for every outward deed.",
+    src:'HR. Bukhari & Muslim'},
+  {num:2, title_my:'Islam, Iman dan Ihsan', title_en:'Islam, Iman and Ihsan',
+    ar:'الإِسْلاَمُ أَنْ تَشْهَدَ أَنْ لاَ إِلَٰهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ',
+    ringkas_my:'Islam ialah kamu bersaksi bahawa tiada tuhan selain Allah dan Muhammad utusan-Nya, mendirikan solat, zakat, puasa dan haji.',
+    ringkas_en:'Islam is to testify there is no god but Allah and Muhammad is His messenger, to pray, give zakat, fast and perform hajj.',
+    perawi_my:"Daripada Saiyidina Umar bin al-Khattab RA — kisah kedatangan Malaikat Jibril AS menyamar sebagai seorang lelaki untuk mengajar para sahabat.",
+    perawi_en:"From Saiyidina Umar ibn al-Khattab RA — the account of Angel Jibril (Gabriel) appearing as a man to teach the companions.",
+    terjemahan_my:"Seorang lelaki berpakaian sangat putih datang bertanya kepada Rasulullah ﷺ tentang Islam, iman dan ihsan. Baginda menjawab: Islam ialah bersaksi tiada tuhan selain Allah dan Muhammad utusan-Nya, mendirikan solat, menunaikan zakat, berpuasa Ramadan dan menunaikan haji jika mampu. Iman ialah beriman kepada Allah, malaikat, kitab, rasul, hari akhirat dan qada qadar. Ihsan ialah beribadah kepada Allah seolah-olah melihat-Nya, sekiranya tidak mampu maka yakinlah Dia melihatmu. Selepas lelaki itu beredar, Rasulullah ﷺ memberitahu bahawa dia adalah Malaikat Jibril yang datang mengajar urusan agama.",
+    terjemahan_en:"A man in very white clothing came and asked the Prophet ﷺ about Islam, faith and excellence in worship. He replied: Islam is testifying there is no god but Allah and Muhammad is His messenger, establishing prayer, giving zakat, fasting Ramadan and performing hajj if able. Faith is believing in Allah, His angels, His books, His messengers, the Last Day, and divine decree. Ihsan is worshipping Allah as if you see Him, and if you cannot, know that He sees you. After the man left, the Prophet ﷺ revealed he was the Angel Jibril, sent to teach the people their religion.",
+    ulasan_my:"Hadis ini menghimpunkan tiga teras agama: Islam (kepatuhan lima rukun), iman (keyakinan enam rukun) dan ihsan (penghayatan beribadah dengan penuh kesedaran diawasi Allah SWT). Ketiga-tiga teras ini mesti wujud bersama dalam diri setiap Muslim untuk mencapai kesempurnaan agama.",
+    ulasan_en:"This hadith brings together the three pillars of the religion: Islam (compliance with the five pillars), iman (belief in the six articles of faith), and ihsan (worship performed with full awareness of being watched by Allah SWT). All three must coexist in every Muslim to attain completeness in faith.",
+    src:'HR. Muslim'},
+  {num:3, title_my:'Rukun Islam', title_en:'The Pillars of Islam',
+    ar:'بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ',
+    ringkas_my:'Islam dibina di atas lima perkara: dua kalimah syahadah, solat, zakat, puasa Ramadan dan haji ke Baitullah.',
+    ringkas_en:'Islam is built upon five pillars: the two testimonies of faith, prayer, zakat, fasting Ramadan, and hajj.',
+    perawi_my:"Daripada Saiyidina Abu Abdul Rahman Abdullah bin Umar bin al-Khattab RA.",
+    perawi_en:"From Saiyidina Abu Abdul Rahman Abdullah ibn Umar ibn al-Khattab RA.",
+    terjemahan_my:"Aku mendengar Rasulullah ﷺ bersabda: \"Islam dibina di atas lima rukun; bersaksi bahawa tiada tuhan selain Allah dan bahawa Muhammad adalah hamba-Nya dan utusan-Nya, mendirikan solat, menunaikan zakat, mengerjakan haji di Baitullah dan berpuasa pada bulan Ramadan.\"",
+    terjemahan_en:"I heard the Messenger of Allah ﷺ say: \"Islam is built upon five pillars: testifying there is no god but Allah and that Muhammad is His servant and messenger, establishing prayer, giving zakat, performing hajj to the House, and fasting Ramadan.\"",
+    ulasan_my:"Islam diumpamakan sebagai sebuah binaan dengan lima asas utama yang saling menyokong. Solat merupakan tiang agama, manakala syahadah ialah pengakuan terhadap keesaan Allah dan kerasulan Nabi Muhammad ﷺ. Tanpa kelima-lima asas ini, keimanan seseorang akan goyah dan tidak sempurna.",
+    ulasan_en:"Islam is likened to a structure with five mutually-supporting foundations. Prayer is the pillar of the religion, while the testimony of faith is the acknowledgment of Allah's oneness and Prophet Muhammad's ﷺ messengership. Without all five foundations, a person's faith becomes unstable and incomplete.",
+    src:'HR. Bukhari & Muslim'},
+  {num:4, title_my:'Penciptaan Manusia & Ketetapan Takdir', title_en:'The Creation of Man & Divine Decree',
+    ar:'إِنَّ أَحَدَكُمْ يُجْمَعُ خَلْقُهُ فِي بَطْنِ أُمِّهِ أَرْبَعِينَ يَوْمًا',
+    ringkas_my:'Penciptaan manusia dihimpunkan dalam rahim 40 hari demi 40 hari, kemudian Allah menetapkan rezeki, ajal, amalan dan kesudahannya.',
+    ringkas_en:"Man's creation is gathered in the womb over stages of 40 days, then Allah decrees his provision, lifespan, deeds and final fate.",
+    perawi_my:"Daripada Abu Abdul Rahman Saiyidina Abdullah bin Mas'ud RA.",
+    perawi_en:"From Abu Abdul Rahman Saiyidina Abdullah ibn Mas'ud RA.",
+    terjemahan_my:"Rasulullah ﷺ — yang sentiasa berkata benar lagi diakui kebenarannya — bersabda: \"Sesungguhnya, dihimpunkan (unsur) penciptaan setiap kamu di dalam rahim ibunya selama 40 hari (sebagai air mani), kemudian bertukar menjadi segumpal darah selama itu juga, kemudian seketul daging selama itu juga. Kemudian diutuskan malaikat untuk meniup roh, dan diperintahkan menulis empat ketetapan: rezeki, ajal, amalannya, dan sama ada dia celaka atau bahagia.\" Baginda menambah bahawa seseorang boleh melakukan amalan ahli syurga sehingga sejengkal sahaja jaraknya dari syurga, namun takdir mendahuluinya lalu dia melakukan amalan ahli neraka, dan begitu juga sebaliknya.",
+    terjemahan_en:"The Messenger of Allah ﷺ — the truthful one whose truthfulness is attested — said: \"The creation of each of you is gathered in his mother's womb for 40 days as a drop, then it becomes a clinging clot for a similar period, then a lump of flesh for a similar period. Then an angel is sent to breathe the soul into it, and is commanded to record four matters: his provision, his lifespan, his deeds, and whether he will be wretched or blessed.\" He added that a person may do the deeds of the people of Paradise until only an arm's length separates him from it, yet decree overtakes him and he ends up doing the deeds of the people of Hell, and vice versa.",
+    ulasan_my:"Hadis ini menjelaskan proses kejadian manusia secara berperingkat, selaras dengan Surah Al-Mukminun ayat 12-14. Menurut Ibn Daqiq Al-'Id, hadis ini mengajar kita supaya tidak mudah menghukum seseorang sebagai ahli neraka atau ahli syurga berdasarkan zahir semata-mata, kerana kesudahan seseorang adalah rahsia Allah SWT.",
+    ulasan_en:"This hadith explains the staged process of human creation, in line with Surah Al-Mu'minun, verses 12-14. According to Ibn Daqiq al-'Id, this hadith teaches us not to readily judge someone as destined for Hell or Paradise based on outward appearance alone, since a person's final outcome remains a secret known only to Allah SWT.",
+    src:'HR. Bukhari & Muslim'},
+  {num:5, title_my:'Amalan Yang Tertolak', title_en:'Rejected Deeds',
+    ar:'مَنْ أَحْدَثَ فِي أَمْرِنَا هَذَا مَا لَيْسَ مِنْهُ فَهُوَ رَدٌّ',
+    ringkas_my:'Sesiapa yang mereka-reka dalam urusan agama kami perkara yang tiada asasnya, maka ia tertolak.',
+    ringkas_en:'Whoever introduces into our religion something that does not belong to it will have it rejected.',
+    perawi_my:"Daripada Ummul Mukminin Saidatina Aisyah RA.",
+    perawi_en:"From the Mother of the Believers, Saidatina Aisyah RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Sesiapa yang mereka-reka dalam urusan (agama) kami ini perkara yang tiada asas (dalilnya) daripada agama maka ia tertolak.\" Dalam riwayat lain: \"Sesiapa yang melakukan sesuatu amalan yang tidak berasaskan ajaran agama kami maka ia tertolak.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Whoever introduces into this matter of ours (Islam) something that is not part of it will have it rejected.\" In another narration: \"Whoever performs an action not in agreement with our religion will have it rejected.\"",
+    ulasan_my:"Hadis ini menjadi asas penting menolak sebarang amalan ibadah atau hukum yang direka tanpa sandaran syarak, sama ada dalam bab ibadah (seperti menambah rakaat solat) atau muamalat (seperti urus niaga yang diharamkan). Setiap Muslim digalakkan beramal berdasarkan petunjuk Al-Quran dan As-Sunnah sahaja.",
+    ulasan_en:"This hadith serves as a key principle for rejecting any act of worship or ruling fabricated without basis in the Shariah, whether in matters of worship (such as adding extra prayer cycles) or transactions (such as forbidden dealings). Every Muslim is encouraged to act only according to the guidance of the Quran and Sunnah.",
+    src:'HR. Bukhari & Muslim'},
+  {num:6, title_my:'Berhati-Hati Terhadap Perkara Syubhah', title_en:'Caution Regarding Doubtful Matters',
+    ar:'الْحَلاَلُ بَيِّنٌ وَالْحَرَامُ بَيِّنٌ وَبَيْنَهُمَا أُمُورٌ مُشْتَبِهَاتٌ',
+    ringkas_my:'Halal itu jelas, haram itu jelas, dan antara keduanya ada perkara syubhah — sesiapa berhati-hati dengannya memelihara agamanya.',
+    ringkas_en:'The lawful is clear and the unlawful is clear, and between them are doubtful matters — whoever avoids them protects his faith.',
+    perawi_my:"Daripada Saiyidina Abu 'Abdullah al-Nu'man bin Basyir RA.",
+    perawi_en:"From Saiyidina Abu 'Abdullah al-Nu'man ibn Basyir RA.",
+    terjemahan_my:"Aku mendengar Rasulullah ﷺ bersabda: \"Sesungguhnya perkara halal itu jelas dan perkara haram itu jelas, dan di antara kedua-duanya terdapat perkara syubhah yang kebanyakan orang tidak mengetahuinya. Sesiapa berhati-hati terhadap syubhah maka dia memelihara agama dan maruahnya. Sesiapa yang terjebak dengannya, terjerumus ke dalam haram — seperti penggembala berhampiran kawasan larangan, lambat laun dia akan memasukinya. Ketahuilah, kawasan larangan Allah ialah perkara yang diharamkan-Nya. Ketahuilah, di dalam jasad ada seketul daging — apabila ia baik, baiklah seluruh jasad; apabila rosak, rosaklah seluruhnya. Ketahuilah, itulah hati.\"",
+    terjemahan_en:"I heard the Messenger of Allah ﷺ say: \"The lawful is clear and the unlawful is clear, and between them are doubtful matters that many people do not know. Whoever avoids doubtful matters protects his religion and honour. Whoever falls into them falls into the unlawful — like a shepherd grazing near a private pasture, he is bound to stray into it. Indeed every king has a private pasture, and Allah's pasture is what He has forbidden. Indeed, in the body there is a piece of flesh which, if sound, makes the whole body sound, and if corrupt, makes the whole body corrupt. Indeed, it is the heart.\"",
+    ulasan_my:"Hadis ini membahagikan hukum kepada tiga: halal yang jelas, haram yang jelas, dan syubhah (samar) di antara keduanya — seperti makanan atau pelaburan yang tidak pasti status halal-haramnya. Orang yang warak akan menjauhi syubhah demi memelihara kesucian hatinya, kerana baik buruknya hati menentukan baik buruknya seluruh amalan zahir.",
+    ulasan_en:"This hadith divides rulings into three: clearly lawful, clearly unlawful, and doubtful matters in between — such as food or investments of uncertain permissibility. A pious person avoids doubtful matters to safeguard the purity of his heart, since the condition of the heart determines the condition of all outward deeds.",
+    src:'HR. Bukhari & Muslim'},
+  {num:7, title_my:'Nasihat Tonggak Agama', title_en:'Sincere Advice is the Foundation of Religion',
+    ar:'الدِّينُ النَّصِيحَةُ',
+    ringkas_my:'Agama itu nasihat — kepada Allah, kitab-Nya, rasul-Nya, pemimpin kaum Muslimin dan seluruh umat Islam.',
+    ringkas_en:'Religion is sincere advice — to Allah, His Book, His Messenger, Muslim leaders, and all Muslims.',
+    perawi_my:"Daripada Saiyidina Abu Ruqayyah Tamim bin Aus al-Dari RA.",
+    perawi_en:"From Saiyidina Abu Ruqayyah Tamim ibn Aus al-Dari RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Agama itu nasihat.\" Kami bertanya, \"Kepada siapa?\" Baginda bersabda, \"Kepada Allah, kitab-Nya, rasul-Nya, pemimpin kaum Muslimin dan kesemua orang Islam.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Religion is sincere advice.\" We asked, \"To whom?\" He said, \"To Allah, His Book, His Messenger, the leaders of the Muslims, and the common Muslims.\"",
+    ulasan_my:"Menurut Ibn Daqiq Al-'Id, nasihat ialah segala bentuk kebaikan yang disampaikan demi kebaikan seseorang — meliputi keimanan kepada Allah, pengamalan kitab-Nya, ketaatan kepada Rasul-Nya, sokongan kepada pemimpin dalam kebaikan, serta tunjuk ajar dan teladan kepada sesama Muslim.",
+    ulasan_en:"According to Ibn Daqiq al-'Id, sincere advice encompasses every form of good conveyed for someone's benefit — including faith in Allah, acting upon His Book, obedience to His Messenger, supporting leaders in good, and guiding fellow Muslims through counsel and example.",
+    src:'HR. Muslim'},
+  {num:8, title_my:'Kehormatan Seorang Muslim', title_en:'The Sanctity of a Muslim',
+    ar:'أُمِرْتُ أَنْ أُقَاتِلَ النَّاسَ حَتَّى يَشْهَدُوا أَنْ لاَ إِلَٰهَ إِلاَّ اللَّهُ',
+    ringkas_my:'Apabila manusia bersaksi tiada tuhan selain Allah, mendirikan solat dan menunaikan zakat, terpelihara darah dan harta mereka.',
+    ringkas_en:'Once people testify to the oneness of Allah, establish prayer and give zakat, their blood and property are protected.',
+    perawi_my:"Daripada Saiyidina Ibn Umar RA.",
+    perawi_en:"From Saiyidina Ibn Umar RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Aku diperintahkan supaya memerangi manusia sehingga mereka bersaksi bahawa tiada tuhan melainkan Allah dan Muhammad pesuruh Allah, mendirikan solat dan menunaikan zakat. Apabila mereka menunaikan perkara tersebut, terpeliharalah darah dan harta mereka daripadaku melainkan dengan hak Islam. Perhitungan mereka diserahkan kepada Allah.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"I have been commanded to fight the people until they testify there is no god but Allah and that Muhammad is the Messenger of Allah, establish prayer, and give zakat. Once they do that, their blood and property are protected from me except by the right of Islam, and their reckoning is with Allah.\"",
+    ulasan_my:"Konteks hadis ini ialah peperangan membela diri terhadap kezaliman, bukan paksaan beragama — selaras dengan prinsip 'tiada paksaan dalam agama' (Al-Baqarah: 256). Islam memelihara nyawa, harta, akal, agama dan keturunan setiap individu yang menunaikan hak Islam, dan menggalakkan keadilan serta kebaikan kepada bukan Muslim yang tidak memusuhi Islam.",
+    ulasan_en:"This hadith's context is defensive war against oppression, not forced conversion — in line with the principle 'there is no compulsion in religion' (Al-Baqarah: 256). Islam protects the life, property, intellect, faith and lineage of every individual who fulfils Islam's obligations, and encourages justice and kindness towards non-Muslims who do not show hostility to Islam.",
+    src:'HR. Bukhari & Muslim'},
+  {num:9, title_my:'Larangan Pertanyaan dan Pertikaian Melampau', title_en:'Against Excessive Questioning',
+    ar:'مَا نَهَيْتُكُمْ عَنْهُ فَاجْتَنِبُوهُ، وَمَا أَمَرْتُكُمْ بِهِ فَافْعَلُوا مِنْهُ مَا اسْتَطَعْتُمْ',
+    ringkas_my:'Apa yang aku larang, jauhilah; apa yang aku perintahkan, lakukanlah semampu kamu — banyak bertanya membinasakan umat terdahulu.',
+    ringkas_en:'Avoid what I forbid; do what I command as much as you are able — excessive questioning destroyed earlier nations.',
+    perawi_my:"Daripada Saiyidina Abu Hurairah Abdul Rahman bin Sakhr RA.",
+    perawi_en:"From Saiyidina Abu Hurairah Abdul Rahman ibn Sakhr RA.",
+    terjemahan_my:"Aku mendengar Rasulullah ﷺ bersabda: \"Apa-apa sahaja yang aku larang kamu daripada melakukannya, maka jauhilah, dan apa sahaja yang aku perintahkan kamu melakukannya, maka tunaikanlah sedaya upaya kamu. Kerana sesungguhnya, perkara yang membinasakan umat terdahulu adalah banyak bertanya dan mempertikai para nabi mereka.\"",
+    terjemahan_en:"I heard the Messenger of Allah ﷺ say: \"Whatever I forbid you from, avoid it, and whatever I command you, do as much of it as you are able. For what destroyed those before you was their excessive questioning and disputing with their prophets.\"",
+    ulasan_my:"Hadis ini mengajar kita untuk mentaati suruhan dan larangan agama mengikut kemampuan, tanpa membebankan diri dengan persoalan yang tidak perlu atau mencari helah untuk mengelak tanggungjawab. Bertanya digalakkan untuk memahami, bukan untuk mempersenda atau menimbulkan pertikaian.",
+    ulasan_en:"This hadith teaches us to obey the religion's commands and prohibitions according to our ability, without burdening ourselves with unnecessary questions or seeking loopholes to avoid responsibility. Asking questions is encouraged for understanding, not for mockery or provoking dispute.",
+    src:'HR. Bukhari & Muslim'},
+  {num:10, title_my:'Rezeki Halal Asas Penerimaan Doa', title_en:'Lawful Provision as a Condition for Accepted Prayer',
+    ar:'إِنَّ اللَّهَ طَيِّبٌ لاَ يَقْبَلُ إِلاَّ طَيِّبًا',
+    ringkas_my:'Allah Maha Baik dan tidak menerima kecuali yang baik — makanan, minuman dan pakaian yang haram menghalang doa diterima.',
+    ringkas_en:'Allah is Good and accepts only that which is good — unlawful food, drink and clothing hinder the acceptance of prayer.',
+    perawi_my:"Daripada Saiyidina Abu Hurairah RA.",
+    perawi_en:"From Saiyidina Abu Hurairah RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Sesungguhnya Allah Maha Baik, Dia tidak menerima kecuali sesuatu yang baik.\" Baginda kemudian menceritakan seorang musafir yang rambutnya kusut berdebu menadah tangan berdoa, \"Wahai Tuhanku! Wahai Tuhanku!\" — sedangkan makanannya haram, minumannya haram, pakaiannya haram, dan dia dibesarkan dengan yang haram. Bagaimanakah doanya akan diperkenankan?",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Indeed Allah is Good and accepts only that which is good.\" He then described a dishevelled, dusty traveller raising his hands to the sky, saying, \"O Lord! O Lord!\" — yet his food is unlawful, his drink unlawful, his clothing unlawful, and he was nourished with the unlawful. How then could his prayer be answered?",
+    ulasan_my:"Hadis ini menekankan pentingnya sumber rezeki yang halal sebagai syarat penerimaan doa dan amalan di sisi Allah SWT. Penyucian jiwa dan keberkatan hidup berpunca daripada makanan, minuman dan pakaian yang halal lagi baik, selaras dengan Surah Al-Baqarah ayat 172.",
+    ulasan_en:"This hadith emphasises that lawful provision is essential for one's prayers and deeds to be accepted by Allah SWT. The purification of the soul and blessings in life stem from food, drink and clothing that are both lawful and wholesome, in line with Surah Al-Baqarah, verse 172.",
+    src:'HR. Muslim'},
+  {num:11, title_my:'Meninggalkan Keraguan adalah Ciri Warak', title_en:'Leaving Doubt is a Sign of Piety',
+    ar:'دَعْ مَا يَرِيبُكَ إِلَى مَا لاَ يَرِيبُكَ',
+    ringkas_my:'Tinggalkanlah perkara yang meragukanmu dan ambillah perkara yang tidak meragukanmu.',
+    ringkas_en:'Leave what makes you doubt for what does not make you doubt.',
+    perawi_my:"Daripada Saiyidina Abu Muhammad al-Hasan bin Ali bin Abu Talib RA — cucunda Rasulullah ﷺ.",
+    perawi_en:"From Saiyidina Abu Muhammad al-Hasan ibn Ali ibn Abu Talib RA — the Prophet's ﷺ grandson.",
+    terjemahan_my:"Aku menghafaz sabda Rasulullah ﷺ: \"Tinggalkanlah perkara yang meragukanmu dan ambillah perkara yang tidak meragukanmu.\"",
+    terjemahan_en:"I memorised the saying of the Messenger of Allah ﷺ: \"Leave what makes you doubt for what does not make you doubt.\"",
+    ulasan_my:"Hadis ini mengajak kita meninggalkan segala perbuatan yang menimbulkan rasa sangsi, samar atau kabur, terutamanya dalam ibadah dan akidah. Keyakinan yang berasaskan ilmu merupakan jalan utama untuk memelihara agama dan menghindari syak.",
+    ulasan_en:"This hadith calls us to abandon any action that causes uncertainty, ambiguity or confusion, particularly in matters of worship and belief. Conviction grounded in knowledge is the primary way to safeguard one's faith and avoid doubt.",
+    src:'HR. Tirmizi & Nasa\'i (hasan sahih)'},
+  {num:12, title_my:'Meninggalkan Perkara yang Tidak Berfaedah', title_en:'Leaving What Does Not Concern You',
+    ar:'مِنْ حُسْنِ إِسْلاَمِ الْمَرْءِ تَرْكُهُ مَا لاَ يَعْنِيهِ',
+    ringkas_my:'Antara keindahan Islam seseorang ialah meninggalkan sesuatu yang tidak berkaitan dengan dirinya.',
+    ringkas_en:'Part of the excellence of a person\'s Islam is leaving alone what does not concern him.',
+    perawi_my:"Daripada Saiyidina Abu Hurairah RA.",
+    perawi_en:"From Saiyidina Abu Hurairah RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Antara keindahan Islam seseorang ialah dia meninggalkan sesuatu yang tidak berkaitan dengan dirinya.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Part of the excellence of a person's Islam is his leaving alone that which does not concern him.\"",
+    ulasan_my:"Hadis ini disebut ulama sebagai antara hadis yang menghimpunkan keseluruhan ajaran Islam. Ia menggalakkan kita menjaga lisan daripada perkataan sia-sia dan menumpukan masa kepada perkara yang membawa manfaat dunia dan akhirat, selaras dengan nasihat Khalifah Umar bin Abdul Aziz: \"Banyakkan beramal dan kurangkan bercakap.\"",
+    ulasan_en:"Scholars regard this hadith as among those that encapsulate the entirety of Islamic teaching. It encourages guarding one's tongue from idle talk and devoting time to matters of benefit in this world and the next, in line with Caliph Umar ibn Abdul Aziz's advice: \"Do more and speak less.\"",
+    src:'HR. Tirmizi (hasan)'},
+  {num:13, title_my:'Menyukai Kebaikan Sesama Muslim Tanda Kesempurnaan Iman', title_en:'Loving Good for Your Brother is a Sign of Complete Faith',
+    ar:'لاَ يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ',
+    ringkas_my:'Tidak sempurna iman seseorang sehingga dia menyukai saudaranya memperoleh apa yang dia sukakan untuk dirinya sendiri.',
+    ringkas_en:'None of you truly believes until he loves for his brother what he loves for himself.',
+    perawi_my:"Daripada Saiyidina Abu Hamzah Anas bin Malik RA — pembantu Rasulullah ﷺ.",
+    perawi_en:"From Saiyidina Abu Hamzah Anas ibn Malik RA — the Prophet's ﷺ attendant.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Tidak sempurna iman seseorang kamu sehingga dia menyukai saudaranya memperoleh apa-apa (kebaikan) yang dia sukakan untuk dirinya sendiri.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"None of you truly believes until he loves for his brother what he loves for himself.\"",
+    ulasan_my:"Hadis ini membimbing kita supaya mengeratkan hubungan sesama masyarakat, bergembira dengan kejayaan saudara seagama, dan menjauhi rasa dengki. Semua mukmin bersaudara sebagaimana Surah Al-Hujurat ayat 10, dan kesempurnaan iman terzahir melalui sikap berlumba-lumba dalam kebaikan tanpa rasa iri hati.",
+    ulasan_en:"This hadith guides us to strengthen ties within the community, rejoice in our fellow believers' success, and avoid envy. All believers are brothers, as stated in Surah Al-Hujurat, verse 10, and the completeness of faith is shown through competing in good deeds without jealousy.",
+    src:'HR. Bukhari & Muslim'},
+  {num:14, title_my:'Kesan Jenayah Berat dalam Islam', title_en:'The Gravity of Major Crimes in Islam',
+    ar:'لاَ يَحِلُّ دَمُ امْرِئٍ مُسْلِمٍ إِلاَّ بِإِحْدَى ثَلاَثٍ',
+    ringkas_my:'Tidak halal menumpahkan darah seorang Muslim kecuali kerana zina selepas berkahwin, membunuh, atau murtad daripada Islam.',
+    ringkas_en:'The blood of a Muslim is not lawful except for one of three: adultery after marriage, murder, or apostasy from Islam.',
+    perawi_my:"Daripada Saiyidina Ibnu Mas'ud RA.",
+    perawi_en:"From Saiyidina Ibnu Mas'ud RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Tidak halal (menumpahkan) darah seorang Muslim kecuali disebabkan satu daripada tiga perkara; berzina setelah berkahwin, membunuh orang (tanpa hak), dan meninggalkan agama serta memisahkan diri daripada jemaah orang Islam.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"It is not lawful to take the life of a Muslim except for one of three reasons: a married person who commits adultery, a life for a life (in retribution for murder), and one who abandons his religion and separates from the community.\"",
+    ulasan_my:"Hadis ini menetapkan tiga kesalahan utama yang membenarkan pemerintah (bukan individu) menjatuhkan hukuman bunuh, bagi menjaga maqasid syariah iaitu memelihara agama, nyawa, akal, keturunan dan harta. Pelaksanaan hukuman ini adalah tanggungjawab pihak berkuasa mengikut prosedur syarak, bukan tindakan sewenang-wenangnya individu.",
+    ulasan_en:"This hadith establishes three major offences that permit the authorities (not individuals) to carry out capital punishment, in order to uphold the higher objectives of the Shariah — preserving faith, life, intellect, lineage and property. Carrying out this punishment is the responsibility of the proper authorities following due process, not the arbitrary act of any individual.",
+    src:'HR. Bukhari & Muslim'},
+  {num:15, title_my:'Berkata Baik serta Menghormati Jiran dan Tetamu', title_en:'Good Speech, and Honouring Neighbours and Guests',
+    ar:'مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ',
+    ringkas_my:'Sesiapa beriman kepada Allah dan hari akhirat hendaklah berkata baik atau diam, memuliakan jirannya dan memuliakan tetamunya.',
+    ringkas_en:'Whoever believes in Allah and the Last Day should speak good or remain silent, honour his neighbour, and honour his guest.',
+    perawi_my:"Daripada Saiyidina Abu Hurairah RA.",
+    perawi_en:"From Saiyidina Abu Hurairah RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Sesiapa yang beriman kepada Allah dan hari akhirat hendaklah dia berkata yang baik atau diam. Sesiapa yang beriman kepada Allah dan hari akhirat hendaklah dia memuliakan jirannya. Sesiapa yang beriman kepada Allah dan hari akhirat hendaklah dia memuliakan tetamunya.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Whoever believes in Allah and the Last Day should speak good or remain silent. Whoever believes in Allah and the Last Day should honour his neighbour. Whoever believes in Allah and the Last Day should honour his guest.\"",
+    ulasan_my:"Orang beriman sentiasa menjaga lisannya kerana setiap kata akan dihitung di sisi Allah SWT. Hadis ini turut menggalakkan memuliakan jiran tanpa mengira agama mereka, dan menyambut tetamu dengan baik, sebagaimana akhlak para nabi dan orang soleh.",
+    ulasan_en:"A believer always guards his speech because every word will be accounted for before Allah SWT. This hadith also encourages honouring neighbours regardless of their faith, and welcoming guests warmly, following the character of the prophets and the righteous.",
+    src:'HR. Bukhari & Muslim'},
+  {num:16, title_my:'Menjauhi Sifat Pemarah', title_en:'Avoiding Anger',
+    ar:'لاَ تَغْضَبْ',
+    ringkas_my:'Seorang sahabat meminta wasiat, lalu Rasulullah ﷺ bersabda berulang kali: "Janganlah kamu marah."',
+    ringkas_en:'A companion asked for advice, and the Prophet ﷺ repeated: "Do not become angry."',
+    perawi_my:"Daripada Saiyidina Abu Hurairah RA.",
+    perawi_en:"From Saiyidina Abu Hurairah RA.",
+    terjemahan_my:"Seorang sahabat berkata kepada Nabi ﷺ, \"Berilah pesanan kepadaku.\" Baginda bersabda, \"Janganlah kamu marah.\" Sahabat itu mengulangi pertanyaannya berkali-kali, dan baginda tetap bersabda, \"Janganlah kamu marah.\"",
+    terjemahan_en:"A man said to the Prophet ﷺ, \"Advise me.\" He said, \"Do not become angry.\" The man repeated his request several times, and each time the Prophet ﷺ said, \"Do not become angry.\"",
+    ulasan_my:"Marah adalah punca segala keburukan, manakala menahannya adalah kunci kebaikan. Rasulullah ﷺ tidak pernah marah kerana kepentingan peribadi, hanya marah apabila hukum Allah dilanggar. Antara cara menahan marah ialah berzikir, mengambil wuduk, dan mengubah kedudukan tubuh (duduk atau berbaring).",
+    ulasan_en:"Anger is the root of much harm, while restraining it is the key to goodness. The Prophet ﷺ never grew angry for personal reasons, only when Allah's limits were transgressed. Ways to control anger include remembering Allah, performing ablution, and changing one's posture (sitting or lying down).",
+    src:'HR. Bukhari'},
+  {num:17, title_my:'Kesempurnaan dalam Perkara Kebaikan', title_en:'Excellence in All Things',
+    ar:'إِنَّ اللَّهَ كَتَبَ الإِحْسَانَ عَلَى كُلِّ شَيْءٍ',
+    ringkas_my:'Allah menetapkan ihsan (kesempurnaan) dalam setiap perkara, termasuk cara membunuh dan menyembelih dengan baik.',
+    ringkas_en:'Allah has prescribed excellence (ihsan) in everything, including how one kills and slaughters with kindness.',
+    perawi_my:"Daripada Saiyidina Abu Ya'la Syaddad bin Aus RA.",
+    perawi_en:"From Saiyidina Abu Ya'la Syaddad ibn Aus RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Sesungguhnya Allah telah menuntut berlaku ihsan dalam setiap perkara. Maka, apabila kamu membunuh, hendaklah dilakukan dengan cara yang baik. Apabila kamu menyembelih, hendaklah dilakukan dengan cara yang baik. Hendaklah seseorang menajamkan pisau sembelihannya dan memberi kerehatan kepada binatang sembelihannya.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Allah has prescribed excellence in all things. So when you kill, kill well, and when you slaughter, slaughter well. Let each of you sharpen his blade and spare suffering to the animal he slaughters.\"",
+    ulasan_my:"Ihsan ialah teliti dan bersungguh-sungguh melakukan amalan dengan sebaik-baiknya. Hadis ini menggariskan ihsan kepada manusia, alam sekitar dan haiwan — termasuk adab menyembelih dengan pisau tajam dan tanpa menyeksa, kerana Islam menuntut kesempurnaan walaupun dalam hukuman dan peperangan.",
+    ulasan_en:"Ihsan means performing a deed thoroughly and to the best of one's ability. This hadith outlines excellence towards people, the environment and animals — including the etiquette of slaughtering with a sharp blade and without causing suffering, since Islam demands excellence even in punishment and warfare.",
+    src:'HR. Muslim'},
+  {num:18, title_my:'Takwa dan Akhlak Mulia', title_en:'Taqwa and Noble Character',
+    ar:'اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ، وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا',
+    ringkas_my:'Bertakwalah kepada Allah di mana sahaja kamu berada, susulkan kejahatan dengan kebaikan, dan bergaullah dengan akhlak yang baik.',
+    ringkas_en:'Fear Allah wherever you are, follow a bad deed with a good one to erase it, and treat people with good character.',
+    perawi_my:"Daripada Saiyidina Abu Zar Jundub bin Junadah dan Saiyidina Abu Abdul Rahman Mu'az bin Jabal RA.",
+    perawi_en:"From Saiyidina Abu Zar Jundub ibn Junadah and Saiyidina Abu Abdul Rahman Mu'az ibn Jabal RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Bertakwalah kamu kepada Allah di mana sahaja kamu berada, susulkanlah kejahatan dengan kebaikan nescaya kebaikan akan menghapuskannya, dan bergaullah sesama manusia dengan budi pekerti yang baik.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Fear Allah wherever you are, follow a bad deed with a good one which will erase it, and treat people with good character.\"",
+    ulasan_my:"Hadis ini menghimpunkan tiga perkara: takwa di mana jua berada, bersegera melakukan kebaikan selepas kesilapan, dan bergaul dengan akhlak yang baik tanpa mengira latar belakang. Akhlak mulia merupakan tonggak kesejahteraan hidup manusia di dunia dan akhirat.",
+    ulasan_en:"This hadith brings together three matters: taqwa wherever one is, hastening to do good after a wrongdoing, and treating people with good character regardless of background. Noble character is the pillar of human wellbeing in this world and the next.",
+    src:'HR. Tirmizi (hasan sahih)'},
+  {num:19, title_my:'Panduan Pengukuhan Iman bagi Anak Muda', title_en:'Guidance for Strengthening Faith in the Young',
+    ar:'احْفَظِ اللَّهَ يَحْفَظْكَ',
+    ringkas_my:'Peliharalah (hak) Allah, nescaya Allah akan menjagamu — kenalilah Allah di waktu senang, nescaya Dia mengenalimu di waktu susah.',
+    ringkas_en:'Be mindful of Allah and He will protect you — know Allah in times of ease, and He will know you in times of hardship.',
+    perawi_my:"Daripada Saiyidina Abdullah bin Abbas RA, ketika baginda menasihati beliau yang ketika itu berusia kira-kira 10 tahun.",
+    perawi_en:"From Saiyidina Abdullah ibn Abbas RA, when the Prophet ﷺ advised him at around the age of 10.",
+    terjemahan_my:"Nabi ﷺ bersabda: \"Wahai anak muda, peliharalah (hak) Allah nescaya Allah akan menjagamu. Peliharalah (hak) Allah nescaya kamu akan mendapati-Nya sentiasa di hadapanmu. Apabila kamu meminta, mintalah kepada Allah; apabila memohon pertolongan, mohonlah kepada Allah. Ketahuilah, sekiranya seluruh makhluk berhimpun untuk memberi manfaat atau mudarat kepadamu, mereka tidak mampu melainkan apa yang Allah telah tentukan. Pena-pena (pencatat takdir) telah diangkat dan lembaran telah kering.\"",
+    terjemahan_en:"The Prophet ﷺ said: \"O young man, be mindful of Allah and He will protect you. Be mindful of Allah and you will find Him before you. When you ask, ask Allah; when you seek help, seek it from Allah. Know that if the whole nation gathered to benefit or harm you, they could not do so except as Allah had already decreed. The pens have been lifted and the pages have dried.\"",
+    ulasan_my:"Hadis ini mengajar anak muda menjaga tuntutan agama dari segi rohani dan jasmani, sentiasa berdoa dan bertawakal, serta meyakini bahawa segala yang berlaku adalah ketetapan Allah SWT. Menurut Al-Hafiz Ibn Hajar, hadis ini menyiapkan mental seseorang untuk menghadapi ujian hidup dengan penuh keyakinan.",
+    ulasan_en:"This hadith teaches young people to uphold the demands of religion both spiritually and physically, to consistently pray and place their trust in Allah, and to believe that everything that happens is by His decree. According to Al-Hafiz Ibn Hajar, this hadith prepares a person mentally to face life's trials with full conviction.",
+    src:'HR. Tirmizi (hasan sahih)'},
+  {num:20, title_my:'Keutamaan Sifat Malu', title_en:'The Virtue of Modesty',
+    ar:'إِذَا لَمْ تَسْتَحِ فَاصْنَعْ مَا شِئْتَ',
+    ringkas_my:'Antara ungkapan nabi-nabi terdahulu: jika kamu sudah tiada sifat malu, buatlah apa sahaja yang kamu mahu (ancaman, bukan suruhan).',
+    ringkas_en:'Among the sayings of earlier prophets: if you feel no shame, then do as you wish (a warning, not a permission).',
+    perawi_my:"Daripada Saiyidina Abu Mas'ud 'Uqbah bin 'Amr al-Ansari al-Badri RA.",
+    perawi_en:"From Saiyidina Abu Mas'ud 'Uqbah ibn 'Amr al-Ansari al-Badri RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Sesungguhnya antara ungkapan yang diterima oleh manusia (turun-temurun) daripada para nabi terdahulu ialah: jika kamu sudah tiada sifat malu maka buatlah apa sahaja yang kamu mahu.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Among what people have received from the words of earlier prophethood is: if you feel no shame, then do as you wish.\"",
+    ulasan_my:"Malu ialah sifat yang menghindarkan seseorang daripada keji dan mendorongnya kepada yang terpuji — sebahagian daripada cabang iman. Hadis ini bukan suruhan, tetapi ancaman keras: apabila rasa malu hilang, seseorang akan terdorong melakukan apa sahaja tanpa sekatan.",
+    ulasan_en:"Modesty is the quality that prevents a person from indecency and drives him towards what is praiseworthy — it is a branch of faith. This hadith is not a permission but a stern warning: once shame is lost, a person becomes prone to doing whatever he wishes without restraint.",
+    src:'HR. Bukhari'},
+  {num:21, title_my:'Iman dan Istiqamah', title_en:'Faith and Steadfastness',
+    ar:'قُلْ آمَنْتُ بِاللَّهِ ثُمَّ اسْتَقِمْ',
+    ringkas_my:'Katakanlah "Aku beriman kepada Allah", kemudian beristiqamahlah (teguh di atasnya).',
+    ringkas_en:'Say "I believe in Allah," then remain steadfast.',
+    perawi_my:"Daripada Saiyidina Abu 'Amr Sufyan bin Abdullah al-Thaqafi RA.",
+    perawi_en:"From Saiyidina Abu 'Amr Sufyan ibn Abdullah al-Thaqafi RA.",
+    terjemahan_my:"Aku berkata, \"Wahai Rasulullah, beritahulah kepadaku satu perkataan dalam Islam yang aku tidak perlu bertanya kepada sesiapa selain tuan.\" Sabda Rasulullah ﷺ: \"Katakanlah, aku beriman kepada Allah, kemudian beristiqamahlah.\"",
+    terjemahan_en:"I said, \"O Messenger of Allah, tell me something about Islam that I will not need to ask anyone else about.\" He said: \"Say: I believe in Allah, then remain steadfast.\"",
+    ulasan_my:"Istiqamah ialah berterusan mentaati Allah SWT dari aspek akidah, perkataan dan perbuatan. Bilal bin Rabah RA menjadi teladan keteguhan iman walaupun diseksa hebat oleh tuannya yang kafir, namun tetap berpegang teguh dengan kalimah tauhid.",
+    ulasan_en:"Istiqamah is the continuous obedience to Allah SWT in belief, speech and action. Bilal ibn Rabah RA exemplified steadfastness of faith, enduring severe torture from his disbelieving master yet holding firm to the declaration of Allah's oneness.",
+    src:'HR. Muslim'},
+  {num:22, title_my:'Syarat Asas Masuk Syurga', title_en:'The Basic Requirements for Entering Paradise',
+    ar:'أَفْلَحَ إِنْ صَدَقَ',
+    ringkas_my:'Mengerjakan solat fardu, puasa Ramadan, menghalalkan yang halal dan mengharamkan yang haram, sudah cukup untuk masuk syurga.',
+    ringkas_en:'Performing obligatory prayer, fasting Ramadan, and observing what is lawful and unlawful is sufficient to enter Paradise.',
+    perawi_my:"Daripada Saiyidina Abu Abdullah Jabir bin Abdullah al-Ansari RA.",
+    perawi_en:"From Saiyidina Abu Abdullah Jabir ibn Abdullah al-Ansari RA.",
+    terjemahan_my:"Seorang lelaki bertanya kepada Rasulullah ﷺ, \"Apa pandangan tuan sekiranya aku mengerjakan solat fardu, berpuasa Ramadan, menghalalkan yang halal serta mengharamkan yang haram, dan tidak melakukan lebih daripada itu — adakah aku akan masuk syurga?\" Baginda menjawab, \"Ya.\"",
+    terjemahan_en:"A man asked the Messenger of Allah ﷺ, \"What do you think if I perform the obligatory prayers, fast Ramadan, regard as lawful what is lawful and as unlawful what is unlawful, and do nothing more — will I enter Paradise?\" He replied, \"Yes.\"",
+    ulasan_my:"Hadis ini menjelaskan bahawa pelaksanaan kewajipan asas — solat fardu, puasa Ramadan, dan kepatuhan kepada batas halal-haram — sudah cukup untuk melayakkan seseorang menjadi ahli syurga, di samping melakukan amalan harus lain seperti bersukan dan berhibur dalam batasan syarak.",
+    ulasan_en:"This hadith explains that fulfilling the basic obligations — obligatory prayer, fasting Ramadan, and observing the bounds of lawful and unlawful — is sufficient to qualify a person for Paradise, alongside other permissible activities such as sport and recreation within the limits of the Shariah.",
+    src:'HR. Muslim'},
+  {num:23, title_my:'Ganjaran dan Hakikat Amalan Kebaikan', title_en:'The Reward and Reality of Good Deeds',
+    ar:'الطُّهُورُ شَطْرُ الإِيمَانِ',
+    ringkas_my:'Kesucian sebahagian iman; tasbih dan tahmid memenuhi neraca; solat cahaya; sedekah bukti; sabar sinaran; Al-Quran hujah pembela atau penentang.',
+    ringkas_en:'Purity is half of faith; tasbih and tahmid fill the scale; prayer is light; charity is proof; patience is radiance; the Quran is an argument for or against you.',
+    perawi_my:"Daripada Saiyidina Abu Malik al-Harith bin 'Asim al-Asy'ari RA.",
+    perawi_en:"From Saiyidina Abu Malik al-Harith ibn 'Asim al-Asy'ari RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Kesucian adalah sebahagian daripada iman. Ucapan Alhamdulillah memenuhi timbangan. Ucapan Subhanallah dan Alhamdulillah memenuhi ruang antara langit dan bumi. Solat adalah cahaya. Sedekah adalah bukti. Sabar adalah sinaran. Al-Quran adalah hujah yang membela atau menentang kamu. Setiap orang memulakan harinya dengan menjual jiwanya — sama ada membebaskan atau membinasakannya.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Purity is half of faith. Saying Alhamdulillah fills the scale. Saying Subhanallah and Alhamdulillah fills what is between the heavens and the earth. Prayer is light. Charity is proof. Patience is radiance. The Quran is an argument either for you or against you. Every person starts his day selling his soul — either freeing it or destroying it.\"",
+    ulasan_my:"Hadis ini menggabungkan kebersihan zahir dan batin sebagai sebahagian iman. Zikir seperti tasbih dan tahmid memenuhi neraca timbangan amal; solat membimbing ke arah kebenaran; sedekah membuktikan keimanan; sabar membantu menghadapi ujian; dan interaksi kita dengan Al-Quran menentukan sama ada ia membela atau mendakwa kita di akhirat.",
+    ulasan_en:"This hadith combines outward and inward purity as part of faith. Remembrance such as tasbih and tahmid fills the scale of deeds; prayer guides towards truth; charity proves one's faith; patience helps in facing trials; and our interaction with the Quran determines whether it defends or testifies against us in the Hereafter.",
+    src:'HR. Muslim'},
+  {num:24, title_my:'Keluasan Limpah Kurnia Allah SWT kepada Hamba-Nya', title_en:"The Vastness of Allah's Generosity to His Servants",
+    ar:'يَا عِبَادِي إِنِّي حَرَّمْتُ الظُّلْمَ عَلَى نَفْسِي',
+    ringkas_my:'Allah berfirman: Aku haramkan kezaliman ke atas diri-Ku; Aku jadikan ia haram antara kamu, maka janganlah saling menzalimi.',
+    ringkas_en:'Allah says: I have forbidden oppression for Myself and made it forbidden among you, so do not oppress one another.',
+    perawi_my:"Daripada Saiyidina Abu Zar al-Ghifari RA — Nabi ﷺ meriwayatkan hadis qudsi daripada Allah SWT.",
+    perawi_en:"From Saiyidina Abu Zar al-Ghifari RA — the Prophet ﷺ narrating a hadith qudsi from Allah SWT.",
+    terjemahan_my:"Allah SWT berfirman: \"Wahai hamba-Ku, sesungguhnya Aku telah mengharamkan kezaliman bagi diri-Ku dan Aku jadikannya haram antara kamu, maka janganlah kamu berlaku zalim sesama kamu. Wahai hamba-Ku, kamu semua dalam kesesatan kecuali yang Aku berikan petunjuk; kamu semua lapar kecuali yang Aku berikan makan; kamu semua tidak berpakaian kecuali yang Aku berikan pakaian — mintalah daripada-Ku. Wahai hamba-Ku, kamu melakukan kesalahan siang dan malam, dan Aku mengampuni semua dosa — mintalah keampunan-Ku. Sesungguhnya itulah amalan kamu yang Aku catatkan untuk kamu, kemudian Aku sempurnakan balasannya. Maka sesiapa mendapat kebaikan, pujilah Allah, dan sesiapa mendapat selainnya, janganlah dia salahkan melainkan dirinya sendiri.\"",
+    terjemahan_en:"Allah SWT says: \"O My servants, I have forbidden oppression for Myself and made it forbidden among you, so do not oppress one another. O My servants, all of you are astray except those I guide, so seek guidance from Me; all of you are hungry except those I feed, so seek food from Me; all of you are unclothed except those I clothe, so seek clothing from Me. O My servants, you sin by night and day and I forgive all sins, so seek My forgiveness. These are your deeds which I record for you, then fully recompense you. So whoever finds good, let him praise Allah, and whoever finds other than that, let him blame no one but himself.\"",
+    ulasan_my:"Hadis qudsi ini menghimpunkan pengharaman kezaliman, galakan berdoa, dan penegasan kesempurnaan sifat Allah SWT yang tidak bertambah atau berkurang kemuliaan-Nya walau bagaimana sikap hamba-Nya. Setiap amalan akan dihitung dan dibalas dengan seadil-adilnya, dengan kebaikan digandakan sehingga 700 kali ganda.",
+    ulasan_en:"This hadith qudsi combines the prohibition of oppression, encouragement to pray, and the affirmation of Allah's perfection — His majesty neither increases nor decreases regardless of His servants' conduct. Every deed will be counted and recompensed with perfect justice, with good deeds multiplied up to 700 times.",
+    src:'HR. Muslim'},
+  {num:25, title_my:'Persaingan dalam Kebaikan', title_en:'Competing in Good Deeds',
+    ar:'أَوَلَيْسَ قَدْ جَعَلَ اللَّهُ لَكُمْ مَا تَصَّدَّقُونَ',
+    ringkas_my:'Tasbih, tahmid, tahlil dan takbir adalah sedekah; menyuruh kebaikan, mencegah mungkar, dan menggauli isteri pun sedekah.',
+    ringkas_en:'Tasbih, tahmid, tahlil and takbir are charity; enjoining good, forbidding evil, and even marital relations are charity too.',
+    perawi_my:"Daripada Saiyidina Abu Zar RA — aduan sahabat fakir kepada Rasulullah ﷺ tentang golongan kaya yang dapat lebih banyak pahala sedekah.",
+    perawi_en:"From Saiyidina Abu Zar RA — companions of modest means complaining to the Prophet ﷺ that the wealthy were earning more reward through charity.",
+    terjemahan_my:"Para sahabat mengadu: \"Golongan kaya telah membolot semua pahala — mereka solat dan puasa seperti kami, namun dapat bersedekah dengan harta mereka.\" Baginda bersabda: \"Bukankah Allah telah menjadikan untuk kamu sesuatu untuk bersedekah dengannya? Setiap tasbih, takbir, tahmid dan tahlil ialah sedekah. Mengajak kebaikan dan mencegah kemungkaran juga sedekah, bahkan hubungan kelamin (yang halal) juga dikira sedekah.\"",
+    terjemahan_en:"The companions complained: \"The wealthy have taken all the reward — they pray and fast as we do, yet they give charity from their wealth.\" He replied: \"Has Allah not given you things with which to give charity? Every tasbih, takbir, tahmid and tahlil is charity. Enjoining good and forbidding evil is charity, and even intimacy (within marriage) is charity.\"",
+    ulasan_my:"Hadis ini menunjukkan kesungguhan para sahabat berlumba-lumba dalam kebaikan, dan Rasulullah ﷺ memperluas makna sedekah merangkumi zikir, dakwah, dan amalan harian yang dilakukan dengan niat yang betul — bukan terhad kepada wang ringgit sahaja.",
+    ulasan_en:"This hadith reflects the companions' eagerness to compete in goodness, and the Prophet ﷺ expanded the meaning of charity to include remembrance, calling to good, and daily acts performed with the right intention — not limited to monetary giving alone.",
+    src:'HR. Muslim'},
+  {num:26, title_my:'Pelbagai Sarana Sedekah', title_en:'The Many Forms of Charity',
+    ar:'كُلُّ سُلاَمَى مِنَ النَّاسِ عَلَيْهِ صَدَقَةٌ',
+    ringkas_my:'Setiap sendi manusia dituntut bersedekah setiap hari — mendamaikan dua orang, perkataan baik, dan langkah ke masjid juga sedekah.',
+    ringkas_en:"Every joint of a person owes a daily charity — reconciling two people, kind words, and even steps to the mosque count as charity.",
+    perawi_my:"Daripada Saiyidina Abu Hurairah RA.",
+    perawi_en:"From Saiyidina Abu Hurairah RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Setiap sendi manusia dituntut supaya bersedekah pada setiap kali terbitnya matahari. Mendamaikan antara dua orang ialah sedekah, menolong seseorang menaiki kenderaan atau mengangkat barangnya ialah sedekah, perkataan yang baik adalah sedekah, setiap langkah menunaikan solat ialah sedekah, dan mengalihkan perkara yang mengganggu dari jalan juga sedekah.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Every joint of a person owes a charity each day the sun rises. Making peace between two people is charity, helping someone onto their mount or lifting their belongings is charity, a good word is charity, every step taken towards prayer is charity, and removing something harmful from the road is charity.\"",
+    ulasan_my:"Hadis ini meluaskan konsep sedekah merangkumi pelbagai bentuk kebaikan harian — tenaga fizikal, tutur kata, mendamaikan perselisihan, dan menjaga kebersihan laluan awam — yang boleh diamalkan oleh sesiapa sahaja tanpa mengira kemampuan kewangan.",
+    ulasan_en:"This hadith broadens the concept of charity to include many forms of everyday kindness — physical effort, kind speech, reconciling disputes, and keeping public pathways clean — which anyone can practise regardless of financial means.",
+    src:'HR. Bukhari & Muslim'},
+  {num:27, title_my:'Tanda Kebaikan dan Dosa', title_en:'The Signs of Virtue and Sin',
+    ar:'الْبِرُّ حُسْنُ الْخُلُقِ، وَالإِثْمُ مَا حَاكَ فِي نَفْسِكَ',
+    ringkas_my:'Kebaikan ialah akhlak mulia; dosa ialah sesuatu yang meresahkan jiwa dan kamu tidak suka diketahui orang lain.',
+    ringkas_en:'Virtue is good character; sin is what causes unease in your soul and which you dislike others knowing about.',
+    perawi_my:"Daripada Saiyidina al-Nawwas bin Sam'an RA, dan Saiyidina Wabisah bin Ma'bad RA.",
+    perawi_en:"From Saiyidina al-Nawwas ibn Sam'an RA, and Saiyidina Wabisah ibn Ma'bad RA.",
+    terjemahan_my:"Nabi ﷺ bersabda: \"Kebaikan itu ialah berakhlak mulia. Dosa itu pula ialah sesuatu yang menimbulkan keresahan dalam jiwa dan kamu tidak suka diketahui oleh orang lain.\" Dalam riwayat lain, baginda bersabda kepada Wabisah: \"Tanyalah hati kamu sendiri. Kebaikan itu ialah perkara yang membawa ketenangan jiwa, dosa itu ialah sesuatu yang meresahkan jiwa, walaupun orang ramai memberi pandangan berbeza denganmu.\"",
+    terjemahan_en:"The Prophet ﷺ said: \"Virtue is good character, and sin is what causes unease within your soul and which you dislike others knowing about.\" In another narration, he told Wabisah: \"Ask your own heart. Virtue is what brings tranquillity to the soul, and sin is what causes unease in the soul, even if people give you a different opinion.\"",
+    ulasan_my:"Hadis ini menjadikan ketenangan dan keresahan hati sebagai panduan membezakan kebaikan dan dosa, terutama dalam perkara yang meragukan. Akhlak mulia adalah perkara paling berat di neraca timbangan amalan, manakala dosa menyebabkan kegelisahan walaupun tersembunyi daripada pandangan manusia.",
+    ulasan_en:"This hadith uses the heart's tranquillity or unease as a guide to distinguish virtue from sin, especially in doubtful matters. Good character is the heaviest item on the scale of deeds, while sin causes inner turmoil even when hidden from others' view.",
+    src:'HR. Muslim; Ahmad & Darimi (hasan)'},
+  {num:28, title_my:'Pesanan Takwa, Taat dan Iltizam dengan Sunnah', title_en:'Advice on Taqwa, Obedience and Adherence to the Sunnah',
+    ar:'عَلَيْكُمْ بِسُنَّتِي وَسُنَّةِ الْخُلَفَاءِ الرَّاشِدِينَ',
+    ringkas_my:'Berpegang teguhlah dengan sunnahku dan sunnah Khulafa al-Rasyidin; jauhilah perkara baharu dalam agama kerana setiap bidaah itu sesat.',
+    ringkas_en:'Hold firmly to my Sunnah and that of the Rightly-Guided Caliphs; avoid newly invented matters in religion, for every innovation is misguidance.',
+    perawi_my:"Daripada Saiyidina Abu Najih al-'Irbad bin Sariyah RA.",
+    perawi_en:"From Saiyidina Abu Najih al-'Irbad ibn Sariyah RA.",
+    terjemahan_my:"Rasulullah ﷺ menyampaikan peringatan yang menggetarkan hati. Para sahabat berkata, \"Ini seolah-olah ucapan perpisahan, berilah kami wasiat.\" Baginda bersabda: \"Aku mewasiatkan kamu bertakwa kepada Allah serta dengar dan taat kepada pemimpin walaupun seorang hamba. Sesiapa yang hidup selepasku akan melihat banyak perselisihan, maka berpegang teguhlah dengan sunnahku dan sunnah al-Khulafa al-Rasyidin yang diberi petunjuk. Hindarilah perkara yang direka-reka dalam agama, kerana setiap bidaah itu sesat.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ gave an address that moved the hearts deeply. The companions said, \"This sounds like a farewell speech, so advise us.\" He said: \"I advise you to fear Allah, and to listen and obey even if a slave is appointed over you. Whoever among you lives on will see many disagreements, so hold firmly to my Sunnah and the Sunnah of the rightly-guided caliphs. Beware of newly invented matters, for every innovation is misguidance.\"",
+    ulasan_my:"Hadis ini mengarahkan umat Islam berpegang teguh kepada Al-Quran dan As-Sunnah ketika berlaku perselisihan. Imam Asy-Syafi'i membahagikan bidaah kepada dua: bidaah mahmudah (terpuji, menepati sunnah) dan bidaah mazmumah (tercela, menyalahi sunnah) — pembahagian yang turut diiktiraf dalam mazhab Syafi'i.",
+    ulasan_en:"This hadith directs Muslims to hold firmly to the Quran and Sunnah during times of disagreement. Imam Asy-Syafi'i classified innovation into two types: praiseworthy innovation (in line with the Sunnah) and blameworthy innovation (contrary to the Sunnah) — a distinction also recognised within the Shafi'i school of thought.",
+    src:'HR. Abu Daud & Tirmizi (hasan sahih)'},
+  {num:29, title_my:'Jalan ke Syurga', title_en:'The Path to Paradise',
+    ar:'رَأْسُ الأَمْرِ الإِسْلاَمُ، وَعَمُودُهُ الصَّلاَةُ، وَذِرْوَةُ سَنَامِهِ الْجِهَادُ',
+    ringkas_my:'Asas segala urusan ialah Islam, tiangnya solat, dan kemuncaknya jihad — puasa perisai, sedekah penghapus dosa, solat malam mendekatkan diri.',
+    ringkas_en:"The foundation is Islam, its pillar is prayer, and its peak is jihad — fasting is a shield, charity erases sin, night prayer draws one near to Allah.",
+    perawi_my:"Daripada Saiyidina Mu'az bin Jabal RA.",
+    perawi_en:"From Saiyidina Mu'az ibn Jabal RA.",
+    terjemahan_my:"Aku bertanya, \"Wahai Rasulullah, beritahulah amalan yang memasukkan aku ke syurga dan menjauhkan aku dari neraka.\" Baginda bersabda: \"Kamu menyembah Allah tanpa syirik, mendirikan solat, menunaikan zakat, berpuasa Ramadan dan menunaikan haji. Mahukah aku tunjukkan pintu kebaikan? Puasa itu perisai, sedekah menghapuskan dosa seperti air memadamkan api, dan solat tengah malam.\" Baginda menambah: \"Asas segala urusan ialah Islam, tiangnya solat, dan kemuncaknya jihad.\" Kemudian baginda memegang lidahnya sendiri dan bersabda, \"Tahanlah lidahmu ini daripada membinasakanmu — kebanyakan manusia dihumbankan ke neraka akibat hasil tuaian lidah mereka.\"",
+    terjemahan_en:"I asked, \"O Messenger of Allah, tell me of a deed that will admit me to Paradise and keep me from the Fire.\" He said: \"Worship Allah without associating partners with Him, establish prayer, give zakat, fast Ramadan, and perform hajj. Shall I show you the gates of goodness? Fasting is a shield, charity extinguishes sin as water extinguishes fire, and prayer in the middle of the night.\" He added: \"The foundation of the matter is Islam, its pillar is prayer, and its peak is jihad.\" Then he held his own tongue and said, \"Restrain this from harming you — it is mostly what people reap with their tongues that throws them into the Fire.\"",
+    ulasan_my:"Hadis ini menggariskan rukun Islam sebagai amalan utama ke syurga, diikuti tiga pintu kebaikan tambahan (puasa, sedekah, solat malam), serta tiga teras agama: syahadah, solat, dan jihad (yang merangkumi pelbagai bentuk usaha, bukan sekadar peperangan). Penjagaan lidah ditekankan sebagai benteng akhir kerana banyak dosa bermula daripada percakapan.",
+    ulasan_en:"This hadith outlines the pillars of Islam as the primary path to Paradise, followed by three additional gates of goodness (fasting, charity, night prayer), as well as three core foundations of the religion: the testimony of faith, prayer, and jihad (which encompasses many forms of striving, not merely warfare). Guarding the tongue is emphasised as a final safeguard, since much sin begins with speech.",
+    src:'HR. Tirmizi (hasan sahih)'},
+  {num:30, title_my:'Larangan Melampaui Batasan Syarak', title_en:'Against Overstepping the Limits of the Shariah',
+    ar:'إِنَّ اللَّهَ فَرَضَ فَرَائِضَ فَلاَ تُضَيِّعُوهَا',
+    ringkas_my:'Allah menetapkan fardu — jangan diabaikan; menetapkan batasan — jangan dilampaui; mendiamkan sesuatu sebagai rahmat — jangan ditanya berlebihan.',
+    ringkas_en:'Allah set obligations — do not neglect them; set limits — do not transgress them; stayed silent on some matters as mercy — do not pry into them.',
+    perawi_my:"Daripada Saiyidina Abu Tha'labah al-Khusyani Jurthum bin Nasyir RA.",
+    perawi_en:"From Saiyidina Abu Tha'labah al-Khusyani Jurthum ibn Nasyir RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Sesungguhnya Allah Taala telah menetapkan perkara fardu, maka janganlah kamu mengabaikannya. Dia meletakkan batasan, maka janganlah kamu melampauinya. Dia mengharamkan beberapa perkara, maka janganlah kamu melanggarinya. Dia diam daripada menerangkan hukum beberapa perkara sebagai rahmat kepada kamu, bukan kerana terlupa, maka janganlah kamu bertanya sehingga menimbulkan kesukaran.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Allah has prescribed obligations, so do not neglect them. He has set limits, so do not overstep them. He has forbidden certain things, so do not violate them. He has remained silent about certain matters, out of mercy for you, not forgetfulness — so do not ask about them.\"",
+    ulasan_my:"Hadis ini menggariskan empat kategori hukum: fardu yang wajib ditunaikan, batasan yang tidak boleh dilangkaui, larangan yang wajib dijauhi, dan perkara yang didiamkan sebagai keluasan rahmat Allah SWT — memberi ruang ijtihad kepada ulama mengikut keperluan semasa.",
+    ulasan_en:"This hadith outlines four categories of ruling: obligations that must be fulfilled, limits that must not be crossed, prohibitions that must be avoided, and matters left unaddressed as a sign of Allah's expansive mercy — allowing room for scholarly reasoning according to the needs of the time.",
+    src:'HR. Daraqutni (hasan)'},
+  {num:31, title_my:'Konsep dan Faedah Zuhud', title_en:'The Concept and Benefit of Zuhd (Detachment)',
+    ar:'ازْهَدْ فِي الدُّنْيَا يُحِبَّكَ اللَّهُ',
+    ringkas_my:'Zuhudlah dalam perkara dunia nescaya kamu dicintai Allah, dan zuhudlah terhadap milik manusia nescaya kamu disukai manusia.',
+    ringkas_en:'Detach from worldly desires and Allah will love you; detach from what others possess and people will love you.',
+    perawi_my:"Daripada Saiyidina Abu al-'Abbas Sahl bin Sa'ad al-Sa'idi RA.",
+    perawi_en:"From Saiyidina Abu al-'Abbas Sahl ibn Sa'ad al-Sa'idi RA.",
+    terjemahan_my:"Seorang sahabat berkata, \"Wahai Rasulullah, tunjukkan kepadaku amalan yang apabila aku mengamalkannya aku akan dicintai Allah dan juga manusia.\" Baginda bersabda: \"Zuhudlah dalam perkara dunia nescaya kamu dicintai Allah, dan zuhudlah terhadap apa yang ada pada manusia nescaya manusia akan menyukai kamu.\"",
+    terjemahan_en:"A man said, \"O Messenger of Allah, show me a deed which, if I do it, Allah will love me and people will love me.\" He said: \"Detach yourself from the world and Allah will love you, and detach yourself from what people possess and they will love you.\"",
+    ulasan_my:"Zuhud bukan bermaksud meninggalkan dunia atau tidak memiliki harta, tetapi tidak menjadikan kemewahan sebagai matlamat hidup yang melalaikan daripada mengingati Allah SWT. Sahabat seperti Abdul Rahman bin 'Auf RA tetap kaya namun hatinya tidak terikat dengan dunia.",
+    ulasan_en:"Zuhd does not mean abandoning the world or owning no wealth, but rather not making material abundance the ultimate goal of life in a way that distracts one from remembering Allah SWT. Companions like Abdul Rahman ibn 'Auf RA remained wealthy yet their hearts were not attached to worldly things.",
+    src:'HR. Ibn Majah (hasan)'},
+  {num:32, title_my:'Menghindari Mudarat', title_en:'Avoiding Harm',
+    ar:'لاَ ضَرَرَ وَلاَ ضِرَارَ',
+    ringkas_my:'Tidak boleh memudaratkan diri sendiri dan tidak boleh memudaratkan orang lain.',
+    ringkas_en:'There should be no harming of oneself nor harming of others.',
+    perawi_my:"Daripada Saiyidina Abu Said Sa'ad bin Malik bin Sinan al-Khudri RA.",
+    perawi_en:"From Saiyidina Abu Said Sa'ad ibn Malik ibn Sinan al-Khudri RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Tidak boleh memudaratkan diri sendiri dan tidak boleh memudaratkan orang lain.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"There should be no harming of oneself nor harming of others.\"",
+    ulasan_my:"Kaedah fiqh ini menjadi asas penting dalam syariat Islam, menggariskan larangan menimbulkan kemudaratan sama ada terhadap diri sendiri, orang lain, atau masyarakat. Setiap suruhan dan larangan agama bertujuan membawa manfaat dan mengelakkan kerosakan.",
+    ulasan_en:"This legal maxim is a key foundation in Islamic law, prohibiting the causing of harm whether to oneself, to others, or to society. Every command and prohibition in the religion aims to bring benefit and prevent harm.",
+    src:'HR. Ibn Majah & Daraqutni (hasan)'},
+  {num:33, title_my:'Asas Penghakiman dalam Islam', title_en:'The Basis of Judgment in Islam',
+    ar:'الْبَيِّنَةُ عَلَى الْمُدَّعِي، وَالْيَمِينُ عَلَى مَنْ أَنْكَرَ',
+    ringkas_my:'Pihak yang mendakwa mesti mengemukakan bukti, dan pihak yang menafikan dakwaan mesti bersumpah.',
+    ringkas_en:'The claimant must provide evidence, and the one who denies the claim must take an oath.',
+    perawi_my:"Daripada Saiyidina Ibn 'Abbas RA.",
+    perawi_en:"From Saiyidina Ibn 'Abbas RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Sekiranya sesiapa sahaja dibenarkan tuntutannya berdasarkan dakwaan semata-mata, nescaya ramai orang akan menuntut harta orang lain dan nyawa mereka. Akan tetapi, pihak yang mendakwa mesti mengemukakan bukti, dan pihak yang menafikan dakwaan mesti bersumpah.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"If people were given everything they claimed, some would claim the property and lives of others. But the claimant must provide evidence, and the one who denies must take an oath.\"",
+    ulasan_my:"Hadis ini meletakkan asas keadilan dalam sistem penghakiman Islam — setiap tuduhan mesti disertakan bukti yang sah, manakala pihak yang dituduh boleh mempertahankan diri melalui sumpah, bagi mengelakkan penyalahgunaan tuduhan tanpa asas.",
+    ulasan_en:"This hadith establishes the foundation of justice in the Islamic judicial system — every accusation must be supported by valid evidence, while the accused may defend themselves through an oath, preventing the misuse of baseless accusations.",
+    src:'HR. Baihaqi (hasan)'},
+  {num:34, title_my:'Tanggungjawab Mengubah Kemungkaran', title_en:'The Duty to Change Wrongdoing',
+    ar:'مَنْ رَأَى مِنْكُمْ مُنْكَرًا فَلْيُغَيِّرْهُ بِيَدِهِ',
+    ringkas_my:'Sesiapa melihat kemungkaran, ubahlah dengan tangan; jika tidak mampu, dengan lidah; jika tidak mampu, dengan hati — itu selemah-lemah iman.',
+    ringkas_en:'Whoever sees wrong should change it with his hand; if unable, with his tongue; if unable, with his heart — that is the weakest level of faith.',
+    perawi_my:"Daripada Saiyidina Abu Sa'id al-Khudri RA.",
+    perawi_en:"From Saiyidina Abu Sa'id al-Khudri RA.",
+    terjemahan_my:"Aku mendengar Rasulullah ﷺ bersabda: \"Sesiapa dalam kalangan kamu melihat sesuatu kemungkaran, hendaklah dia mengubahnya dengan tangan. Sekiranya tidak mampu, dengan lidah. Sekiranya tidak mampu, dengan hati. Demikian itu selemah-lemah iman.\"",
+    terjemahan_en:"I heard the Messenger of Allah ﷺ say: \"Whoever among you sees a wrong should change it with his hand. If he cannot, then with his tongue. If he cannot, then with his heart, and that is the weakest level of faith.\"",
+    ulasan_my:"Hadis ini menggariskan tiga peringkat menangani kemungkaran mengikut kemampuan: tindakan (kuasa), nasihat (lisan), dan kebencian dalam hati disertai doa. Dakwah perlu disampaikan dengan hikmah sebagaimana Surah An-Nahl ayat 125.",
+    ulasan_en:"This hadith outlines three levels of addressing wrongdoing according to one's capacity: action (authority), advice (speech), and disapproval in the heart accompanied by prayer. Dakwah must be conveyed with wisdom, as stated in Surah An-Nahl, verse 125.",
+    src:'HR. Muslim'},
+  {num:35, title_my:'Hak Persaudaraan Sesama Muslim', title_en:'The Rights of Brotherhood Among Muslims',
+    ar:'الْمُسْلِمُ أَخُو الْمُسْلِمِ، لاَ يَظْلِمُهُ وَلاَ يَخْذُلُهُ',
+    ringkas_my:'Janganlah saling dengki, menipu, membenci atau memulaukan — setiap Muslim bersaudara, tidak menzalimi atau menghinanya.',
+    ringkas_en:'Do not envy, deceive, hate or boycott one another — every Muslim is a brother who must not be wronged or humiliated.',
+    perawi_my:"Daripada Saiyidina Abu Hurairah RA.",
+    perawi_en:"From Saiyidina Abu Hurairah RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Janganlah kamu saling berdengki, menipu, membenci atau memulaukan antara satu sama lain. Jadilah hamba Allah yang bersaudara. Setiap Muslim ialah saudara kepada Muslim yang lain — dia tidak menzalimi, mengabaikan, membohongi atau menghinanya. Takwa itu di sini\" (sambil mengisyaratkan ke dadanya tiga kali). \"Haram bagi setiap Muslim menumpahkan darah saudaranya, mengambil hartanya atau mencemarkan maruahnya.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Do not envy one another, do not deceive one another, do not hate one another, do not boycott one another. Be servants of Allah, brothers to one another. A Muslim is a brother to a Muslim — he does not wrong him, abandon him, lie to him, or hold him in contempt. Taqwa is here\" (pointing to his chest three times). \"It is forbidden for a Muslim to shed the blood of his brother, take his property, or violate his honour.\"",
+    ulasan_my:"Hadis ini menekankan ikatan persaudaraan sesama Muslim yang melarang sebarang bentuk kezaliman dan penghinaan. Memandang rendah saudara seagama dianggap sebagai tanda keburukan akhlak dan kesombongan, selaras dengan Surah Al-Hujurat ayat 11.",
+    ulasan_en:"This hadith emphasises the bond of brotherhood among Muslims, forbidding any form of oppression or contempt. Looking down on a fellow Muslim is regarded as a sign of poor character and arrogance, in line with Surah Al-Hujurat, verse 11.",
+    src:'HR. Muslim'},
+  {num:36, title_my:'Menunaikan Keperluan Saudara Muslim dan Keutamaan Ilmu', title_en:"Meeting a Brother's Needs and the Virtue of Knowledge",
+    ar:'مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ',
+    ringkas_my:'Sesiapa melapangkan kesusahan mukmin, Allah melapangkan kesusahannya di akhirat; sesiapa menempuh jalan ilmu, dipermudahkan jalan ke syurga.',
+    ringkas_en:'Whoever relieves a believer of distress, Allah relieves his distress in the Hereafter; whoever seeks knowledge, Allah eases his path to Paradise.',
+    perawi_my:"Daripada Saiyidina Abu Hurairah RA.",
+    perawi_en:"From Saiyidina Abu Hurairah RA.",
+    terjemahan_my:"Nabi ﷺ bersabda: \"Sesiapa yang melapangkan kesusahan seorang mukmin, Allah akan melapangkan kesusahannya pada hari kiamat. Sesiapa yang mempermudah urusan orang susah, Allah mempermudah urusannya di dunia dan akhirat. Sesiapa yang menutup keaiban saudaranya, Allah menutup keaibannya. Allah sentiasa membantu hamba-Nya selagi dia membantu saudaranya. Sesiapa menempuh jalan menuntut ilmu, Allah mempermudah baginya jalan ke syurga. Sesiapa berkumpul membaca Al-Quran di rumah Allah, ketenangan akan turun, rahmat meliputi, dan malaikat menaungi mereka.\"",
+    terjemahan_en:"The Prophet ﷺ said: \"Whoever relieves a believer of a worldly distress, Allah will relieve him of a distress on the Day of Judgment. Whoever eases a hardship, Allah eases it for him in this life and the next. Whoever conceals the faults of a Muslim, Allah conceals his faults. Allah helps His servant as long as he helps his brother. Whoever takes a path seeking knowledge, Allah makes a path to Paradise easy for him. Whenever people gather in a house of Allah reciting the Quran, tranquillity descends upon them, mercy envelops them, and angels surround them.\"",
+    ulasan_my:"Hadis ini menggalakkan pertolongan sesama manusia tanpa mengira agama dalam konteks umum, dan secara khusus membantu sesama Muslim. Keutamaan menuntut ilmu disebut secara jelas sebagai jalan termudah menuju syurga, manakala kelebihan keturunan tidak bermakna tanpa disertai amal soleh.",
+    ulasan_en:"This hadith encourages helping others generally regardless of faith, and specifically assisting fellow Muslims. The virtue of seeking knowledge is explicitly stated as the easiest path to Paradise, while noble lineage holds no value without accompanying righteous deeds.",
+    src:'HR. Muslim'},
+  {num:37, title_my:'Rahmat Allah SWT Berkaitan Pahala dan Dosa', title_en:"Allah's Mercy Regarding Reward and Sin",
+    ar:'إِذَا هَمَّ عَبْدِي بِحَسَنَةٍ فَلَمْ يَعْمَلْهَا كَتَبْتُهَا لَهُ حَسَنَةً',
+    ringkas_my:'Niat melakukan kebaikan walau tak terlaksana dicatat satu kebaikan penuh; melakukannya digandakan 10 hingga 700 kali; niat jahat tak dicatat dosa.',
+    ringkas_en:'Intending good even if undone is recorded as one full good deed; doing it is multiplied 10 to 700 times; intending evil without doing it is not recorded as sin.',
+    perawi_my:"Daripada Saiyidina Ibn 'Abbas RA — hadis qudsi.",
+    perawi_en:"From Saiyidina Ibn 'Abbas RA — a hadith qudsi.",
+    terjemahan_my:"Allah berfirman: \"Sesiapa berniat melakukan kebaikan tetapi tidak mengerjakannya, Aku catatkan untuknya satu kebaikan penuh. Sekiranya dia berniat lalu mengerjakannya, Aku catatkan sepuluh kebaikan sehingga 700 kali ganda, bahkan lebih. Sekiranya dia berniat melakukan kejahatan tetapi tidak melakukannya, Aku catatkan untuknya satu kebaikan penuh. Sekiranya dia berniat dan melakukannya, Aku catatkan satu dosa sahaja.\"",
+    terjemahan_en:"Allah says: \"If My servant intends to do a good deed but does not do it, I record it for him as one complete good deed. If he intends it and does it, I record it as ten good deeds, up to 700 times, or even more. If he intends to do a bad deed but does not do it, I record it for him as one complete good deed. If he intends it and does it, I record it as only one bad deed.\"",
+    ulasan_my:"Imam An-Nawawi menyeru pembaca merenungi lafaz hadis ini yang menunjukkan keluasan rahmat Allah SWT — kebaikan digandakan tanpa had, manakala kejahatan dibalas setimpal sahaja tanpa digandakan, sebagai tanda kasih sayang-Nya yang mengatasi kemurkaan-Nya.",
+    ulasan_en:"Imam An-Nawawi calls on readers to reflect on the wording of this hadith, which shows the vastness of Allah's mercy — good deeds are multiplied without limit, while bad deeds are repaid only in equal measure without multiplication, a sign that His mercy surpasses His wrath.",
+    src:'HR. Bukhari & Muslim'},
+  {num:38, title_my:'Kedudukan Wali Allah SWT', title_en:'The Status of the Allies of Allah',
+    ar:'مَنْ عَادَى لِي وَلِيًّا فَقَدْ آذَنْتُهُ بِالْحَرْبِ',
+    ringkas_my:'Sesiapa memusuhi wali Allah, Allah mengisytiharkan perang terhadapnya; hamba yang menghampiri-Nya dengan amalan sunat akan dikasihi-Nya.',
+    ringkas_en:'Whoever shows hostility to an ally of Allah has declared war on Him; a servant who draws near through voluntary deeds becomes beloved to Him.',
+    perawi_my:"Daripada Saiyidina Abu Hurairah RA — hadis qudsi.",
+    perawi_en:"From Saiyidina Abu Hurairah RA — a hadith qudsi.",
+    terjemahan_my:"Allah SWT berfirman: \"Sesiapa memusuhi wali-Ku, Aku mengisytiharkan perang terhadapnya. Tiada amalan hamba-Ku yang lebih Aku sukai daripada apa yang Aku fardukan kepadanya. Hamba-Ku sentiasa menghampiri-Ku melalui amalan sunat sehingga Aku mengasihinya. Apabila Aku mengasihinya, Aku menjadi pendengarannya, penglihatannya, tangannya dan kakinya. Jika dia meminta, pasti Aku kurniakan, dan jika dia memohon perlindungan, pasti Aku lindungi.\"",
+    terjemahan_en:"Allah SWT says: \"Whoever shows hostility to an ally of Mine, I declare war upon him. My servant draws near to Me with nothing more beloved to Me than what I have made obligatory upon him. My servant keeps drawing nearer to Me through voluntary deeds until I love him. When I love him, I become his hearing, his sight, his hand and his foot. If he asks of Me, I surely grant it, and if he seeks My protection, I surely protect him.\"",
+    ulasan_my:"Hadis qudsi ini menerangkan kedudukan tinggi wali Allah SWT yang istiqamah melaksanakan amalan wajib dengan sempurna serta memperbanyakkan amalan sunat. Mereka dijanjikan ketenangan hati dan doa yang mustajab, selaras dengan Surah Yunus ayat 62.",
+    ulasan_en:"This hadith qudsi explains the elevated status of Allah's allies — those who consistently fulfil their obligatory duties perfectly and increase in voluntary acts of worship. They are promised inner tranquillity and answered prayers, in line with Surah Yunus, verse 62.",
+    src:'HR. Bukhari'},
+  {num:39, title_my:'Kesalahan yang Dimaafkan', title_en:'Forgiven Mistakes',
+    ar:'إِنَّ اللَّهَ تَجَاوَزَ عَنْ أُمَّتِي الْخَطَأَ وَالنِّسْيَانَ وَمَا اسْتُكْرِهُوا عَلَيْهِ',
+    ringkas_my:'Allah memaafkan umatku atas kesalahan yang dilakukan secara tersilap, terlupa, atau dipaksa.',
+    ringkas_en:'Allah has pardoned my nation for mistakes, forgetfulness, and what they are forced to do.',
+    perawi_my:"Daripada Saiyidina Ibn 'Abbas RA.",
+    perawi_en:"From Saiyidina Ibn 'Abbas RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Sesungguhnya, kerana aku, Allah memaafkan kesalahan umatku yang dilakukan secara tersilap, terlupa atau dipaksa.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"Indeed, for my sake, Allah has forgiven my nation for mistakes, forgetfulness, and what they are compelled to do.\"",
+    ulasan_my:"Hadis ini membezakan perbuatan yang disengajakan (membawa dosa) dengan perbuatan akibat kesilapan, lupa, atau paksaan (dimaafkan dari segi dosa). Namun kesalahan yang melibatkan hak orang lain tetap perlu dipohon maaf dan diselesaikan tuntutannya walaupun tidak disengajakan.",
+    ulasan_en:"This hadith distinguishes between deliberate acts (which incur sin) and acts resulting from error, forgetfulness or compulsion (which are forgiven in terms of sin). However, matters involving the rights of others still require an apology and settlement of claims even when unintentional.",
+    src:'HR. Ibn Majah & Baihaqi (hasan)'},
+  {num:40, title_my:'Merebut Peluang Beramal', title_en:'Seizing the Opportunity to Do Good',
+    ar:'كُنْ فِي الدُّنْيَا كَأَنَّكَ غَرِيبٌ أَوْ عَابِرُ سَبِيلٍ',
+    ringkas_my:'Hiduplah di dunia seperti orang asing atau musafir — rebutlah peluang sihatmu sebelum sakit, dan hidupmu sebelum matimu.',
+    ringkas_en:'Live in this world as if you were a stranger or a traveller — seize your health before illness, and your life before death.',
+    perawi_my:"Daripada Saiyidina Ibn Umar RA.",
+    perawi_en:"From Saiyidina Ibn Umar RA.",
+    terjemahan_my:"Rasulullah ﷺ memegang bahuku lalu bersabda: \"Hiduplah kamu di dunia ini seperti orang asing atau musafir.\" Ibn Umar RA berkata, \"Apabila kamu berada pada waktu petang, janganlah menanti pagi. Apabila kamu berada pada waktu pagi, janganlah menanti petang. Rebutlah peluang sihatmu sebelum sakitmu, dan rebutlah peluang hidupmu sebelum kematianmu.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ took hold of my shoulder and said: \"Live in this world as if you were a stranger or a traveller passing through.\" Ibn Umar RA used to say, \"When evening comes, do not expect to live till morning, and when morning comes, do not expect to live till evening. Take from your health for your illness, and from your life for your death.\"",
+    ulasan_my:"Hadis ini mengingatkan bahawa kehidupan dunia bersifat sementara, ibarat persinggahan musafir menuju destinasi akhirat yang kekal. Setiap Muslim digalakkan merebut peluang masa, kesihatan dan usia muda untuk memperbanyak amal soleh sebelum terlambat.",
+    ulasan_en:"This hadith reminds us that worldly life is temporary, like a traveller's stopover on the way to the eternal destination of the Hereafter. Every Muslim is encouraged to seize the opportunities of time, health and youth to increase in righteous deeds before it is too late.",
+    src:'HR. Bukhari'},
+  {num:41, title_my:'Keutamaan Sunnah Nabi ﷺ', title_en:'The Primacy of the Prophet\'s ﷺ Way',
+    ar:'لاَ يُؤْمِنُ أَحَدُكُمْ حَتَّى يَكُونَ هَوَاهُ تَبَعًا لِمَا جِئْتُ بِهِ',
+    ringkas_my:'Tidak sempurna iman seseorang sehingga keinginan dirinya selaras dengan apa yang dibawa oleh Rasulullah ﷺ.',
+    ringkas_en:'None of you truly believes until his desires conform to what I have brought.',
+    perawi_my:"Daripada Saiyidina Abu Muhammad Abdullah bin 'Amr bin al-'As RA.",
+    perawi_en:"From Saiyidina Abu Muhammad Abdullah ibn 'Amr ibn al-'As RA.",
+    terjemahan_my:"Rasulullah ﷺ bersabda: \"Tidak sempurna iman seseorang kamu sehinggalah keinginan dirinya mengikuti apa-apa (ajaran) yang aku bawa.\"",
+    terjemahan_en:"The Messenger of Allah ﷺ said: \"None of you truly believes until his inclinations follow what I have brought.\"",
+    ulasan_my:"Hadis ini menuntut setiap Muslim menundukkan hawa nafsu agar selaras dengan ajaran Rasulullah ﷺ. Mengaku mencintai Allah dan Rasul-Nya tanpa mentaati ajaran baginda adalah kontradiksi, selaras dengan Surah Ali 'Imran ayat 31.",
+    ulasan_en:"This hadith requires every Muslim to subordinate their desires to align with the teachings of the Prophet ﷺ. Claiming to love Allah and His Messenger without obeying his teachings is a contradiction, in line with Surah Ali 'Imran, verse 31.",
+    src:'Hadis sahih (Kitab Al-Hujjah)'},
+  {num:42, title_my:'Mengharapkan Pengampunan dan Rahmat Allah SWT', title_en:"Hoping for Allah's Forgiveness and Mercy",
+    ar:'يَا ابْنَ آدَمَ إِنَّكَ مَا دَعَوْتَنِي وَرَجَوْتَنِي غَفَرْتُ لَكَ',
+    ringkas_my:'Wahai anak Adam, selagi engkau berdoa dan berharap kepada-Ku, Aku akan mengampuni dosa-dosamu walau sebanyak mana sekali pun.',
+    ringkas_en:'O son of Adam, as long as you call upon Me and hope in Me, I will forgive you whatever your sins may be.',
+    perawi_my:"Daripada Saiyidina Anas bin Malik RA — hadis qudsi.",
+    perawi_en:"From Saiyidina Anas ibn Malik RA — a hadith qudsi.",
+    terjemahan_my:"Allah Taala berfirman: \"Wahai anak Adam, selagi engkau berdoa dan berharap kepada-Ku, Aku akan mengampuni dosamu walau sebanyak mana pun, dan Aku tidak peduli. Wahai anak Adam, sekiranya dosamu mencecah langit kemudian engkau memohon ampun, pasti Aku ampunkan. Wahai anak Adam, sekiranya engkau datang dengan dosa sepenuh bumi, namun engkau bertemu-Ku tanpa mensyirikkan-Ku, nescaya Aku berikan kepadamu pengampunan sepenuh itu juga.\"",
+    terjemahan_en:"Allah Almighty says: \"O son of Adam, as long as you call upon Me and place your hope in Me, I will forgive you for what you have done, and I will not mind. O son of Adam, were your sins to reach the clouds of the sky and then you sought My forgiveness, I would forgive you. O son of Adam, were you to come to Me with sins nearly as great as the earth, and then meet Me not associating anything with Me, I would bring you forgiveness nearly as great as it.\"",
+    ulasan_my:"Imam An-Nawawi meletakkan hadis penutup ini secara simbolik agar pembaca kitab Arba'in diampuni dosa sepanjang hayat. Hadis ini menegaskan keluasan rahmat dan pengampunan Allah SWT yang tidak terbatas, dengan syarat utama menjauhi syirik dan kembali kepada-Nya dengan tulus ikhlas.",
+    ulasan_en:"Imam An-Nawawi placed this closing hadith symbolically so that readers of the Arba'in collection might have their sins forgiven throughout their lives. This hadith affirms the boundless vastness of Allah's mercy and forgiveness, on the essential condition of avoiding association of partners with Him and returning to Him with sincere repentance.",
+    src:'HR. Tirmizi (hasan)'},
 ];
 
 const PRAYERS = [
@@ -1223,13 +1806,19 @@ function renderWheel(){
     const angle=(i*deg+wheelAngle)%360;
     const rad=(angle-90)*Math.PI/180;
     const x=Math.cos(rad)*WHEEL_R, z=Math.sin(rad)*WHEEL_R;
-    const zN=z/WHEEL_R;
-    const scale=0.5+0.5*((zN+1)/2);
-    const opacity=zN>0?(0.35+0.65*zN):(0.05+0.15*(1+zN));
-    const blur=zN>0?0:Math.round((1-zN)*3);
-    const isC=zN>0.85;
+    const zN=z/WHEEL_R; // -1 (far back) .. +1 (front/center)
+    // Steeper curve so the front pill pops and neighbours shrink/fade fast
+    const t=(zN+1)/2; // 0..1
+    const curved=Math.pow(t,2.6);
+    const scale=0.42+0.84*curved; // ~0.42 at back .. ~1.26 at dead-center
+    const opacity=0.08+0.92*curved;
+    const blur=Math.max(0,Math.round((1-curved)*5));
+    const isC=zN>0.92;
+    const elevShadow=isC
+      ?'0 14px 34px rgba(86,196,126,0.4),0 6px 16px rgba(0,0,0,.45)'
+      :'0 2px 8px rgba(0,0,0,.25)';
     return`<div class="wpill${isC?' center':''}"
-      style="transform:translate(calc(${x}px - 50%),-50%) scale(${scale.toFixed(3)});opacity:${opacity.toFixed(3)};filter:blur(${blur}px);z-index:${Math.round(zN*10+10)}"
+      style="transform:translate(calc(${x}px - 50%),-50%) scale(${scale.toFixed(3)});opacity:${opacity.toFixed(3)};filter:blur(${blur}px);z-index:${Math.round(curved*100+10)};box-shadow:${elevShadow}"
       data-pidx="${i}">
       <div class="wpill-ico">${p.ico}</div>
       <div class="wpill-name">${p.name}</div>
@@ -1291,11 +1880,28 @@ function renderHero(){
   document.getElementById('hijriDate').textContent=getHijriDate();
   document.getElementById('masihiDate').textContent=getMasihiDate();
   document.getElementById('dayBadge').textContent=DAYS_MY[curDay]+' • '+DAYS_EN[curDay];
-  const h=HADITH_LIST[curDay%HADITH_LIST.length];
+  renderHadithBox();
+}
+function renderHadithBox(){
+  const h=HADITH40_DB[hadithIdx%HADITH40_DB.length];
+  document.getElementById('hadithNumBadge').textContent=`Hadis ${h.num}/42`;
   document.getElementById('hadithAr').textContent=h.ar;
+  const ringkas=lang==='MY'?h.ringkas_my:h.ringkas_en;
   document.getElementById('hadithTr').innerHTML=lang==='MY'
-    ?`<b>MY:</b> ${h.my} <span style="color:var(--g4);font-size:9px">— ${h.src}</span>`
-    :`<b>EN:</b> ${h.en} <span style="color:var(--g4);font-size:9px">— ${h.src}</span>`;
+    ?`<b>MY:</b> ${ringkas} <span style="color:var(--g4);font-size:9px">— ${h.src}</span>`
+    :`<b>EN:</b> ${ringkas} <span style="color:var(--g4);font-size:9px">— ${h.src}</span>`;
+}
+function nextHadith(){
+  hadithIdx=(hadithIdx+1)%HADITH40_DB.length;
+  renderHadithBox();
+}
+function nextHadithManual(){
+  nextHadith();
+  startHadithRotation();
+}
+function startHadithRotation(){
+  if(_hadithRotateTimer)clearInterval(_hadithRotateTimer);
+  _hadithRotateTimer=setInterval(nextHadith,120000);
 }
 function renderAmalan(){
   const list=AMALAN[curPrayer]||[];
@@ -1369,27 +1975,41 @@ function renderRiadah(){
 // (a.l. Imam Nawawi, Ibn Hajar al-'Asqalani, al-Qastallani)
 // ══════════════════════════════════════════
 const BIODATA_DB=[
-  {id:'b1',ico:'📜',title:'Biodata Ringkas',sub:'Nama, nasab & keluarga baginda ﷺ',
+  {id:'b1',ico:'📜',title:'Biodata Ringkas',title_en:'Brief Biography',sub:'Nama, nasab & keluarga baginda ﷺ',sub_en:'His name, lineage & family',
     paras:[
       "Nama penuh baginda ialah Muhammad bin Abdullah bin Abdul Muttalib bin Hasyim, dari Bani Hasyim — keturunan Quraisy yang paling mulia di kalangan bangsa Arab. Nasab baginda yang suci ini disebut sendiri oleh Rasulullah ﷺ dalam sebuah hadis sahih, bahawa Allah memilih baginda daripada sebaik-baik keturunan manusia, tanpa sebarang percampuran daripada perhubungan yang tidak sah di sepanjang salasilahnya.",
       "Baginda dilahirkan di Makkah pada hari Isnin, 12 Rabiulawal, bersamaan Tahun Gajah (sekitar 570 Masihi) — tahun yang dirakamkan dalam Surah Al-Fil kerana peristiwa kegagalan tentera bergajah Abrahah menyerang Kaabah. Ayahanda baginda, Abdullah bin Abdul Muttalib, telah wafat semasa baginda masih dalam kandungan, manakala ibunda baginda, Aminah binti Wahb, wafat ketika baginda berusia enam tahun.",
       "Rasulullah ﷺ berkahwin dengan beberapa orang isteri sepanjang hayat baginda, bermula dengan Khadijah binti Khuwailid RA — isteri pertama dan yang paling lama menemani baginda sehingga wafatnya. Daripada Khadijah RA, baginda dikurniakan beberapa orang anak, termasuk Fatimah Az-Zahra RA yang menjadi anak baginda yang paling masyhur dan disebut sebagai penghulu wanita syurga.",
       "Rasulullah ﷺ wafat di Madinah pada hari Isnin, 12 Rabiulawal tahun ke-11 Hijrah, ketika berusia 63 tahun, selepas berdakwah selama 23 tahun — 13 tahun di Makkah dan 10 tahun di Madinah. Tempoh ini disebut dengan jelas dalam sebuah hadis riwayat Imam Bukhari, yang menjadi rujukan utama para ulama dalam menetapkan kronologi kehidupan baginda."
     ],
+    paras_en:[
+      "His full name was Muhammad ibn Abdullah ibn Abdul Muttalib ibn Hashim, of Banu Hashim — the noblest clan among the Quraysh, the most honoured tribe of the Arabs. The Prophet ﷺ himself spoke of this pure lineage in an authentic hadith, stating that Allah chose him from among the best of human lineages, free of any union outside of lawful marriage throughout his ancestry.",
+      "He was born in Makkah on a Monday, the 12th of Rabi al-Awwal, in what came to be known as the Year of the Elephant (around 570 CE) — a year recorded in Surah Al-Fil because of Abraha's failed attempt to destroy the Kaabah with an army of elephants. His father, Abdullah ibn Abdul Muttalib, passed away while he was still in the womb, and his mother, Aminah bint Wahb, passed away when he was six years old.",
+      "The Prophet ﷺ married several wives over the course of his life, beginning with Khadijah bint Khuwaylid (RA) — his first wife and the one who remained with him the longest, until her passing. Through Khadijah (RA), he was blessed with several children, including Fatimah Az-Zahra (RA), his most well-known daughter, described as the leader of the women of Paradise.",
+      "The Prophet ﷺ passed away in Madinah on a Monday, the 12th of Rabi al-Awwal in the 11th year of Hijrah, at the age of 63, after 23 years of dakwah — 13 years in Makkah and 10 years in Madinah. This timeline is clearly stated in a hadith narrated by Imam Bukhari, and serves as the primary reference scholars use in establishing the chronology of his life."
+    ],
     hadith:{ar:"إِنَّ اللهَ اصْطَفَى كِنَانَةَ مِنْ وَلَدِ إِسْمَاعِيلَ، وَاصْطَفَى قُرَيْشًا مِنْ كِنَانَةَ، وَاصْطَفَى مِنْ قُرَيْشٍ بَنِي هَاشِمٍ، وَاصْطَفَانِي مِنْ بَنِي هَاشِمٍ",
       my:"Sesungguhnya Allah memilih Kinanah daripada anak cucu Ismail, dan memilih Quraisy daripada Kinanah, dan memilih Bani Hasyim daripada Quraisy, dan memilihku daripada Bani Hasyim.",
+      en:"Indeed, Allah chose Kinanah from the descendants of Ismail, and chose Quraysh from Kinanah, and chose Banu Hashim from Quraysh, and chose me from Banu Hashim.",
       src:"HR. Muslim (2276)"}},
-  {id:'b2',ico:'🌙',title:'Zaman Kanak-Kanak',sub:'Yatim, susuan & jagaan ahli keluarga',
+  {id:'b2',ico:'🌙',title:'Zaman Kanak-Kanak',title_en:'Childhood',sub:'Yatim, susuan & jagaan ahli keluarga',sub_en:'Orphaned, nursed, and raised by family',
     paras:[
       "Rasulullah ﷺ dilahirkan dalam keadaan yatim kerana ayahanda baginda wafat sebelum kelahirannya. Mengikut adat masyarakat Arab Quraisy ketika itu, bayi yang baru lahir akan disusukan oleh wanita kampung di luar bandar Makkah supaya membesar dengan udara yang bersih, fizikal yang kuat, dan fasih berbahasa Arab tulen. Atas sebab inilah datuk baginda, Abdul Muttalib, menyerahkan baginda kepada Halimah binti Abi Dzu'aib daripada Bani Sa'ad untuk disusukan.",
       "Pengasuhan Halimah As-Sa'diyah membawa banyak keberkatan kepada keluarganya, sebagaimana yang dirakamkan dalam pelbagai riwayat sirah. Rasulullah ﷺ tinggal bersama Halimah selama beberapa tahun sebelum dikembalikan kepada ibunya, Aminah, mengikut adat susuan yang biasa pada zaman itu.",
       "Apabila berusia enam tahun, Rasulullah ﷺ kehilangan ibunya, Aminah binti Wahb, yang wafat ketika dalam perjalanan pulang daripada menziarahi makam suaminya di Yathrib (kini Madinah). Allah SWT menyebut keadaan baginda sebagai anak yatim yang mendapat perlindungan-Nya dalam Surah Ad-Duha, ayat 6. Selepas kewafatan ibunya, baginda dijaga oleh datuknya, Abdul Muttalib, ketua Bani Hasyim yang amat menyayangi baginda.",
       "Selepas dua tahun, Abdul Muttalib turut wafat, dan tanggungjawab menjaga baginda diserahkan kepada bapa saudaranya, Abu Talib, yang membesarkan Rasulullah ﷺ dengan penuh kasih sayang walaupun dalam keadaan ekonomi yang sederhana. Pengalaman menjadi yatim sejak kecil ini membentuk keperibadian baginda yang amat prihatin terhadap golongan anak yatim, sebagaimana yang dinyatakan dalam sebuah hadis sahih riwayat Imam Bukhari."
     ],
+    paras_en:[
+      "The Prophet ﷺ was born an orphan, as his father had passed away before his birth. Following the custom of Quraysh society at the time, newborns were sent to be nursed by women from outside Makkah, so they would grow up in clean desert air, with strong physiques, and fluent in pure Arabic. For this reason, his grandfather, Abdul Muttalib, entrusted him to Halimah bint Abi Dhu'ayb of Banu Sa'd to be nursed.",
+      "Halimah As-Sa'diyyah's care for him brought great blessings to her family, as recorded in numerous accounts of the sirah. The Prophet ﷺ stayed with Halimah for several years before being returned to his mother, Aminah, in keeping with the nursing customs of that era.",
+      "At the age of six, the Prophet ﷺ lost his mother, Aminah bint Wahb, who passed away while returning from visiting her husband's grave in Yathrib (present-day Madinah). Allah SWT describes his condition as an orphan under His protection in Surah Ad-Duha, verse 6. After his mother's passing, he was cared for by his grandfather, Abdul Muttalib, leader of Banu Hashim, who loved him dearly.",
+      "Two years later, Abdul Muttalib also passed away, and responsibility for raising him passed to his uncle, Abu Talib, who brought up the Prophet ﷺ with great affection despite modest financial means. This experience of being orphaned from a young age shaped his deep compassion for orphans, as stated in an authentic hadith narrated by Imam Bukhari."
+    ],
     hadith:{ar:"أَنَا وَكَافِلُ الْيَتِيمِ فِي الْجَنَّةِ هَكَذَا، وَأَشَارَ بِالسَّبَّابَةِ وَالْوُسْطَى",
       my:"Aku dan orang yang menanggung anak yatim di syurga seperti ini (sambil merapatkan jari telunjuk dan jari tengah).",
+      en:"I and the one who cares for an orphan will be in Paradise like this (holding his index and middle fingers together).",
       src:"HR. Bukhari (5304)"}},
-  {id:'b3',ico:'☀️',title:'Dewasa & Diangkat Menjadi Nabi',sub:'Al-Amin, perkahwinan & wahyu pertama',
+  {id:'b3',ico:'☀️',title:'Dewasa & Diangkat Menjadi Nabi',title_en:'Adulthood & Becoming a Prophet',sub:'Al-Amin, perkahwinan & wahyu pertama',sub_en:'Al-Amin, marriage & the first revelation',
     paras:[
       "Semasa dewasa, Rasulullah ﷺ dikenali ramai dengan gelaran Al-Amin (yang amat dipercayai) kerana kejujuran dan akhlak mulia baginda dalam urusan perniagaan dan pergaulan sesama masyarakat Quraisy. Baginda turut menjadi peniaga yang berjaya, antaranya menguruskan harta perniagaan Khadijah binti Khuwailid, seorang saudagar wanita yang terhormat di Makkah.",
       "Kejujuran dan budi pekerti baginda dalam perniagaan tersebut menarik hati Khadijah RA, lalu baginda meminangnya pada usia 25 tahun, manakala Khadijah ketika itu berusia 40 tahun. Perkahwinan ini berkekalan sehingga Khadijah RA wafat, dan baginda tidak berkahwin dengan wanita lain sepanjang Khadijah RA masih hidup — satu bukti kesetiaan baginda yang sering dipuji oleh para ulama sirah.",
@@ -1397,10 +2017,18 @@ const BIODATA_DB=[
       "Pada satu malam di bulan Ramadan, ketika baginda sedang bertahannuth di Gua Hira', Malaikat Jibril AS datang dan memerintahkan baginda, \"Bacalah!\" Baginda menjawab bahawa dirinya tidak pandai membaca, lalu Jibril mendakapnya sehingga terasa sesak sebanyak tiga kali sebelum menyampaikan lima ayat pertama Surah Al-'Alaq. Peristiwa ini, sebagaimana yang diriwayatkan dengan terperinci oleh Aisyah RA dalam hadis sahih Bukhari, menandakan permulaan kenabian baginda pada usia genap 40 tahun.",
       "Selepas peristiwa itu, baginda pulang dalam keadaan gementar dan meminta Khadijah RA menyelimutinya. Khadijah RA bukan sahaja menenangkan baginda, malah membawa baginda berjumpa sepupunya, Waraqah bin Naufal, seorang yang arif tentang kitab-kitab terdahulu, yang mengesahkan bahawa apa yang baginda alami adalah wahyu kenabian sebagaimana yang pernah diturunkan kepada Nabi Musa AS."
     ],
+    paras_en:[
+      "As an adult, the Prophet ﷺ became widely known by the title Al-Amin (the Trustworthy) for his honesty and noble character in business dealings and social conduct among the people of Quraysh. He also became a successful trader, including managing the trading affairs of Khadijah bint Khuwaylid, a respected businesswoman in Makkah.",
+      "His honesty and good character in business won Khadijah's (RA) heart, and he proposed to her at the age of 25, while she was 40 years old. This marriage lasted until Khadijah's (RA) passing, and he did not marry any other woman while she was alive — a testament to his loyalty that is often praised by scholars of the sirah.",
+      "As he approached the age of 40, the Prophet ﷺ increasingly sought solitude for reflection and worship at the Cave of Hira, located on Jabal An-Nur near Makkah. He would bring sufficient provisions and stay there for several nights before returning to Khadijah (RA) to replenish his supplies.",
+      "On a night during the month of Ramadan, while he was in seclusion at the Cave of Hira, the Angel Jibril (Gabriel) came and commanded him, \"Read!\" He replied that he could not read, and Jibril embraced him tightly three times until he felt the strain, before delivering the first five verses of Surah Al-'Alaq. This event, narrated in detail by Aisyah (RA) in an authentic hadith of Bukhari, marked the beginning of his prophethood at the exact age of 40.",
+      "After this event, he returned home trembling and asked Khadijah (RA) to cover him with a blanket. Khadijah (RA) not only comforted him but also took him to meet her cousin, Waraqah ibn Nawfal, a man knowledgeable in earlier scriptures, who confirmed that what he had experienced was prophetic revelation, similar to what had once been sent down to Prophet Musa (AS)."
+    ],
     hadith:{ar:"اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ، خَلَقَ الْإِنْسَانَ مِنْ عَلَقٍ، اقْرَأْ وَرَبُّكَ الْأَكْرَمُ",
       my:"Bacalah dengan nama Tuhanmu yang menciptakan, Dia telah menciptakan manusia daripada segumpal darah, bacalah, dan Tuhanmu Yang Maha Pemurah.",
+      en:"Read in the name of your Lord who created, created man from a clinging clot. Read, and your Lord is the Most Generous.",
       src:"Al-'Alaq: 1-3 — HR. Bukhari (3)"}},
-  {id:'b4',ico:'🕊️',title:'Wafat Baginda ﷺ',sub:'Saat akhir & kepulangan ke rahmatullah',
+  {id:'b4',ico:'🕊️',title:'Wafat Baginda ﷺ',title_en:'His Passing ﷺ',sub:'Saat akhir & kepulangan ke rahmatullah',sub_en:'His final moments & return to Allah',
     paras:[
       "Pada bulan Safar tahun ke-11 Hijrah, Rasulullah ﷺ mula jatuh sakit dengan demam yang semakin meningkat dari hari ke hari. Walaupun dalam keadaan uzur, baginda masih cuba mengimamkan solat berjemaah di Masjid Nabawi buat beberapa ketika, sebelum akhirnya melantik Abu Bakar As-Siddiq RA untuk menjadi imam menggantikan baginda — satu isyarat penting yang difahami oleh para sahabat tentang kedudukan Abu Bakar RA selepas kewafatan baginda.",
       "Menjelang hari-hari terakhir, sakit baginda semakin parah dan baginda dipindahkan ke rumah Aisyah RA mengikut persetujuan isteri-isteri baginda yang lain, supaya baginda dapat dijaga dengan lebih tenang. Aisyah RA sendiri menceritakan bahawa antara nikmat besar yang Allah kurniakan kepadanya ialah Rasulullah ﷺ wafat di dalam rumahnya, pada hari gilirannya, dan dalam pangkuannya.",
@@ -1408,18 +2036,30 @@ const BIODATA_DB=[
       "Para ulama hadis turut menjelaskan bahawa riwayat yang menyebut perkataan terakhir baginda sebagai \"Umatku, umatku\" adalah tidak sahih dan tiada sumber yang muktabar, walaupun ia tersebar luas dalam masyarakat. Yang thabit secara sahih hanyalah ucapan \"Ar-Rafiqul A'la\", sebagaimana yang dijelaskan oleh Ibn Hajar Al-'Asqalani — bahawa kalimah tersebut mengandungi pengakuan tauhid kepada Allah di saat-saat genting kewafatan baginda.",
       "Rasulullah ﷺ wafat pada hari Isnin, 12 Rabiulawal tahun ke-11 Hijrah, pada usia 63 tahun — hari yang sama dengan hari kelahiran baginda. Kewafatan ini menimbulkan kesedihan yang amat mendalam dalam kalangan para sahabat, sehingga Umar Al-Khattab RA pada mulanya enggan mempercayainya, sebelum Abu Bakar As-Siddiq RA tampil menenangkan umat dengan mengingatkan bahawa sesiapa yang menyembah Muhammad ﷺ, maka sesungguhnya Muhammad ﷺ telah wafat, namun sesiapa yang menyembah Allah, maka Allah Maha Hidup dan tidak akan mati."
     ],
+    paras_en:[
+      "In the month of Safar in the 11th year of Hijrah, the Prophet ﷺ began to fall ill, with a fever that worsened day by day. Despite his weakened state, he continued leading congregational prayers at the Prophet's Mosque for some time, before eventually appointing Abu Bakr As-Siddiq (RA) to lead prayers in his place — a significant sign that the companions later understood as pointing to Abu Bakr's (RA) position after his passing.",
+      "In his final days, his illness grew more severe and he was moved to Aisyah's (RA) house with the agreement of his other wives, so that he could be cared for in greater peace. Aisyah (RA) herself related that among the great blessings Allah granted her was that the Prophet ﷺ passed away in her house, on her appointed day, resting in her lap.",
+      "In his very last moments, the Prophet ﷺ still asked for a siwak (tooth-stick) from Abdul Rahman ibn Abu Bakr, which Aisyah (RA) softened so he could use it one final time. After that, he dipped his hand into a vessel of water and wiped it over his face while reciting the declaration of faith, before raising his hand or finger toward the sky and repeating the words \"Allahumma ar-Rafiq al-A'la\" (O Allah, the Highest Companion) three times. These were the final words he spoke before returning to Allah's mercy, as agreed upon by Imam Bukhari and Imam Muslim in the narration of Aisyah (RA).",
+      "Hadith scholars have also clarified that the narration claiming his last words were \"My ummah, my ummah\" is not authentic and has no reliable source, despite being widely circulated among people. What is firmly established through authentic narration is only the phrase \"Ar-Rafiq al-A'la\", as explained by Ibn Hajar Al-'Asqalani — that these words contained a declaration of Allah's oneness at the critical moment of his passing.",
+      "The Prophet ﷺ passed away on a Monday, the 12th of Rabi al-Awwal in the 11th year of Hijrah, at the age of 63 — the same date as his birth. His passing brought profound grief to the companions, to the extent that Umar Al-Khattab (RA) initially refused to believe it, until Abu Bakr As-Siddiq (RA) came forward to console the people, reminding them that whoever worshipped Muhammad ﷺ should know that Muhammad ﷺ has died, but whoever worshipped Allah should know that Allah is Ever-Living and never dies."
+    ],
     hadith:{ar:"اللَّهُمَّ الرَّفِيقَ الْأَعْلَى",
       my:"Ya Allah, (aku memilih untuk bersama) Kekasih Yang Tertinggi.",
+      en:"O Allah, (I choose to be with) the Highest Companion.",
       src:"HR. Bukhari (4463, 6509) & Muslim (2444)"}}
 ];
 function renderBiodata(){
   document.getElementById('biolist').innerHTML=BIODATA_DB.map(b=>{
     const open=biodataOpenId===b.id;
-    const parasHtml=b.paras.map(p=>`<p class="bio-para">${p}</p>`).join('');
+    const title=lang==='MY'?b.title:b.title_en;
+    const sub=lang==='MY'?b.sub:b.sub_en;
+    const paras=lang==='MY'?b.paras:b.paras_en;
+    const hadithText=lang==='MY'?b.hadith.my:b.hadith.en;
+    const parasHtml=paras.map(p=>`<p class="bio-para">${p}</p>`).join('');
     return`<div class="kcard${open?' open':''}" id="bc-${b.id}">
       <div class="khead" data-bid="${b.id}">
         <div class="kico a">${b.ico}</div>
-        <div class="kmeta"><div class="ktitle">${b.title}</div><div class="ksub">${b.sub}</div></div>
+        <div class="kmeta"><div class="ktitle">${title}</div><div class="ksub">${sub}</div></div>
         <div class="karr">▼</div>
       </div>
       <div class="kbody">
@@ -1427,13 +2067,34 @@ function renderBiodata(){
           ${parasHtml}
           <div class="bio-hadith-block">
             <div class="bio-hadith-ar">${b.hadith.ar}</div>
-            <div class="bio-hadith-my">"${b.hadith.my}"</div>
+            <div class="bio-hadith-my">"${hadithText}"</div>
             <span class="ksrc" style="margin-top:6px">📚 ${b.hadith.src}</span>
           </div>
         </div>
       </div>
     </div>`;
   }).join('');
+}
+function renderHadith40Detail(){
+  const h=HADITH40_DB[hadithIdx%HADITH40_DB.length];
+  const title=lang==='MY'?h.title_my:h.title_en;
+  const perawi=lang==='MY'?h.perawi_my:h.perawi_en;
+  const terjemahan=lang==='MY'?h.terjemahan_my:h.terjemahan_en;
+  const ulasan=lang==='MY'?h.ulasan_my:h.ulasan_en;
+  const numLbl=lang==='MY'?`Hadis ${h.num} daripada 42`:`Hadith ${h.num} of 42`;
+  document.getElementById('h40HeroNum').textContent=numLbl;
+  document.getElementById('h40HeroTitle').textContent=title;
+  document.getElementById('h40ArFull').textContent=h.ar;
+  document.getElementById('h40Perawi').textContent=perawi;
+  document.getElementById('h40Terjemahan').textContent=terjemahan;
+  document.getElementById('h40SrcTag').textContent='📚 '+h.src;
+  document.getElementById('h40Ulasan').textContent=ulasan;
+}
+function hadith40Step(delta){
+  hadithIdx=(hadithIdx+delta+HADITH40_DB.length)%HADITH40_DB.length;
+  renderHadith40Detail();
+  renderHadithBox();
+  startHadithRotation();
 }
 function renderKes(){
   const list=kesCat==='semua'?KES_DB:KES_DB.filter(k=>k.cat===kesCat);
@@ -1857,7 +2518,7 @@ function switchPage(pg){
   const selPg=document.getElementById('pg-selawat');
   selPg.classList.remove('on');
   // Hero & progress visibility
-  const showHero=pg!=='selawat'&&pg!=='biodata';
+  const showHero=pg!=='selawat'&&pg!=='biodata'&&pg!=='hadis40';
   document.getElementById('heroBlock').style.display=showHero?'':'none';
   document.getElementById('progBlock').style.display=showHero?'':'none';
   const sb=document.getElementById('selBanner');if(sb)sb.style.display=showHero?'':'none';
@@ -1874,19 +2535,47 @@ function switchPage(pg){
     if(pg==='pemakaian')renderWear();
     if(pg==='riadah')renderRiadah();
     if(pg==='biodata')renderBiodata();
+    if(pg==='hadis40')renderHadith40Detail();
   }
 }
 
 // ══════════════════════════════════════════
 // LANGUAGE
 // ══════════════════════════════════════════
+function applyI18N(){
+  // Simple textContent swaps
+  const map={
+    selHdrQ:'sudahBerselawat', hadithLbl:'hadisHariIni', wheelLbl:'waktuSolatGeser', hadithTapHint:'hadithTapHint',
+    waktuKiniLbl:'waktuKini', selBack:'kembali', biodataBack:'kembali',
+    biodataBoxTag:'sirahNabawiyah', biodataBoxTitle:'biodataRasulullahTitle', biodataBoxSub:'biodataRasulullahSub',
+    pwaBannerTitle:'installSunnahDaily', pwaBannerSub:'pasangKatHomeScreen',
+    pwaInstallBtn:'installApp', pwaDismissBtn:'nanti', notifAskT:'benarkanNotif',
+    bioHeroTitle:'bioHeroTitle', bioHeroSub:'bioHeroSub',
+    bioLblLahir:'bioInfoTarikhLahir', bioLblTempat:'bioInfoTempatLahir', bioLblIbubapa:'bioInfoIbuBapa',
+    bioLblNabi:'bioInfoDiangkatNabi', bioLblDakwah:'bioInfoTempohDakwah', bioLblWafat:'bioInfoWafat',
+    bioValLahir:'bioInfoTarikhLahirVal', bioValTempat:'bioInfoTempatLahirVal', bioValIbubapa:'bioInfoIbuBapaVal',
+    bioValNabi:'bioInfoDiangkatNabiVal', bioValDakwah:'bioInfoTempohDakwahVal', bioValWafat:'bioInfoWafatVal',
+    bioSecTitle:'sirahKehidupanBaginda',
+  };
+  for(const elId in map){
+    const el=document.getElementById(elId);
+    if(el)el.textContent=t(map[elId]);
+  }
+  // innerHTML swaps (contain markup/emoji combos that need to stay intact)
+  const npopSokongBtn=document.getElementById('npopSokongBtn'); if(npopSokongBtn)npopSokongBtn.innerHTML=t('sokongAppsIni');
+  const sokongShareBtn=document.getElementById('sokongShareBtn'); if(sokongShareBtn)sokongShareBtn.innerHTML=t('kongsiAppsRakan');
+  const bioMazhabNote=document.getElementById('bioMazhabNote'); if(bioMazhabNote)bioMazhabNote.innerHTML=t('biodataMazhabNote');
+}
 function toggleLang(){
   lang=lang==='MY'?'EN':'MY';
   document.getElementById('langBadge').textContent=lang;
-  save();renderHero();renderAmalan();
+  save();renderHero();renderAmalan();applyI18N();
   if(curPage==='kesihatan')renderKes();
   if(curPage==='pemakanan')renderFood();
   if(curPage==='pemakaian')renderWear();
+  if(curPage==='riadah')renderRiadah();
+  if(curPage==='biodata')renderBiodata();
+  if(curPage==='hadis40')renderHadith40Detail();
   popup('🌐',lang==='MY'?'Bahasa Melayu':'English Mode',lang==='MY'?'Paparan ditukar ke Bahasa Melayu.':'Display switched to English.');
 }
 
@@ -1942,8 +2631,13 @@ document.addEventListener('click',function(e){
   const ni=t.closest('.ni'); if(ni&&ni.dataset.pg){switchPage(ni.dataset.pg);return}
   // Header buttons
   if(t.closest('#selHdrBtn')||t.closest('#selPromptCard')){switchPage('selawat');return}
+  if(t.closest('#hadithNextBtn')){nextHadithManual();return}
+  if(t.closest('#heroBlock')){switchPage('hadis40');return}
   if(t.closest('#biodataBox')){switchPage('biodata');return}
   if(t.closest('#biodataBack')){switchPage('amalan');return}
+  if(t.closest('#hadith40Back')){switchPage('amalan');return}
+  if(t.closest('#h40PrevBtn')){hadith40Step(-1);return}
+  if(t.closest('#h40NextBtn')){hadith40Step(1);return}
   if(t.closest('#langBtn')){toggleLang();return}
   if(t.closest('#bellBtn')){document.getElementById('notifOverlay').classList.toggle('on');return}
   if(t.closest('#saveNotifBtn')){saveNotif();return}
@@ -1958,12 +2652,13 @@ document.addEventListener('click',function(e){
   if(t.closest('#selTapBtn')){addSelawat(1);return}
   const qb=t.closest('[data-target]'); if(qb){setSelTarget(+qb.dataset.target);return}
   if(t.closest('#selResetBtn')){selawatCount=0;updateSelUI();popup('🔄','Reset!','Kiraan selawat hari ini direset.');return}
-  if(t.closest('#selShareBtn')){const msg=`☪ Alhamdulillah! Aku dah berselawat ${selawatCount}x hari ini!\n\nصَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ\n\n#SunnahDaily #Selawat`;if(navigator.share)navigator.share({text:msg});else{popup('📤','Salin & Kongsi','Teks selawat telah disalin!');navigator.clipboard?.writeText(msg)};return}
+  if(t.closest('#selShareBtn')){const msg=`☪ Alhamdulillah! Aku dah berselawat ${selawatCount}x hari ini!\n\nصَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ\n\n#SunnahDaily #Selawat`;const shareUrl='https://insyirahinfo.github.io/sunnah-daily/';if(navigator.share)navigator.share({text:msg,url:shareUrl});else{navigator.clipboard?.writeText(msg+'\n\n'+shareUrl);popup('📤','Salin & Kongsi','Teks selawat telah disalin!')};return}
   if(t.closest('#selBack')){switchPage('amalan');return}
   if(t.closest('#sokongShareBtn')){
     const msg='🕌 Sunnah Daily ﷺ\n\nApps amalan harian sunnah Nabi — percuma untuk semua!\n\nJejak langkah Nabi dalam kehidupan harian anda.\n\n#SunnahDaily #CintaNabi';
-    if(navigator.share)navigator.share({title:'Sunnah Daily ﷺ',text:msg});
-    else{navigator.clipboard?.writeText(msg);popup('📤','Teks Disalin!','Tampal dan kongsi kepada rakan-rakan.');}
+    const shareUrl='https://insyirahinfo.github.io/sunnah-daily/';
+    if(navigator.share)navigator.share({title:'Sunnah Daily ﷺ',text:msg,url:shareUrl});
+    else{navigator.clipboard?.writeText(msg+'\n\n'+shareUrl);popup('📤','Teks Disalin!','Tampal dan kongsi kepada rakan-rakan.');}
     return;
   }
   // Toggle
@@ -1977,6 +2672,7 @@ function init(){
   load();
   curDay=getTodayIdx();
   document.getElementById('langBadge').textContent=lang;
+  applyI18N();
   renderDayTabs();
   renderHero();
   renderAmalan();
@@ -1985,6 +2681,7 @@ function init(){
   renderSlotNotif();
   renderRiadah();
   renderBiodata();
+  startHadithRotation();
   setInterval(()=>{renderWheel();renderSlotNotif()},60000);
   setTimeout(()=>document.getElementById('splash').classList.add('hide'),2500);
   setTimeout(()=>popup('☪','Salam! Selamat Datang ﷺ','Jejak langkah Nabi dalam kehidupan harian anda.'),2900);
