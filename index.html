@@ -190,14 +190,23 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 
 /* Tap button */
 .sel-tap{
-  width:100px;height:100px;border-radius:50%;cursor:pointer;
-  background:radial-gradient(circle at 35% 35%,rgba(201,168,76,0.3),rgba(201,168,76,0.08) 60%,transparent);
-  border:1.5px solid rgba(201,168,76,0.4);
+  width:110px;height:110px;border-radius:50%;cursor:pointer;
+  background:radial-gradient(circle at 35% 35%,rgba(201,168,76,0.25),rgba(201,168,76,0.06) 60%,transparent);
+  border:2px solid rgba(201,168,76,0.5);
   box-shadow:0 0 30px rgba(201,168,76,0.15),inset 0 0 20px rgba(201,168,76,0.08);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:4px;transition:.1s;position:relative;margin-bottom:18px;
+  display:flex;align-items:center;justify-content:center;
+  transition:.15s;position:relative;margin:8px auto 18px;
   user-select:none;
 }
+.sel-tap-inner{font-size:32px;color:var(--gold2);text-shadow:0 0 14px rgba(201,168,76,0.5);line-height:1}
+.sel-tap.flash{
+  box-shadow:0 0 60px rgba(220,40,40,0.8),0 0 30px rgba(220,40,40,0.5),inset 0 0 30px rgba(220,40,40,0.3) !important;
+  border-color:rgba(255,80,80,0.9) !important;
+  background:radial-gradient(circle at 35% 35%,rgba(220,40,40,0.5),rgba(220,40,40,0.15) 60%,transparent) !important;
+}
+.sel-lafaz{text-align:center;margin:10px 0 4px;padding:0 10px}
+.sel-lafaz-ar{font-family:'Scheherazade New','Amiri',serif;font-size:22px;font-weight:700;color:var(--gold2);direction:rtl;line-height:1.8;animation:khat-glow 3s ease-in-out infinite}
+.sel-lafaz-rumi{font-size:10.5px;color:var(--muted);font-style:italic;margin-top:2px;letter-spacing:.3px}
 .sel-tap::before{
   content:'';position:absolute;inset:-8px;border-radius:50%;
   border:1px solid rgba(201,168,76,0.15);
@@ -210,8 +219,6 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 }
 @keyframes pulse-ring{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.06);opacity:.6}}
 .sel-tap:active{transform:scale(.9);box-shadow:0 0 40px rgba(201,168,76,0.3)}
-.sel-tap-ar{font-family:'Scheherazade New','Amiri',serif;font-size:14px;color:var(--gold2);direction:rtl;line-height:1.5;text-align:center}
-.sel-tap-hint{font-size:9px;color:var(--gold3);text-transform:uppercase;letter-spacing:.8px}
 
 /* Quick counts row */
 .sel-quick{display:flex;gap:8px;margin-bottom:16px;width:100%}
@@ -599,6 +606,10 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
       <div class="sel-page-title">☪ Majlis Selawat</div>
       <div class="sel-hadis">مَنْ صَلَّى عَلَيَّ وَاحِدَةً صَلَّى اللَّهُ عَلَيْهِ عَشْرًا</div>
       <div class="sel-hadis-tr">"Sesiapa berselawat ke atasku sekali, Allah berselawat ke atasnya 10 kali." — HR. Muslim (408)</div>
+      <div class="sel-lafaz">
+        <div class="sel-lafaz-ar">اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ</div>
+        <div class="sel-lafaz-rumi">Allāhumma Ṣalli 'Alā Sayyidinā Muḥammad</div>
+      </div>
     </div>
 
     <!-- Ring counter -->
@@ -628,15 +639,14 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 
     <!-- Main tap button -->
     <div class="sel-tap" id="selTapBtn">
-      <div class="sel-tap-ar">صَلِّ عَلَى مُحَمَّد</div>
-      <div class="sel-tap-hint">Tap untuk selawat</div>
+      <div class="sel-tap-inner">☪</div>
     </div>
 
     <!-- Quick add -->
     <div class="sel-quick">
       <button class="sel-q-btn" data-add="10">+10</button>
-      <button class="sel-q-btn" data-add="33">+33</button>
       <button class="sel-q-btn" data-add="100">+100</button>
+      <button class="sel-q-btn" data-add="1000">+1000</button>
     </div>
 
     <!-- Actions -->
@@ -1569,13 +1579,31 @@ function updateSelUI(){
   }
   save();
 }
+function playSelSound(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const osc=ctx.createOscillator(),gain=ctx.createGain();
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.frequency.setValueAtTime(900,ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(500,ctx.currentTime+0.12);
+    osc.type='sine';
+    gain.gain.setValueAtTime(0.22,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.18);
+    osc.start(ctx.currentTime);osc.stop(ctx.currentTime+0.2);
+    setTimeout(()=>ctx.close(),300);
+  }catch(e){}
+}
 function addSelawat(n=1){
   selawatCount+=n;
   updateSelUI();
-  // Tap animation
   const btn=document.getElementById('selTapBtn');
-  btn.style.transform='scale(0.88)';
-  setTimeout(()=>btn.style.transform='',120);
+  // Haptic feedback
+  if(navigator.vibrate)navigator.vibrate([35]);
+  // Sound
+  playSelSound();
+  // Red flash
+  btn.classList.add('flash');
+  setTimeout(()=>btn.classList.remove('flash'),350);
 }
 
 // ══════════════════════════════════════════
@@ -1701,6 +1729,7 @@ function init(){
   updateSelUI();
   initWheel();
   renderSlotNotif();
+  renderRiadah();
   setInterval(()=>{renderWheel();renderSlotNotif()},60000);
   setTimeout(()=>popup('☪','Salam! Selamat Datang ﷺ','Jejak langkah Nabi dalam kehidupan harian anda.'),800);
 }
