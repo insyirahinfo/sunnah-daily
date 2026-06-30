@@ -2004,6 +2004,34 @@ async function registerSW() {
     _swReg = await navigator.serviceWorker.register('./sw.js', { scope: './' });
     console.log('[PWA] SW registered:', _swReg.scope);
 
+    // Force an update check every time the app is opened, so a new
+    // sw.js (and the index.html it controls) is picked up promptly
+    // instead of silently serving a stale cached version.
+    _swReg.update().catch(() => {});
+
+    // If a new SW finishes installing while we're already open,
+    // activate it immediately rather than waiting for the user to
+    // fully close and reopen the app.
+    _swReg.addEventListener('updatefound', () => {
+      const newWorker = _swReg.installing;
+      if (!newWorker) return;
+      newWorker.addEventListener('statechange', () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          newWorker.postMessage({ type: 'SKIP_WAITING' });
+        }
+      });
+    });
+
+    // Once the new SW takes control, reload once so the page reflects
+    // the latest HTML/CSS/JS instead of running old code against a
+    // newly-activated worker.
+    let _reloaded = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (_reloaded) return;
+      _reloaded = true;
+      window.location.reload();
+    });
+
     // Listen for messages from SW
     navigator.serviceWorker.addEventListener('message', e => {
       if (e.data?.type === 'PRAYER_NOTIF_CLICK') {

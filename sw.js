@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════
-// SUNNAH DAILY — Service Worker v1.0
+// SUNNAH DAILY — Service Worker v1.1
 // ══════════════════════════════════════════
-const CACHE_NAME = 'sunnah-daily-v4';
+const CACHE_NAME = 'sunnah-daily-v5';
 const ASSETS = [
   './',
   './index.html',
@@ -32,9 +32,29 @@ self.addEventListener('activate', event => {
   );
 });
 
-// ── FETCH — Serve from cache, fallback to network
+// ── FETCH — Network-first for index.html (always get latest), cache-first for the rest
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
+
+  const isHTML = event.request.mode === 'navigate' ||
+    event.request.url.endsWith('/') ||
+    event.request.url.endsWith('index.html');
+
+  if (isHTML) {
+    // Network-first: always try to fetch the latest app shell first
+    event.respondWith(
+      fetch(event.request).then(response => {
+        if (response && response.status === 200) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+        }
+        return response;
+      }).catch(() => caches.match(event.request).then(cached => cached || caches.match('./index.html')))
+    );
+    return;
+  }
+
+  // Cache-first for static assets (icons, manifest, etc.)
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached;
@@ -73,6 +93,10 @@ self.addEventListener('notificationclick', event => {
 // ── MESSAGE — Receive commands from main thread
 self.addEventListener('message', event => {
   const { type, data } = event.data || {};
+
+  if (type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 
   if (type === 'SCHEDULE_NOTIFS') {
     // Store schedule in SW scope for reference
