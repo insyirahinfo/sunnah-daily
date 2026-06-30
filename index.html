@@ -356,12 +356,12 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .sh-btn{width:100%;margin-top:15px;padding:12px;background:linear-gradient(135deg,var(--g2),var(--g3));border:none;border-radius:11px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
 
 /* ── TOAST ── */
-.npop{position:fixed;top:10px;left:50%;transform:translateX(-50%) translateY(-140%);z-index:300;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:9px 13px;max-width:calc(100% - 28px);width:370px;display:flex;gap:9px;align-items:flex-start;box-shadow:0 8px 24px rgba(0,0,0,.5);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.npop{position:fixed;top:10px;left:50%;transform:translateX(-50%) translateY(-140%);z-index:300;background:#FFFFFF;border:1px solid #E5E5E5;border-radius:12px;padding:9px 13px;max-width:calc(100% - 28px);width:370px;display:flex;gap:9px;align-items:flex-start;box-shadow:0 8px 28px rgba(0,0,0,.22);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
 .npop.on{transform:translateX(-50%) translateY(0)}
 .npop-ico{font-size:19px;flex-shrink:0}
 .npop-txt{flex:1;min-width:0}
-.npop-t{font-size:12px;font-weight:700;color:var(--g4)}
-.npop-b{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+.npop-t{font-size:12px;font-weight:700;color:#1A1A1A}
+.npop-b{font-size:11px;color:#6A6A6A;margin-top:2px;line-height:1.4}
 .npop-btn{display:none;margin-top:7px;padding:6px 12px;background:linear-gradient(135deg,var(--g2),var(--g3));border:none;border-radius:8px;color:#fff;font-size:10.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
 .npop.show-sokong .npop-btn{display:inline-block}
 
@@ -401,17 +401,17 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .sokong-share-btn:active{opacity:.85;transform:scale(.98)}
 
 
-/* ── PWA INSTALL BANNER ── */
-.pwa-banner{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(110%);width:100%;max-width:430px;z-index:400;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px 30px;display:flex;gap:12px;align-items:center;transition:transform .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 -8px 32px rgba(0,0,0,.5)}
+/* ── PWA INSTALL BANNER (Putih — kontras dgn bg hijau) ── */
+.pwa-banner{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(110%);width:100%;max-width:430px;z-index:400;background:#FFFFFF;border-top:3px solid var(--gold);padding:16px 18px 32px;display:flex;gap:12px;align-items:center;transition:transform .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 -10px 36px rgba(0,0,0,.35)}
 .pwa-banner.on{transform:translateX(-50%) translateY(0)}
-.pwa-banner-ico{width:48px;height:48px;border-radius:12px;overflow:hidden;flex-shrink:0}
+.pwa-banner-ico{width:50px;height:50px;border-radius:13px;overflow:hidden;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,.15)}
 .pwa-banner-ico img{width:100%;height:100%}
 .pwa-banner-body{flex:1;min-width:0}
-.pwa-banner-title{font-size:13px;font-weight:800;color:var(--cream);margin-bottom:3px}
-.pwa-banner-sub{font-size:11px;color:var(--muted);line-height:1.4}
-.pwa-banner-btns{display:flex;gap:7px;margin-top:10px}
-.pwa-install-btn{flex:1;padding:9px;background:linear-gradient(135deg,var(--g2),var(--g3));border:none;border-radius:9px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
-.pwa-dismiss-btn{padding:9px 14px;background:transparent;border:1px solid var(--border);border-radius:9px;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Inter',sans-serif}
+.pwa-banner-title{font-size:14px;font-weight:800;color:#1A1A1A;margin-bottom:4px}
+.pwa-banner-sub{font-size:11.5px;color:#5A5A5A;line-height:1.45}
+.pwa-banner-btns{display:flex;gap:8px;margin-top:11px}
+.pwa-install-btn{flex:1;padding:10px;background:linear-gradient(135deg,var(--g2),var(--g3));border:none;border-radius:10px;color:#fff;font-size:12.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 3px 10px rgba(46,125,79,.25)}
+.pwa-dismiss-btn{padding:10px 15px;background:#F2F2F2;border:1px solid #E0E0E0;border-radius:10px;color:#5A5A5A;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
 
 /* ── NOTIF PERMISSION TOAST ── */
 .notif-ask{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(30px);width:calc(100% - 28px);max-width:402px;z-index:350;background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(46,125,79,0.1));border:1px solid rgba(201,168,76,0.3);border-radius:14px;padding:13px 15px;display:flex;gap:11px;align-items:center;opacity:0;pointer-events:none;transition:.4s cubic-bezier(.34,1.56,.64,1)}
@@ -447,6 +447,41 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .sel-prompt-num{font-size:28px;font-weight:800;color:var(--gold2)}
 .sel-prompt-unit{font-size:11px;font-weight:400;color:var(--muted)}
 .sel-prompt-chevron{font-size:24px;color:var(--gold2);opacity:0.45;flex-shrink:0;position:relative;z-index:1}
+
+/* ── BIODATA RASULULLAH BOX (Khas) ── */
+.biodata-box{margin:12px 14px 0;background:linear-gradient(135deg,rgba(201,168,76,0.13),rgba(46,125,79,0.08) 100%);border:1.5px solid rgba(201,168,76,0.38);border-radius:16px;padding:14px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:.15s;position:relative;overflow:hidden}
+.biodata-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.06),transparent 65%);pointer-events:none}
+.biodata-box::after{content:'';position:absolute;top:-50px;right:-30px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.16),transparent 70%);pointer-events:none}
+.biodata-box:active{transform:scale(.98);background:linear-gradient(135deg,rgba(201,168,76,0.19),rgba(46,125,79,0.12) 100%)}
+.biodata-box-ico{width:50px;height:50px;border-radius:13px;background:linear-gradient(135deg,var(--gold3),var(--gold));display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;box-shadow:0 0 18px rgba(201,168,76,0.35);position:relative;z-index:1}
+.biodata-box-body{flex:1;min-width:0;position:relative;z-index:1}
+.biodata-box-tag{display:inline-block;font-size:8.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--gold2);background:rgba(201,168,76,0.14);border:1px solid rgba(201,168,76,0.3);border-radius:5px;padding:2px 7px;margin-bottom:5px}
+.biodata-box-title{font-size:14px;font-weight:800;color:var(--cream);line-height:1.3}
+.biodata-box-sub{font-size:10.5px;color:var(--cream2);margin-top:3px;line-height:1.4}
+.biodata-box-chevron{font-size:22px;color:var(--gold2);opacity:0.55;flex-shrink:0;position:relative;z-index:1}
+
+/* ── BIODATA PAGE ── */
+.bio-hero{margin:0 14px;background:linear-gradient(135deg,rgba(201,168,76,0.13),rgba(46,125,79,0.08));border:1px solid rgba(201,168,76,0.25);border-radius:18px;padding:20px 18px;text-align:center;position:relative;overflow:hidden}
+.bio-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,0.14),transparent 62%);pointer-events:none}
+.bio-hero-ico{font-size:34px;margin-bottom:8px;position:relative;z-index:1}
+.bio-hero-name{font-family:'Scheherazade New','Amiri',serif;font-size:22px;color:var(--gold2);line-height:1.5;position:relative;z-index:1}
+.bio-hero-title{font-size:15px;font-weight:800;color:var(--cream);margin-top:5px;position:relative;z-index:1}
+.bio-hero-sub{font-size:10.5px;color:var(--muted);margin-top:4px;position:relative;z-index:1}
+.bio-info{margin:12px 14px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bio-info-item{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:10px 12px}
+.bio-info-lbl{font-size:8.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:700;margin-bottom:3px}
+.bio-info-val{font-size:11.5px;color:var(--cream);font-weight:600;line-height:1.4}
+.bio-sec-title{margin:18px 14px 9px;font-size:12px;font-weight:800;color:var(--g4);text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:7px}
+.bio-sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.biolist{margin:0 14px;display:flex;flex-direction:column;gap:9px}
+.bio-phase-num{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--gold3),var(--gold));color:#1A1400;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.bio-para{font-size:12px;color:var(--cream2);line-height:1.85;margin-bottom:10px}
+.bio-para:last-child{margin-bottom:0}
+.bio-hadith-block{background:rgba(46,125,79,.07);border-right:3px solid var(--g2);border-radius:8px;padding:10px 12px;margin:10px 0}
+.bio-hadith-ar{font-family:'Amiri',serif;font-size:15px;color:var(--cream);line-height:2;text-align:right;direction:rtl;margin-bottom:6px}
+.bio-hadith-my{font-size:11px;color:var(--cream2);font-style:italic;line-height:1.7}
+.bio-mazhab-note{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.16);border-radius:9px;padding:9px 11px;margin-top:14px;font-size:10px;color:var(--cream2);line-height:1.7;text-align:center}
+.bio-mazhab-note b{color:var(--gold2)}
 
 /* ── SLOT NOTIF CARD ── */
 .slot-notif{margin:10px 14px 0;background:linear-gradient(135deg,rgba(46,125,79,0.1),rgba(46,125,79,0.04));border:1px solid rgba(86,196,126,0.18);border-radius:13px;padding:10px 13px;display:flex;align-items:center;gap:11px;cursor:pointer;transition:.15s;position:relative;overflow:hidden}
@@ -499,9 +534,30 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 .slot-tr{font-size:11px;color:var(--cream2);font-style:italic;line-height:1.7;margin-bottom:7px;padding-left:10px;border-left:2px solid var(--border)}
 .slot-src{display:inline-block;font-size:9px;padding:2px 8px;border-radius:4px;background:rgba(46,125,79,0.12);border:1px solid rgba(46,125,79,0.3);color:var(--g4);font-weight:700;margin-bottom:9px}
 .slot-note{background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.18);border-radius:9px;padding:9px 11px;font-size:11px;color:var(--cream2);line-height:1.75}
+
+/* ── SPLASH SCREEN ── */
+#splash{position:fixed;inset:0;z-index:9999;background:radial-gradient(ellipse at 50% 35%,var(--bg3),var(--bg) 75%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .55s ease,visibility .55s ease}
+#splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+#splash::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg fill='none' stroke='rgba(201,168,76,0.06)' stroke-width='0.6'%3E%3Ccircle cx='100' cy='100' r='88'/%3E%3Ccircle cx='100' cy='100' r='65'/%3E%3Ccircle cx='100' cy='100' r='44'/%3E%3Cline x1='100' y1='12' x2='100' y2='188'/%3E%3Cline x1='12' y1='100' x2='188' y2='100'/%3E%3C/g%3E%3C/svg%3E");background-size:200px 200px;background-repeat:repeat}
+.splash-logo{width:84px;height:84px;border-radius:22px;background:linear-gradient(135deg,var(--g2),var(--g3));display:flex;align-items:center;justify-content:center;font-size:40px;box-shadow:0 0 36px rgba(86,196,126,0.35),0 10px 30px rgba(0,0,0,.4);position:relative;z-index:1;animation:splash-pop .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes splash-pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+.splash-title{margin-top:20px;font-size:24px;font-weight:800;color:var(--cream);letter-spacing:.5px;position:relative;z-index:1;animation:splash-fade .6s ease .15s both}
+.splash-by{margin-top:9px;font-size:10px;color:var(--muted);position:relative;z-index:1;animation:splash-fade .6s ease .3s both}
+@keyframes splash-fade{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
+.splash-loader{margin-top:30px;width:120px;height:3px;border-radius:3px;background:rgba(255,255,255,0.08);overflow:hidden;position:relative;z-index:1}
+.splash-loader-fill{height:100%;width:0%;border-radius:3px;background:linear-gradient(90deg,var(--gold3),var(--gold));animation:splash-load 2.3s ease forwards}
+@keyframes splash-load{0%{width:0%}100%{width:100%}}
 </style>
 </head>
 <body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash">
+  <div class="splash-logo">☪</div>
+  <div class="splash-title">Sunnah Daily <span style="font-family:'Scheherazade New',serif">ﷺ</span></div>
+  <div class="splash-by">By Amal Istiqomah</div>
+  <div class="splash-loader"><div class="splash-loader-fill"></div></div>
+</div>
 
 <!-- TOAST -->
 <div class="npop" id="npop">
@@ -564,6 +620,17 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
 
 <!-- ══ PAGE: AMALAN ══ -->
 <div class="page on" id="pg-amalan">
+
+  <!-- BIODATA RASULULLAH SAW BOX -->
+  <div class="biodata-box" id="biodataBox">
+    <div class="biodata-box-ico">🕌</div>
+    <div class="biodata-box-body">
+      <span class="biodata-box-tag">Sirah Nabawiyah</span>
+      <div class="biodata-box-title">Biodata Rasulullah ﷺ</div>
+      <div class="biodata-box-sub">Kelahiran, kehidupan, kenabian & wafat baginda</div>
+    </div>
+    <div class="biodata-box-chevron">›</div>
+  </div>
 
   <!-- SELAWAT PROMPT BUTTON -->
   <div class="sel-prompt" id="selPromptCard">
@@ -742,6 +809,36 @@ header{padding:10px 14px 0;position:sticky;top:0;z-index:100;background:rgba(7,2
   <div class="spacer"></div>
 </div>
 
+<!-- ══ PAGE: BIODATA RASULULLAH ﷺ ══ -->
+<div class="page" id="pg-biodata">
+  <div class="sel-back" id="biodataBack">← Kembali</div>
+
+  <div class="bio-hero" style="margin-top:10px">
+    <div class="bio-hero-ico">🕌</div>
+    <div class="bio-hero-name">مُحَمَّدٌ رَسُولُ اللَّهِ ﷺ</div>
+    <div class="bio-hero-title">Muhammad bin Abdullah ﷺ</div>
+    <div class="bio-hero-sub">Penutup sekalian Nabi & Rasul</div>
+  </div>
+
+  <div class="bio-info">
+    <div class="bio-info-item"><div class="bio-info-lbl">Tarikh Lahir</div><div class="bio-info-val">12 Rabiulawal, Tahun Gajah</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl">Tempat Lahir</div><div class="bio-info-val">Makkah Al-Mukarramah</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl">Ibu Bapa</div><div class="bio-info-val">Abdullah & Aminah</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl">Diangkat Nabi</div><div class="bio-info-val">Usia 40 tahun, Gua Hira'</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl">Tempoh Dakwah</div><div class="bio-info-val">23 tahun (Makkah & Madinah)</div></div>
+    <div class="bio-info-item"><div class="bio-info-lbl">Wafat</div><div class="bio-info-val">12 Rabiulawal, 11H · usia 63</div></div>
+  </div>
+
+  <div class="bio-sec-title">📖 Sirah Kehidupan Baginda</div>
+  <div class="biolist" id="biolist"></div>
+
+  <div class="bio-mazhab-note" style="margin:14px 14px 0">
+    🤲 Kandungan ini disusun berdasarkan <b>hadis-hadis sahih</b> (riwayat Imam Bukhari & Imam Muslim) serta huraian para ulama yang diiktiraf dalam mazhab Syafi'i, antaranya Imam An-Nawawi, Ibn Hajar Al-'Asqalani dan Al-Qastallani dalam kitab Al-Mawahib Al-Laduniyyah.
+  </div>
+
+  <div class="spacer"></div>
+</div>
+
 <!-- ══ PAGE: SOKONG ══ -->
 <div class="page" id="pg-sokong">
 
@@ -889,6 +986,7 @@ let riadahTabState = {};
 let riadahCat = 'semua';
 let foodOpenId = null;
 let wearOpenId = null;
+let biodataOpenId = 'b1';
 
 // Wheel state
 let wheelAngle = 0;
@@ -1258,6 +1356,80 @@ function renderRiadah(){
         <div class="ktc${tab==='cara'?' on':''}">
           <ul class="cara-ul">${r.cara.map((c,i)=>`<li class="cara-li"><div class="cara-n">${i+1}</div><div class="cara-t">${c}</div></li>`).join('')}</ul>
           ${r.warn?`<div class="warn"><strong>⚠️</strong> ${r.warn}</div>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════
+// BIODATA RASULULLAH ﷺ — Sirah Nabawiyah
+// Bersandarkan hadis sahih (Bukhari & Muslim) dan
+// pandangan ulama yang diiktiraf mazhab Syafi'i
+// (a.l. Imam Nawawi, Ibn Hajar al-'Asqalani, al-Qastallani)
+// ══════════════════════════════════════════
+const BIODATA_DB=[
+  {id:'b1',ico:'📜',title:'Biodata Ringkas',sub:'Nama, nasab & keluarga baginda ﷺ',
+    paras:[
+      "Nama penuh baginda ialah Muhammad bin Abdullah bin Abdul Muttalib bin Hasyim, dari Bani Hasyim — keturunan Quraisy yang paling mulia di kalangan bangsa Arab. Nasab baginda yang suci ini disebut sendiri oleh Rasulullah ﷺ dalam sebuah hadis sahih, bahawa Allah memilih baginda daripada sebaik-baik keturunan manusia, tanpa sebarang percampuran daripada perhubungan yang tidak sah di sepanjang salasilahnya.",
+      "Baginda dilahirkan di Makkah pada hari Isnin, 12 Rabiulawal, bersamaan Tahun Gajah (sekitar 570 Masihi) — tahun yang dirakamkan dalam Surah Al-Fil kerana peristiwa kegagalan tentera bergajah Abrahah menyerang Kaabah. Ayahanda baginda, Abdullah bin Abdul Muttalib, telah wafat semasa baginda masih dalam kandungan, manakala ibunda baginda, Aminah binti Wahb, wafat ketika baginda berusia enam tahun.",
+      "Rasulullah ﷺ berkahwin dengan beberapa orang isteri sepanjang hayat baginda, bermula dengan Khadijah binti Khuwailid RA — isteri pertama dan yang paling lama menemani baginda sehingga wafatnya. Daripada Khadijah RA, baginda dikurniakan beberapa orang anak, termasuk Fatimah Az-Zahra RA yang menjadi anak baginda yang paling masyhur dan disebut sebagai penghulu wanita syurga.",
+      "Rasulullah ﷺ wafat di Madinah pada hari Isnin, 12 Rabiulawal tahun ke-11 Hijrah, ketika berusia 63 tahun, selepas berdakwah selama 23 tahun — 13 tahun di Makkah dan 10 tahun di Madinah. Tempoh ini disebut dengan jelas dalam sebuah hadis riwayat Imam Bukhari, yang menjadi rujukan utama para ulama dalam menetapkan kronologi kehidupan baginda."
+    ],
+    hadith:{ar:"إِنَّ اللهَ اصْطَفَى كِنَانَةَ مِنْ وَلَدِ إِسْمَاعِيلَ، وَاصْطَفَى قُرَيْشًا مِنْ كِنَانَةَ، وَاصْطَفَى مِنْ قُرَيْشٍ بَنِي هَاشِمٍ، وَاصْطَفَانِي مِنْ بَنِي هَاشِمٍ",
+      my:"Sesungguhnya Allah memilih Kinanah daripada anak cucu Ismail, dan memilih Quraisy daripada Kinanah, dan memilih Bani Hasyim daripada Quraisy, dan memilihku daripada Bani Hasyim.",
+      src:"HR. Muslim (2276)"}},
+  {id:'b2',ico:'🌙',title:'Zaman Kanak-Kanak',sub:'Yatim, susuan & jagaan ahli keluarga',
+    paras:[
+      "Rasulullah ﷺ dilahirkan dalam keadaan yatim kerana ayahanda baginda wafat sebelum kelahirannya. Mengikut adat masyarakat Arab Quraisy ketika itu, bayi yang baru lahir akan disusukan oleh wanita kampung di luar bandar Makkah supaya membesar dengan udara yang bersih, fizikal yang kuat, dan fasih berbahasa Arab tulen. Atas sebab inilah datuk baginda, Abdul Muttalib, menyerahkan baginda kepada Halimah binti Abi Dzu'aib daripada Bani Sa'ad untuk disusukan.",
+      "Pengasuhan Halimah As-Sa'diyah membawa banyak keberkatan kepada keluarganya, sebagaimana yang dirakamkan dalam pelbagai riwayat sirah. Rasulullah ﷺ tinggal bersama Halimah selama beberapa tahun sebelum dikembalikan kepada ibunya, Aminah, mengikut adat susuan yang biasa pada zaman itu.",
+      "Apabila berusia enam tahun, Rasulullah ﷺ kehilangan ibunya, Aminah binti Wahb, yang wafat ketika dalam perjalanan pulang daripada menziarahi makam suaminya di Yathrib (kini Madinah). Allah SWT menyebut keadaan baginda sebagai anak yatim yang mendapat perlindungan-Nya dalam Surah Ad-Duha, ayat 6. Selepas kewafatan ibunya, baginda dijaga oleh datuknya, Abdul Muttalib, ketua Bani Hasyim yang amat menyayangi baginda.",
+      "Selepas dua tahun, Abdul Muttalib turut wafat, dan tanggungjawab menjaga baginda diserahkan kepada bapa saudaranya, Abu Talib, yang membesarkan Rasulullah ﷺ dengan penuh kasih sayang walaupun dalam keadaan ekonomi yang sederhana. Pengalaman menjadi yatim sejak kecil ini membentuk keperibadian baginda yang amat prihatin terhadap golongan anak yatim, sebagaimana yang dinyatakan dalam sebuah hadis sahih riwayat Imam Bukhari."
+    ],
+    hadith:{ar:"أَنَا وَكَافِلُ الْيَتِيمِ فِي الْجَنَّةِ هَكَذَا، وَأَشَارَ بِالسَّبَّابَةِ وَالْوُسْطَى",
+      my:"Aku dan orang yang menanggung anak yatim di syurga seperti ini (sambil merapatkan jari telunjuk dan jari tengah).",
+      src:"HR. Bukhari (5304)"}},
+  {id:'b3',ico:'☀️',title:'Dewasa & Diangkat Menjadi Nabi',sub:'Al-Amin, perkahwinan & wahyu pertama',
+    paras:[
+      "Semasa dewasa, Rasulullah ﷺ dikenali ramai dengan gelaran Al-Amin (yang amat dipercayai) kerana kejujuran dan akhlak mulia baginda dalam urusan perniagaan dan pergaulan sesama masyarakat Quraisy. Baginda turut menjadi peniaga yang berjaya, antaranya menguruskan harta perniagaan Khadijah binti Khuwailid, seorang saudagar wanita yang terhormat di Makkah.",
+      "Kejujuran dan budi pekerti baginda dalam perniagaan tersebut menarik hati Khadijah RA, lalu baginda meminangnya pada usia 25 tahun, manakala Khadijah ketika itu berusia 40 tahun. Perkahwinan ini berkekalan sehingga Khadijah RA wafat, dan baginda tidak berkahwin dengan wanita lain sepanjang Khadijah RA masih hidup — satu bukti kesetiaan baginda yang sering dipuji oleh para ulama sirah.",
+      "Menjelang usia 40 tahun, Rasulullah ﷺ semakin gemar menyendiri (berkhalwat) untuk bertafakur dan beribadat di Gua Hira', sebuah gua di Jabal An-Nur berhampiran Makkah. Baginda akan membawa bekalan secukupnya dan tinggal di sana selama beberapa malam sebelum pulang menemui Khadijah RA untuk mengambil bekalan baharu.",
+      "Pada satu malam di bulan Ramadan, ketika baginda sedang bertahannuth di Gua Hira', Malaikat Jibril AS datang dan memerintahkan baginda, \"Bacalah!\" Baginda menjawab bahawa dirinya tidak pandai membaca, lalu Jibril mendakapnya sehingga terasa sesak sebanyak tiga kali sebelum menyampaikan lima ayat pertama Surah Al-'Alaq. Peristiwa ini, sebagaimana yang diriwayatkan dengan terperinci oleh Aisyah RA dalam hadis sahih Bukhari, menandakan permulaan kenabian baginda pada usia genap 40 tahun.",
+      "Selepas peristiwa itu, baginda pulang dalam keadaan gementar dan meminta Khadijah RA menyelimutinya. Khadijah RA bukan sahaja menenangkan baginda, malah membawa baginda berjumpa sepupunya, Waraqah bin Naufal, seorang yang arif tentang kitab-kitab terdahulu, yang mengesahkan bahawa apa yang baginda alami adalah wahyu kenabian sebagaimana yang pernah diturunkan kepada Nabi Musa AS."
+    ],
+    hadith:{ar:"اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ، خَلَقَ الْإِنْسَانَ مِنْ عَلَقٍ، اقْرَأْ وَرَبُّكَ الْأَكْرَمُ",
+      my:"Bacalah dengan nama Tuhanmu yang menciptakan, Dia telah menciptakan manusia daripada segumpal darah, bacalah, dan Tuhanmu Yang Maha Pemurah.",
+      src:"Al-'Alaq: 1-3 — HR. Bukhari (3)"}},
+  {id:'b4',ico:'🕊️',title:'Wafat Baginda ﷺ',sub:'Saat akhir & kepulangan ke rahmatullah',
+    paras:[
+      "Pada bulan Safar tahun ke-11 Hijrah, Rasulullah ﷺ mula jatuh sakit dengan demam yang semakin meningkat dari hari ke hari. Walaupun dalam keadaan uzur, baginda masih cuba mengimamkan solat berjemaah di Masjid Nabawi buat beberapa ketika, sebelum akhirnya melantik Abu Bakar As-Siddiq RA untuk menjadi imam menggantikan baginda — satu isyarat penting yang difahami oleh para sahabat tentang kedudukan Abu Bakar RA selepas kewafatan baginda.",
+      "Menjelang hari-hari terakhir, sakit baginda semakin parah dan baginda dipindahkan ke rumah Aisyah RA mengikut persetujuan isteri-isteri baginda yang lain, supaya baginda dapat dijaga dengan lebih tenang. Aisyah RA sendiri menceritakan bahawa antara nikmat besar yang Allah kurniakan kepadanya ialah Rasulullah ﷺ wafat di dalam rumahnya, pada hari gilirannya, dan dalam pangkuannya.",
+      "Pada saat-saat akhir, Rasulullah ﷺ masih sempat meminta kayu sugi (siwak) daripada Abdul Rahman bin Abu Bakar, lalu Aisyah RA melembutkannya untuk baginda bersugi buat kali terakhir. Selepas itu, baginda mencelup tangan ke dalam bekas air dan menyapu ke wajahnya sambil mengucapkan kalimah tauhid, sebelum mengangkat tangan atau jarinya ke langit dan mengulangi ucapan \"Allahumma ar-rafiqal a'la\" (Ya Allah, Kekasih Yang Tertinggi) sebanyak tiga kali. Itulah kalimah terakhir yang diucapkan baginda sebelum kembali ke rahmatullah, sebagaimana yang disepakati oleh Imam Bukhari dan Imam Muslim dalam riwayat Aisyah RA.",
+      "Para ulama hadis turut menjelaskan bahawa riwayat yang menyebut perkataan terakhir baginda sebagai \"Umatku, umatku\" adalah tidak sahih dan tiada sumber yang muktabar, walaupun ia tersebar luas dalam masyarakat. Yang thabit secara sahih hanyalah ucapan \"Ar-Rafiqul A'la\", sebagaimana yang dijelaskan oleh Ibn Hajar Al-'Asqalani — bahawa kalimah tersebut mengandungi pengakuan tauhid kepada Allah di saat-saat genting kewafatan baginda.",
+      "Rasulullah ﷺ wafat pada hari Isnin, 12 Rabiulawal tahun ke-11 Hijrah, pada usia 63 tahun — hari yang sama dengan hari kelahiran baginda. Kewafatan ini menimbulkan kesedihan yang amat mendalam dalam kalangan para sahabat, sehingga Umar Al-Khattab RA pada mulanya enggan mempercayainya, sebelum Abu Bakar As-Siddiq RA tampil menenangkan umat dengan mengingatkan bahawa sesiapa yang menyembah Muhammad ﷺ, maka sesungguhnya Muhammad ﷺ telah wafat, namun sesiapa yang menyembah Allah, maka Allah Maha Hidup dan tidak akan mati."
+    ],
+    hadith:{ar:"اللَّهُمَّ الرَّفِيقَ الْأَعْلَى",
+      my:"Ya Allah, (aku memilih untuk bersama) Kekasih Yang Tertinggi.",
+      src:"HR. Bukhari (4463, 6509) & Muslim (2444)"}}
+];
+function renderBiodata(){
+  document.getElementById('biolist').innerHTML=BIODATA_DB.map(b=>{
+    const open=biodataOpenId===b.id;
+    const parasHtml=b.paras.map(p=>`<p class="bio-para">${p}</p>`).join('');
+    return`<div class="kcard${open?' open':''}" id="bc-${b.id}">
+      <div class="khead" data-bid="${b.id}">
+        <div class="kico a">${b.ico}</div>
+        <div class="kmeta"><div class="ktitle">${b.title}</div><div class="ksub">${b.sub}</div></div>
+        <div class="karr">▼</div>
+      </div>
+      <div class="kbody">
+        <div class="ktc on" style="padding:13px 14px">
+          ${parasHtml}
+          <div class="bio-hadith-block">
+            <div class="bio-hadith-ar">${b.hadith.ar}</div>
+            <div class="bio-hadith-my">"${b.hadith.my}"</div>
+            <span class="ksrc" style="margin-top:6px">📚 ${b.hadith.src}</span>
+          </div>
         </div>
       </div>
     </div>`;
@@ -1685,7 +1857,7 @@ function switchPage(pg){
   const selPg=document.getElementById('pg-selawat');
   selPg.classList.remove('on');
   // Hero & progress visibility
-  const showHero=pg!=='selawat';
+  const showHero=pg!=='selawat'&&pg!=='biodata';
   document.getElementById('heroBlock').style.display=showHero?'':'none';
   document.getElementById('progBlock').style.display=showHero?'':'none';
   const sb=document.getElementById('selBanner');if(sb)sb.style.display=showHero?'':'none';
@@ -1701,6 +1873,7 @@ function switchPage(pg){
     if(pg==='pemakanan')renderFood();
     if(pg==='pemakaian')renderWear();
     if(pg==='riadah')renderRiadah();
+    if(pg==='biodata')renderBiodata();
   }
 }
 
@@ -1759,7 +1932,7 @@ document.addEventListener('click',function(e){
   const ah=t.closest('.ahead'); if(ah&&!t.closest('.chkbtn')){document.getElementById('ad-'+ah.dataset.aid)?.classList.toggle('open');return}
   const chk=t.closest('.chkbtn'); if(chk){const id=chk.dataset.chk;doneSet.has(id)?doneSet.delete(id):doneSet.add(id);save();renderAmalan();return}
   const cp=t.closest('.catpill'); if(cp){if(t.closest('#pg-riadah')){riadahCat=cp.dataset.cat;riadahOpenId=null;document.querySelectorAll('#pg-riadah .catpill').forEach(p=>p.classList.remove('on'));cp.classList.add('on');renderRiadah();}else{kesCat=cp.dataset.cat;kesOpenId=null;document.querySelectorAll('#pg-kesihatan .catpill').forEach(p=>p.classList.remove('on'));cp.classList.add('on');renderKes();}return}
-  const kh=t.closest('.khead'); if(kh){if(kh.dataset.rid){riadahOpenId=riadahOpenId===kh.dataset.rid?null:kh.dataset.rid;renderRiadah();}else{kesOpenId=kesOpenId===kh.dataset.kid?null:kh.dataset.kid;renderKes();}return}
+  const kh=t.closest('.khead'); if(kh){if(kh.dataset.rid){riadahOpenId=riadahOpenId===kh.dataset.rid?null:kh.dataset.rid;renderRiadah();}else if(kh.dataset.bid){biodataOpenId=biodataOpenId===kh.dataset.bid?null:kh.dataset.bid;renderBiodata();}else{kesOpenId=kesOpenId===kh.dataset.kid?null:kh.dataset.kid;renderKes();}return}
   const kt=t.closest('.ktab'); if(kt){if(kt.dataset.rtab){riadahTabState[kt.dataset.rtab]=kt.dataset.rt;renderRiadah();}else{kesTabState[kt.dataset.ktab]=kt.dataset.t;renderKes();}return}
   const ft=t.closest('.mcard-top[data-fid]'); if(ft&&!t.closest('.tick-btn')){foodOpenId=foodOpenId===ft.dataset.fid?null:ft.dataset.fid;renderFood();return}
   const ftick=t.closest('[data-ftick]'); if(ftick){const id=ftick.dataset.ftick;ownedFood.has(id)?ownedFood.delete(id):ownedFood.add(id);save();renderFood();const f=FOOD_DB.find(x=>x.id===id);if(f)popup(f.ico,ownedFood.has(id)?'Alhamdulillah! ✅':'Noted!',ownedFood.has(id)?`${f.name} dah ada!`:`${f.name} ditanda belum ada.`);return}
@@ -1769,6 +1942,8 @@ document.addEventListener('click',function(e){
   const ni=t.closest('.ni'); if(ni&&ni.dataset.pg){switchPage(ni.dataset.pg);return}
   // Header buttons
   if(t.closest('#selHdrBtn')||t.closest('#selPromptCard')){switchPage('selawat');return}
+  if(t.closest('#biodataBox')){switchPage('biodata');return}
+  if(t.closest('#biodataBack')){switchPage('amalan');return}
   if(t.closest('#langBtn')){toggleLang();return}
   if(t.closest('#bellBtn')){document.getElementById('notifOverlay').classList.toggle('on');return}
   if(t.closest('#saveNotifBtn')){saveNotif();return}
@@ -1809,9 +1984,11 @@ function init(){
   initWheel();
   renderSlotNotif();
   renderRiadah();
+  renderBiodata();
   setInterval(()=>{renderWheel();renderSlotNotif()},60000);
-  setTimeout(()=>popup('☪','Salam! Selamat Datang ﷺ','Jejak langkah Nabi dalam kehidupan harian anda.'),800);
-  setTimeout(()=>popupSokong(),4200);
+  setTimeout(()=>document.getElementById('splash').classList.add('hide'),2500);
+  setTimeout(()=>popup('☪','Salam! Selamat Datang ﷺ','Jejak langkah Nabi dalam kehidupan harian anda.'),2900);
+  setTimeout(()=>popupSokong(),6700);
 }
 document.addEventListener('DOMContentLoaded',init);
 
